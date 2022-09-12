@@ -3,27 +3,87 @@
     <h3 class="card-title">Add new product</h3>
   </div>
   <div class="card-body">
-    <form>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="productName">Product Name</span>
-        <input type="text" class="form-control" aria-label="productName" aria-describedby="productName">
+    <form (ngSubmit)="onSubmit(addProductForm)"#addProductForm="ngForm">
+
+      <div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="productCode">Product Code</span>
+          <input type="text" class="form-control" aria-label="productCode" aria-describedby="productCode" ngModel name="productCode">
+        </div>
       </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="catagory">Category</span>
-        <select type="text" class="form-control"  aria-label="catagory" aria-describedby="productName">
-          <option>--Select--</option>
-          <option>A</option>
-        </select>
+      <div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="productName">Product Name</span>
+          <input type="text" class="form-control" aria-label="productName" aria-describedby="productName"ngModel name="productName"required #productName="ngModel">
+
+        </div>
+        <span class="error_block" *ngIf="productName.invalid && (productName.touched|| isSubmitted)">Please provide product name</span>
       </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="unit">Unit</span>
-        <select type="text" class="form-control"  aria-label="unit" aria-describedby="unit">
-          <option>--Select--</option>
-          <option>A</option>
-        </select>
+      <div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="productModel">Model</span>
+          <input type="text" class="form-control" aria-label="productModel" aria-describedby="productModel"ngModel name="productModel">
+        </div>
       </div>
+
+      <div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="productCostPrice">Cost Price</span>
+          <input type="number" class="form-control" aria-label="productCostPrice" aria-describedby="productCostPrice"ngModel name="productCostPrice"required #productCostPrice="ngModel">
+
+        </div>
+        <span class="error_block" *ngIf="productCostPrice.invalid  && (productCostPrice.touched || isSubmitted)">Please provide product sales price</span>
+      </div>
+
+      <div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="productSalePrice">Sales Price</span>
+          <input type="number" class="form-control" aria-label="productSalePrice" aria-describedby="productSalePrice"ngModel name="productSalePrice" required #productSalePrice="ngModel">
+
+        </div>
+        <span class="error_block" *ngIf="productSalePrice.invalid && (productSalePrice.touched || isSubmitted)">Please provide product cost</span>
+      </div>
+
+      <div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="productVat">VAT</span>
+          <input type="text" class="form-control" aria-label="productVat" aria-describedby="productVat"ngModel name="productVat">
+        </div>
+      </div>
+
+
+      <div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="catagory">Category</span>
+              <select type="text" class="form-control"  aria-label="catagory" aria-describedby="catagory"ngModel name="catagory"required #catagory="ngModel">
+                <option value="">--Select--</option>
+                <option value="A">A</option>
+              </select>
+            </div>
+            <span class="error_block" *ngIf="catagory.invalid && isSubmitted">Please provide product catagory</span>
+      </div>
+      <div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="unit">Unit</span>
+          <select type="text" class="form-control"  aria-label="unit" aria-describedby="unit"ngModel name="unit" required #unit="ngModel">
+            <option value="">--Select--</option>
+            <option value="B">B</option>
+          </select>
+
+        </div>
+
+        <span class="error_block" *ngIf="!unit.valid && isSubmitted">Please provide product unit</span>
+      </div>
+
+
+      <div class="input-group mb-3">
+         <!-- <button [disabled]="addProductForm.invalid" type="submit" class="btn btn-success">Save</button> -->
+         <button type="submit" class="btn btn-success">Save</button>
+         <button type="reset" class="btn btn-danger">reset</button>
+      </div>
+
 
     </form>
 
