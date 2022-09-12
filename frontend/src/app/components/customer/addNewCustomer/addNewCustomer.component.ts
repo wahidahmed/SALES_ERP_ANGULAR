@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-addNewCustomer',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./addNewCustomer.component.css']
 })
 export class AddNewCustomerComponent implements OnInit {
-
+@ViewChild('customerForm') addNewCust:NgForm
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSubmit(){
+    console.log(this.addNewCust);
+  }
 }
