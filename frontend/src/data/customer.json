@@ -1,0 +1,20 @@
+[
+  {
+    "Id":1,
+    "CustomerName":"bazuuer Ltd.",
+    "CustomerAddress":"W.A.K Road, New york",
+    "CustomerPhone":"0018700111"
+  },
+  {
+    "Id":2,
+    "CustomerName":"Raidmain Ltd.",
+    "CustomerAddress":"W.A.K Road, New york",
+    "CustomerPhone":"0018700122"
+  },
+  {
+    "Id":3,
+    "CustomerName":"Raidmain Ltd.",
+    "CustomerAddress":"W.M.K Road, Jaind york",
+    "CustomerPhone":"00187001331"
+  }
+]

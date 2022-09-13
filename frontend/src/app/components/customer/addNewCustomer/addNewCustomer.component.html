@@ -11,7 +11,7 @@
           <span class="input-group-text" id="customerName">Customer Name</span>
           <input type="text" class="form-control" aria-label="customerName" aria-describedby="customerName"ngModel name="customerName"required #customerName="ngModel">
         </div>
-        <span class="error_block">Please provide customer name</span>
+        <span class="error_block" *ngIf="customerName.invalid && customerName.touched">Please provide customer name</span>
       </div>
 
       <div>
@@ -19,7 +19,7 @@
           <span class="input-group-text" id="customerPhone">Phone/Mobile</span>
           <input type="text" class="form-control" aria-label="customerPhone" aria-describedby="customerPhone"ngModel name="customerPhone"required #customerPhone="ngModel">
         </div>
-        <span class="error_block">Please provide customer phone/mobile</span>
+        <span class="error_block"*ngIf="customerPhone.invalid && customerPhone.touched">Please provide customer phone/mobile</span>
       </div>
 
       <div>
@@ -27,14 +27,15 @@
           <span class="input-group-text" id="customerAddr">Customer address</span>
           <textarea type="text" class="form-control" aria-label="customerAddr" aria-describedby="customerAddr"ngModel name="customerAddr"required #customerAddr="ngModel"></textarea>
         </div>
-        <span class="error_block">Please provide customer address</span>
+        <span class="error_block" *ngIf="customerAddr.invalid && customerAddr.touched">Please provide customer address</span>
       </div>
 
 
       <div class="input-group mb-3">
-        <!-- <button [disabled]="addProductForm.invalid" type="submit" class="btn btn-success">Save</button> -->
-        <button type="submit" class="btn btn-success">Save</button>
+
+        <button [disabled]="customerForm.invalid" type="submit" class="btn btn-success">Save</button>
         <button type="reset" class="btn btn-danger">reset</button>
+
      </div>
 
     </form>
