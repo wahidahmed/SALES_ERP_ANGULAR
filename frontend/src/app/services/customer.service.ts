@@ -16,5 +16,8 @@ url='/data/customer.json';
     return this.http.get<ICustomer[]>(this.url);
   }
 
+  // getCustomerById(id:number):Observable<ICustomer>{
+  //   // return this.http.get<ICustomer>(this.url).subscribe(d=>{})
+  // }
 
 }

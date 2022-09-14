@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ICustomer } from 'src/app/interfaces/ICustomer';
 
 @Component({
   selector: 'app-addNewCustomer',
@@ -7,13 +8,19 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./addNewCustomer.component.css']
 })
 export class AddNewCustomerComponent implements OnInit {
-@ViewChild('customerForm') addNewCust:NgForm
+
   constructor() { }
 
+  @ViewChild('customerForm') addNewCust:NgForm
+
+  @Input() customerDataById:ICustomer;
+
+
   ngOnInit() {
+
   }
 
   onSubmit(){
-    console.log(this.addNewCust);
+    console.log(this.addNewCust.value.customerAddr);
   }
 }

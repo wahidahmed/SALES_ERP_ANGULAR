@@ -10,15 +10,33 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of allCustomers let i=index">
+    <tr *ngFor="let item of allCustomers let i=index" id="tr_{{i}}">
       <th scope="row">{{i+1}}</th>
       <td>{{item.CustomerName}}</td>
       <td>{{item.CustomerPhone}}</td>
       <td>{{item.CustomerAddress}}</td>
       <td>
-
+          <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(item.Id,staticModal)">D</button>
+          <button type="button" class="btn btn-sm btn-warning ms-1">E</button>
       </td>
     </tr>
 
   </tbody>
 </table>
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Static modal</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <app-addNewCustomer ></app-addNewCustomer>
+      </div>
+    </div>
+  </div>
+</div>
