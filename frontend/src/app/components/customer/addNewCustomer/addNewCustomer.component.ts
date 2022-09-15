@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ICustomer } from 'src/app/interfaces/ICustomer';
 
 @Component({
@@ -9,12 +10,18 @@ import { ICustomer } from 'src/app/interfaces/ICustomer';
 })
 export class AddNewCustomerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   @ViewChild('customerForm') addNewCust:NgForm
 
-  @Input() customerDataById:ICustomer;
+  @Input() customerDataById:ICustomer={
+    Id: 0,
+    CustomerName:'',
+    CustomerAddress:'',
+    CustomerPhone:''
+  };
 
+@Output()isModalClose=new EventEmitter<boolean>();
 
   ngOnInit() {
 
@@ -23,4 +30,13 @@ export class AddNewCustomerComponent implements OnInit {
   onSubmit(){
     console.log(this.addNewCust.value.customerAddr);
   }
+  onReset(){
+    if(this.router.url==='/customer_list'){
+        this.isModalClose.emit(true);
+    }
+    else{
+      this.isModalClose.emit(false);
+    }
+  }
+
 }

@@ -12,7 +12,12 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class ListCustomerComponent implements OnInit {
 
 allCustomers:Array<ICustomer>;
-getCustomer:ICustomer;
+getCustomer:ICustomer={
+  Id: 0,
+  CustomerName:'',
+  CustomerAddress:'',
+  CustomerPhone:''
+};
 
   constructor(private customerService:CustomerService,private alertify:AlertifyService) { }
 
@@ -27,15 +32,18 @@ getCustomer:ICustomer;
   }
 
 
-
   onDelete(id:number,staticModal:any){
     staticModal.show()
-    this.customerService.getCustomerById(id).subscribe((data)=>{
-      // this.getCustomer= data;
+     this.customerService.getCustomerById(id).subscribe((data)=>{
+      this.getCustomer= data;
     })
     // this.alertify.warning('successfully delete the id -'+id);
   }
 
-
+  isModalClose(value: boolean,staticModal:any){
+    if(value){
+      staticModal.hide()
+    }
+  }
 
 }
