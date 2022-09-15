@@ -1,4 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ICustomer } from 'src/app/interfaces/ICustomer';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { CustomerService } from 'src/app/services/customer.service';
@@ -11,7 +12,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class ListCustomerComponent implements OnInit {
 
 allCustomers:Array<ICustomer>;
-getCustomerById:ICustomer;
+getCustomer:ICustomer;
 
   constructor(private customerService:CustomerService,private alertify:AlertifyService) { }
 
@@ -29,8 +30,8 @@ getCustomerById:ICustomer;
 
   onDelete(id:number,staticModal:any){
     staticModal.show()
-    this.customerService.getAllCustomers().subscribe((data)=>{
-     return data.find((x)=>x.Id===1);
+    this.customerService.getCustomerById(id).subscribe((data)=>{
+      // this.getCustomer= data;
     })
     // this.alertify.warning('successfully delete the id -'+id);
   }

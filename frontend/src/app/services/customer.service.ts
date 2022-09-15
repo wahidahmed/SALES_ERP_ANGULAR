@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICustomer } from '../interfaces/ICustomer';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +16,13 @@ url='/data/customer.json';
     return this.http.get<ICustomer[]>(this.url);
   }
 
-  // getCustomerById(id:number):Observable<ICustomer>{
-  //   // return this.http.get<ICustomer>(this.url).subscribe(d=>{})
-  // }
+  getCustomerById(id:number){
+    return this.getAllCustomers().pipe(
+       map(pArr=>{
+         // throw new Error('something error');
+        return pArr.find(p=>p.Id===id);
+       })
+     );
+  }
 
 }
