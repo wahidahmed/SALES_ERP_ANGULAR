@@ -1,2 +1,24 @@
-
-<p>Hi i am product list</p>
+<table class="table table-bordered ">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Model</th>
+      <th>Catagory</th>
+      <th>Unit</th>
+      <th>Cost</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of productList">
+      <td>{{item.ProdcutCode}}</td>
+      <td>{{item.ProdcutName}}</td>
+      <td>{{item.ModelId}}</td>
+      <td>{{item.CatagoryId}}</td>
+      <td>{{item.UnitId}}</td>
+      <td>{{item.CostPrice}}</td>
+      <td>{{item.SalesPrice}}</td>
+    </tr>
+  </tbody>
+</table>
