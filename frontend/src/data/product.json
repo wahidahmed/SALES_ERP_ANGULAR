@@ -1,0 +1,35 @@
+[
+  {
+  "Id":1,
+  "ProdcutCode":"009090",
+  "ProdcutName":"paint",
+  "ModelId":5,
+  "CostPrice":100,
+  "SalesPrice":121,
+  "VAT":null,
+  "CatagoryId":2,
+  "UnitId":1
+  },
+  {
+    "Id":1,
+    "ProdcutCode":"009092",
+    "ProdcutName":"Mailoo",
+    "ModelId":null,
+    "CostPrice":100,
+    "SalesPrice":121,
+    "VAT":null,
+    "CatagoryId":2,
+    "UnitId":1
+    },
+    {
+      "Id":2,
+      "ProdcutCode":"009091",
+      "ProdcutName":"Lexicoken",
+      "ModelId":12,
+      "CostPrice":1200,
+      "SalesPrice":1500,
+      "VAT":2,
+      "CatagoryId":null,
+      "UnitId":2
+      }
+]

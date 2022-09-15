@@ -13,10 +13,12 @@ import { CustomerService } from './services/customer.service';
 import { ListCustomerComponent } from './components/customer/addNewCustomer/list-customer/list-customer.component';
 import { AlertifyService } from './services/alertify.service';
 import { ListProductComponent } from './components/product/list-product/list-product.component';
+import { ProdcutService } from './services/prodcut.service';
 
 
 const appRoutes:Routes=[
   {path:'add_new_product',component:AddProductComponent}
+  ,{path:'product_list',component:ListProductComponent}
   ,{path:'add_new_customer',component:AddNewCustomerComponent}
   ,{path:'customer_list',component:ListCustomerComponent}
 ]
@@ -39,7 +41,7 @@ const appRoutes:Routes=[
   ],
   providers: [
     CustomerService,
-    AlertifyService
+    AlertifyService,ProdcutService
   ],
   bootstrap: [AppComponent]
 })
