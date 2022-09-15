@@ -12,6 +12,7 @@ import { AddNewCustomerComponent } from './components/customer/addNewCustomer/ad
 import { CustomerService } from './services/customer.service';
 import { ListCustomerComponent } from './components/customer/addNewCustomer/list-customer/list-customer.component';
 import { AlertifyService } from './services/alertify.service';
+import { ListProductComponent } from './components/product/list-product/list-product.component';
 
 
 const appRoutes:Routes=[
@@ -25,7 +26,8 @@ const appRoutes:Routes=[
     AddProductComponent,
     TopNavbarComponent,
     AddNewCustomerComponent,
-    ListCustomerComponent
+    ListCustomerComponent,
+    ListProductComponent
   ],
   imports: [
     BrowserModule,
