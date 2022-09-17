@@ -23,7 +23,13 @@ export class ProdcutService {
    );
  }
 
-
+getProduct(id:number){
+  return this.getProductList().pipe(
+    map(data=>{
+      return data.find(p=>p.Id===id);
+    })
+  )
+}
 
  errorHandler(error: HttpErrorResponse) {
   return throwError(error.message || "server error.");

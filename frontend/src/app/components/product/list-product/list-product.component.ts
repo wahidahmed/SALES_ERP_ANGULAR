@@ -9,12 +9,15 @@ import { ProdcutService } from 'src/app/services/prodcut.service';
 })
 export class ListProductComponent implements OnInit {
 
-  constructor(private prodService:ProdcutService) { }
+constructor(private prodService:ProdcutService) { }
 productList:Array<IProduct>;
+
   ngOnInit(): void {
     this.prodService.getProductList().subscribe(data=>{
       this.productList=data;
     });
   }
+
+
 
 }

@@ -3,19 +3,19 @@
     <h3 class="card-title">Add new product</h3>
   </div>
   <div class="card-body">
-    <form (ngSubmit)="onSubmit(addProductForm)"#addProductForm="ngForm">
-
+    <form (ngSubmit)="onSubmit(addProductForm)" #addProductForm="ngForm">
+      <input type="hidden" name="Id" ngModel productId="ngModel" [(ngModel)]="product.Id" />
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="productCode">Product Code</span>
-          <input type="text" class="form-control" aria-label="productCode" aria-describedby="productCode" ngModel name="productCode">
+          <input type="text" class="form-control" aria-label="productCode" aria-describedby="productCode" ngModel name="productCode" [(ngModel)]="product.ProdcutCode">
         </div>
       </div>
 
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="productName">Product Name</span>
-          <input type="text" class="form-control" aria-label="productName" aria-describedby="productName"ngModel name="productName"required #productName="ngModel">
+          <input type="text" class="form-control" aria-label="productName" aria-describedby="productName"ngModel name="productName"required #productName="ngModel" [(ngModel)]="product.ProdcutName">
 
         </div>
         <span class="error_block" *ngIf="productName.invalid && (productName.touched|| isSubmitted)">Please provide product name</span>
@@ -24,14 +24,14 @@
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="productModel">Model</span>
-          <input type="text" class="form-control" aria-label="productModel" aria-describedby="productModel"ngModel name="productModel">
+          <input type="text" class="form-control" aria-label="productModel" aria-describedby="productModel"ngModel name="productModel" [(ngModel)]="product.ModelId">
         </div>
       </div>
 
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="productCostPrice">Cost Price</span>
-          <input type="number" class="form-control" aria-label="productCostPrice" aria-describedby="productCostPrice"ngModel name="productCostPrice"required #productCostPrice="ngModel">
+          <input type="number" class="form-control" aria-label="productCostPrice" aria-describedby="productCostPrice"ngModel name="productCostPrice"required #productCostPrice="ngModel" [(ngModel)]="product.CostPrice">
 
         </div>
         <span class="error_block" *ngIf="productCostPrice.invalid  && (productCostPrice.touched || isSubmitted)">Please provide product sales price</span>
@@ -40,7 +40,7 @@
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="productSalePrice">Sales Price</span>
-          <input type="number" class="form-control" aria-label="productSalePrice" aria-describedby="productSalePrice"ngModel name="productSalePrice" required #productSalePrice="ngModel">
+          <input type="number" class="form-control" aria-label="productSalePrice" aria-describedby="productSalePrice"ngModel name="productSalePrice" required #productSalePrice="ngModel"[(ngModel)]="product.SalesPrice">
 
         </div>
         <span class="error_block" *ngIf="productSalePrice.invalid && (productSalePrice.touched || isSubmitted)">Please provide product cost</span>
@@ -49,7 +49,7 @@
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="productVat">VAT</span>
-          <input type="text" class="form-control" aria-label="productVat" aria-describedby="productVat"ngModel name="productVat">
+          <input type="text" class="form-control" aria-label="productVat" aria-describedby="productVat"ngModel name="productVat" [(ngModel)]="product.VAT">
         </div>
       </div>
 
@@ -57,9 +57,9 @@
       <div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="catagory">Category</span>
-              <select type="text" class="form-control"  aria-label="catagory" aria-describedby="catagory"ngModel name="catagory"required #catagory="ngModel">
+              <select type="text" class="form-control"  aria-label="catagory" aria-describedby="catagory"ngModel name="catagory"required #catagory="ngModel" [(ngModel)]="product.CatagoryId">
                 <option value="">--Select--</option>
-                <option value="A">A</option>
+                <option value="1">A</option>
               </select>
             </div>
             <span class="error_block" *ngIf="catagory.invalid && isSubmitted">Please provide product catagory</span>
@@ -67,9 +67,9 @@
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="unit">Unit</span>
-          <select type="text" class="form-control"  aria-label="unit" aria-describedby="unit"ngModel name="unit" required #unit="ngModel">
+          <select type="text" class="form-control"  aria-label="unit" aria-describedby="unit"ngModel name="unit" required #unit="ngModel" [(ngModel)]="product.UnitId">
             <option value="">--Select--</option>
-            <option value="B">B</option>
+            <option value="2">B</option>
           </select>
 
         </div>

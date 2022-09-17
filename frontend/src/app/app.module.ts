@@ -17,7 +17,7 @@ import { ProdcutService } from './services/prodcut.service';
 
 
 const appRoutes:Routes=[
-  {path:'add_new_product',component:AddProductComponent}
+  {path:'add_new_product/:id',component:AddProductComponent}
   ,{path:'product_list',component:ListProductComponent}
   ,{path:'add_new_customer',component:AddNewCustomerComponent}
   ,{path:'customer_list',component:ListCustomerComponent}

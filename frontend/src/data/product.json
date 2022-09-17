@@ -7,11 +7,11 @@
   "CostPrice":100,
   "SalesPrice":121,
   "VAT":null,
-  "CatagoryId":2,
+  "CatagoryId":1,
   "UnitId":1
   },
   {
-    "Id":1,
+    "Id":2,
     "ProdcutCode":"009092",
     "ProdcutName":"Mailoo",
     "ModelId":null,
@@ -19,7 +19,7 @@
     "SalesPrice":121,
     "VAT":null,
     "CatagoryId":2,
-    "UnitId":1
+    "UnitId":2
     },
     {
       "Id":2,
