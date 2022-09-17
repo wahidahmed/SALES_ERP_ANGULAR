@@ -14,6 +14,8 @@ import { ListCustomerComponent } from './components/customer/addNewCustomer/list
 import { AlertifyService } from './services/alertify.service';
 import { ListProductComponent } from './components/product/list-product/list-product.component';
 import { ProdcutService } from './services/prodcut.service';
+import { SalesEntryComponent } from './components/sales/sales-entry/sales-entry.component';
+import { SalesEditComponent } from './components/sales/sales-edit/sales-edit.component';
 
 
 const appRoutes:Routes=[
@@ -21,6 +23,8 @@ const appRoutes:Routes=[
   ,{path:'product_list',component:ListProductComponent}
   ,{path:'add_new_customer',component:AddNewCustomerComponent}
   ,{path:'customer_list',component:ListCustomerComponent}
+  ,{path:'sales_entry',component:SalesEntryComponent}
+  ,{path:'sales_edit',component:SalesEditComponent}
 ]
 @NgModule({
   declarations: [
@@ -29,7 +33,9 @@ const appRoutes:Routes=[
     TopNavbarComponent,
     AddNewCustomerComponent,
     ListCustomerComponent,
-    ListProductComponent
+    ListProductComponent,
+    SalesEntryComponent,
+    SalesEditComponent,
   ],
   imports: [
     BrowserModule,
