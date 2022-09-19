@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 
@@ -8,18 +9,20 @@ import { ProdcutService } from 'src/app/services/prodcut.service';
   styleUrls: ['./sales-entry.component.css']
 })
 export class SalesEntryComponent implements OnInit {
-[x: string]: any;
 
   constructor(private productService:ProdcutService) { }
+
 
   productList:Array<IProduct>
   tableRowArray:Array<any>=[];
   private newAttribute: any =   {
       qty:null
+      ,minPrice:null
       ,salePrice: null
       ,discount: null
       ,total:null
   }
+
   ngOnInit(): void {
     this.productService.getProductList().subscribe
     (
@@ -36,6 +39,7 @@ export class SalesEntryComponent implements OnInit {
   addRow() {
    this.newAttribute =   {
       qty:null
+      ,minPrice:null
       ,salePrice: null
       ,discount: null
       ,total:null
@@ -47,21 +51,28 @@ export class SalesEntryComponent implements OnInit {
     this.tableRowArray.splice(index, 1);
   }
 
-  getGrandTotal(){
+   getGrandTotal(item: any[]){
 
-  //   return marks.reduce((acc:number,{qty,salePrice,discount}: any)=>{
-  //     acc= (Number(qty)*Number(salePrice))-Number(discount);
-  //     return acc;
-  //  },0)
-    return this.tableRowArray.reduce((acc: number, {total}: any) => acc += +(total || 0),0);
+    return item.reduce((acc,{qty, salePrice, discount})=>{
+      acc+=(Number(qty||0)*Number(salePrice||0))-Number(discount||0);
 
-  //  this.tableRowArray.reduce((acc,{salePrice,discount,total})=>{
-  //   console.log('acc',acc)
-  //   console.log('salePrice',salePrice)
-  //   console.log('discount',discount)
-  //   console.log('total',total)
-  // },0)
+      return acc;
+    },0)
   }
+
+  selectAllContent($event) {
+    $event.target.select();
+  }
+
+  onChangeProduct(event,item){
+    console.log('item',item);
+    this.productService.getProduct(+(event.target.value)).subscribe((data)=>{
+      console.log('data',data);
+      item.minPrice=data.SalesPrice;
+      // item.minPrice=data.SalesPrice;
+    });
+  }
+
 
 
 }

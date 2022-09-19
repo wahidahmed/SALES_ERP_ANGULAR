@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { ProdcutService } from 'src/app/services/prodcut.service';
-import { Product } from 'src/models/product';
+import { Product } from 'src/app/Models/product';
 
 @Component({
   selector: 'app-add-product',

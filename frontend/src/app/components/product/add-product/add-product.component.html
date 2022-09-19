@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit(addProductForm)" #addProductForm="ngForm">
-      <input type="hidden" name="Id" ngModel productId="ngModel" [(ngModel)]="product.Id" />
+      <input type="hidden" name="Id" ngModel #productId="ngModel" [(ngModel)]="product.Id" />
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="productCode">Product Code</span>
