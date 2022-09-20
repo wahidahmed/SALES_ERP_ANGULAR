@@ -1,5 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 
@@ -45,7 +45,7 @@ export class SalesEntryComponent implements OnInit {
       ,total:null
   }
     this.tableRowArray.push(this.newAttribute);
-
+console.log('tableRowArray',this.tableRowArray)
   }
   deleteRow(index: number) {
     this.tableRowArray.splice(index, 1);
@@ -69,12 +69,32 @@ export class SalesEntryComponent implements OnInit {
     this.productService.getProduct(+(event.target.value)).subscribe((data)=>{
       console.log('data',data);
       item.minPrice=data.SalesPrice;
-      // item.minPrice=data.SalesPrice;
     });
   }
 
+  // https://www.bennadel.com/blog/3578-using-dynamic-template-driven-forms-in-angular-7-2-7.htm
+  // ow to handle multiple click events in template driven forms
 
 
+  // onSubmit(saleList:NgForm){
+  //   console.log(saleList);
+  // }
+
+
+	// I process the form-model.
+	public onSubmit( form: any ) : void {
+
+		console.warn( "Handling form submission!" );
+
+		console.group( "Form Data" );
+		console.log( this.tableRowArray );
+		console.groupEnd();
+
+		console.group( "Form Model" );
+		console.log( form );
+		console.groupEnd();
+
+	}
 }
 
 

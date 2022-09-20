@@ -16,6 +16,7 @@ import { ListProductComponent } from './components/product/list-product/list-pro
 import { ProdcutService } from './services/prodcut.service';
 import { SalesEntryComponent } from './components/sales/sales-entry/sales-entry.component';
 import { SalesEditComponent } from './components/sales/sales-edit/sales-edit.component';
+import { TestTableLstFormComponent } from './components/sales/test-table-lst-form/test-table-lst-form.component';
 
 
 const appRoutes:Routes=[
@@ -25,6 +26,7 @@ const appRoutes:Routes=[
   ,{path:'customer_list',component:ListCustomerComponent}
   ,{path:'sales_entry',component:SalesEntryComponent}
   ,{path:'sales_edit',component:SalesEditComponent}
+  ,{path:'sales_test',component:TestTableLstFormComponent}
 ]
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ const appRoutes:Routes=[
     ListProductComponent,
     SalesEntryComponent,
     SalesEditComponent,
+    TestTableLstFormComponent,
   ],
   imports: [
     BrowserModule,
