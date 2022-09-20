@@ -1,6 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
+import { ICustomer } from 'src/app/interfaces/ICustomer';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 @Component({
   selector: 'app-sales-entry',
@@ -9,7 +11,7 @@ import { ProdcutService } from 'src/app/services/prodcut.service';
 })
 export class SalesEntryComponent implements OnInit {
 
-  constructor(private productService:ProdcutService) { }
+  constructor(private productService:ProdcutService,private alertifyService:AlertifyService) { }
 
 
   productList:Array<IProduct>
@@ -75,18 +77,34 @@ console.log('tableRowArray',this.tableRowArray)
   // ow to handle multiple click events in template driven forms
 
 	public onSubmit( form: any ) : void {
+
+  this.alertifyService.confirm("are you sure",()=>{
     console.group( "Form Data" );
 		console.log( this.tableRowArray );
 		console.groupEnd();
 		console.group( "Form Model" );
 		console.log( form );
 		console.groupEnd();
+  })
 
 	}
 
+  getCustomer:ICustomer={
+    Id: 0,
+    CustomerName:'',
+    CustomerAddress:'',
+    CustomerPhone:''
+  };
+  isModalClose(value: boolean,staticModal:any){
+    if(value){
+      staticModal.hide()
+    }
+  }
+  onAddCustomer(staticModal:any){
+    staticModal.show()
+  }
 
 }
-
 
 
 

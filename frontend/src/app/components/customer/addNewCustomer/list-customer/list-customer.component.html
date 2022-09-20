@@ -16,8 +16,8 @@
       <td>{{item.CustomerPhone}}</td>
       <td>{{item.CustomerAddress}}</td>
       <td>
-          <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(item.Id,staticModal)">D</button>
-          <button type="button" class="btn btn-sm btn-warning ms-1">E</button>
+          <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(item.Id)">D</button>
+          <button type="button" class="btn btn-sm btn-warning ms-1"(click)="onEdit(item.Id,staticModal)">E</button>
       </td>
     </tr>
 

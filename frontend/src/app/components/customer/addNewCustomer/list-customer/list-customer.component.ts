@@ -32,12 +32,16 @@ getCustomer:ICustomer={
   }
 
 
-  onDelete(id:number,staticModal:any){
-    staticModal.show()
-     this.customerService.getCustomerById(id).subscribe((data)=>{
-      this.getCustomer= data;
-    })
+  onDelete(id:number){
+
     // this.alertify.warning('successfully delete the id -'+id);
+  }
+
+  onEdit(id:number,staticModal:any){
+    staticModal.show()
+    this.customerService.getCustomerById(id).subscribe((data)=>{
+     this.getCustomer= data;
+   })
   }
 
   isModalClose(value: boolean,staticModal:any){

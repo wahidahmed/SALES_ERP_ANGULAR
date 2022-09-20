@@ -22,5 +22,13 @@ error(message:string){
   alertify.error(message);
  }
 
+ confirm(message:string,okCallBack:(parm?:any)=>any){
+  alertify.confirm(message,function(e){
+    if(e){okCallBack()}else{}
+  });
+}
+
 
 }
+
+

@@ -2,74 +2,104 @@
 <!-- ow to handle multiple click events in template driven forms -->
 
 
-<!-- <form (ngSubmit)="onSubmit(saleList)" #saleList="ngForm"> -->
-  <form #saleList="ngForm" (submit)="onSubmit( saleList )">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>min-Price</th>
-        <th>stock</th>
-        <th>Quantity</th>
-        <th>Sale-Price</th>
-        <th>Discount</th>
-        <th>Total</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of tableRowArray; let i = index">
-        <td>
-          <select class="form-select form-select-sm" name="Id_{{i}}" ngModel (change)="onChangeProduct($event,item)" required>
-            <option value="">Select</option>
-            <option *ngFor="let pr of productList" value="{{pr.Id}}">
-                {{pr.ProdcutName}}
-            </option>
-          </select>
-        </td>
-        <td>
-          <input class="form-control-plaintext form-control-sm text-end"  name="minPrice_{{i}}" ngModel [(ngModel)]="item.minPrice" placeholder="min price" readonly/>
-        </td>
-        <td>
-          <input   class="form-control-plaintext form-control-sm text-end" name="stock_{{i}}" placeholder="stock" readonly >
-        </td>
-        <td>
-          <input type="number"  min="0" class="form-control form-control-sm text-end" name="qty_{{i}}" placeholder="qty" [(ngModel)]="item.qty" (keyup)="getGrandTotal(tableRowArray)" onfocus="this.select()" required>
+<div class="card">
+  <div class="card-header">
+   <div class="row ">
+    <div class="col-10">
+      <h5 class="card-title">Add New Sales</h5>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-outline-primary btn-sm" (click)="onAddCustomer(staticModal)">Add new customer</button>
+    </div>
+   </div>
+  </div>
+  <div class="card-body">
+    <form #saleList="ngForm" (submit)="onSubmit( saleList )">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>min-Price</th>
+            <th>stock</th>
+            <th>Quantity</th>
+            <th>Sale-Price</th>
+            <th>Discount</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of tableRowArray; let i = index">
+            <td>
+              <select class="form-select form-select-sm" name="Id_{{i}}" ngModel (change)="onChangeProduct($event,item)" required>
+                <option value="">Select</option>
+                <option *ngFor="let pr of productList" value="{{pr.Id}}">
+                    {{pr.ProdcutName}}
+                </option>
+              </select>
+            </td>
+            <td>
+              <input class="form-control-plaintext form-control-sm text-end"  name="minPrice_{{i}}" ngModel [(ngModel)]="item.minPrice" placeholder="min price" readonly/>
+            </td>
+            <td>
+              <input   class="form-control-plaintext form-control-sm text-end" name="stock_{{i}}" placeholder="stock" readonly >
+            </td>
+            <td>
+              <input type="number"  min="0" class="form-control form-control-sm text-end" name="qty_{{i}}" placeholder="qty" [(ngModel)]="item.qty" (keyup)="getGrandTotal(tableRowArray)" onfocus="this.select()" required>
 
-        </td>
-        <td>
-          <input type="number" min="0"  class="form-control form-control-sm text-end" name="salePrice_{{i}}" placeholder="sale Price"  [(ngModel)]="item.salePrice" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" required>
-        </td>
-        <td>
-          <input type="number"  class="form-control form-control-sm text-end" name="discount_{{i}}" placeholder="discount" [(ngModel)]="item.discount" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" min="0">
-        </td>
-        <td>
+            </td>
+            <td>
+              <input type="number" min="0"  class="form-control form-control-sm text-end" name="salePrice_{{i}}" placeholder="sale Price"  [(ngModel)]="item.salePrice" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" required>
+            </td>
+            <td>
+              <input type="number"  class="form-control form-control-sm text-end" name="discount_{{i}}" placeholder="discount" [(ngModel)]="item.discount" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" min="0">
+            </td>
+            <td>
 
-          <!-- <input  class="form-control-plaintext form-control-sm text-end" name="total" placeholder="total" [(ngModel)]="item.total" value="{{ (item.qty*item.salePrice)-item.discount }}"  /> -->
-          <input  class="form-control-plaintext form-control-sm text-end" name="total_{{i}}" placeholder="total" [(ngModel)]="(item.qty*item.salePrice)-item.discount" required readonly/>
-        </td>
-        <td>
-         <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
+              <!-- <input  class="form-control-plaintext form-control-sm text-end" name="total" placeholder="total" [(ngModel)]="item.total" value="{{ (item.qty*item.salePrice)-item.discount }}"  /> -->
+              <input  class="form-control-plaintext form-control-sm text-end" name="total_{{i}}" placeholder="total" [(ngModel)]="(item.qty*item.salePrice)-item.discount" required readonly/>
+            </td>
+            <td>
+             <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
 
-        </td>
+            </td>
 
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
 
-        <th colspan="6">Grand Total</th>
-        <input  class="form-control-plaintext form-control-sm text-end" name="grandTotal" placeholder="grand total"  readonly  value="{{getGrandTotal(tableRowArray)}}"  />
+            <th colspan="6">Grand Total</th>
+            <input  class="form-control-plaintext form-control-sm text-end" name="grandTotal" placeholder="grand total"  readonly  value="{{getGrandTotal(tableRowArray)}}"  />
 
-        <th>
-          <!-- <button type="button" class="btn btn-sm btn-success" (click)="addRow()"><i class="fa-solid fa-plus"></i></button> -->
-          <button type="button"   class="btn btn-sm btn-success" (click)="addRow()"[disabled]="saleList.form.invalid"><i class="fa-solid fa-plus"></i></button>
-        </th>
-      </tr>
-    </tfoot>
-  </table>
+            <th>
+              <!-- <button type="button" class="btn btn-sm btn-success" (click)="addRow()"><i class="fa-solid fa-plus"></i></button> -->
+              <button type="button"   class="btn btn-sm btn-success" (click)="addRow()"[disabled]="saleList.form.invalid"><i class="fa-solid fa-plus"></i></button>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
 
-  <button type="submit" [disabled]="saleList.form.invalid" class="btn btn-success">Save</button>
-</form>
+      <button type="submit" [disabled]="saleList.form.invalid" class="btn btn-success">Save</button>
+    </form>
+  </div>
+</div>
 
 
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h4 id="dialog-static-name" class="modal-title pull-left">Static modal</h4> -->
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <app-addNewCustomer [customerDataById]="getCustomer"(isModalClose)="isModalClose($event,staticModal)"></app-addNewCustomer>
+      </div>
+    </div>
+  </div>
+</div>
