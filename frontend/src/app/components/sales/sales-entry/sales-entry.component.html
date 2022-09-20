@@ -20,7 +20,7 @@
     <tbody>
       <tr *ngFor="let item of tableRowArray; let i = index">
         <td>
-          <select class="form-select form-select-sm" name="Id_{{i}}" ngModel (change)="onChangeProduct($event,item)">
+          <select class="form-select form-select-sm" name="Id_{{i}}" ngModel (change)="onChangeProduct($event,item)" required>
             <option value="">Select</option>
             <option *ngFor="let pr of productList" value="{{pr.Id}}">
                 {{pr.ProdcutName}}
@@ -38,15 +38,15 @@
 
         </td>
         <td>
-          <input type="number" min="0"  class="form-control form-control-sm text-end" name="salePrice_{{i}}" placeholder="sale Price"  [(ngModel)]="item.salePrice" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" >
+          <input type="number" min="0"  class="form-control form-control-sm text-end" name="salePrice_{{i}}" placeholder="sale Price"  [(ngModel)]="item.salePrice" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" required>
         </td>
         <td>
-          <input type="number"  class="form-control form-control-sm text-end" name="discount_{{i}}" placeholder="discount" [(ngModel)]="item.discount" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)">
+          <input type="number"  class="form-control form-control-sm text-end" name="discount_{{i}}" placeholder="discount" [(ngModel)]="item.discount" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" min="0">
         </td>
         <td>
 
           <!-- <input  class="form-control-plaintext form-control-sm text-end" name="total" placeholder="total" [(ngModel)]="item.total" value="{{ (item.qty*item.salePrice)-item.discount }}"  /> -->
-          <input  class="form-control-plaintext form-control-sm text-end" name="total_{{i}}" placeholder="total" [(ngModel)]="(item.qty*item.salePrice)-item.discount"  />
+          <input  class="form-control-plaintext form-control-sm text-end" name="total_{{i}}" placeholder="total" [(ngModel)]="(item.qty*item.salePrice)-item.discount" required readonly/>
         </td>
         <td>
          <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
@@ -63,7 +63,7 @@
 
         <th>
           <!-- <button type="button" class="btn btn-sm btn-success" (click)="addRow()"><i class="fa-solid fa-plus"></i></button> -->
-          <a  class="btn btn-sm btn-success" (click)="addRow()"><i class="fa-solid fa-plus"></i></a>
+          <button type="button"   class="btn btn-sm btn-success" (click)="addRow()"[disabled]="saleList.form.invalid"><i class="fa-solid fa-plus"></i></button>
         </th>
       </tr>
     </tfoot>

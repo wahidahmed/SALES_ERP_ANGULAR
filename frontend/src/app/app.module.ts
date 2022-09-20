@@ -19,6 +19,7 @@ import { SalesEditComponent } from './components/sales/sales-edit/sales-edit.com
 import { TestTableLstFormComponent } from './components/sales/test-table-lst-form/test-table-lst-form.component';
 
 
+
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
   ,{path:'product_list',component:ListProductComponent}
@@ -38,7 +39,10 @@ const appRoutes:Routes=[
     ListProductComponent,
     SalesEntryComponent,
     SalesEditComponent,
-    TestTableLstFormComponent,
+
+
+    TestTableLstFormComponent
+
   ],
   imports: [
     BrowserModule,
@@ -46,11 +50,14 @@ const appRoutes:Routes=[
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+
   ],
   providers: [
-    CustomerService,
-    AlertifyService,ProdcutService
+    CustomerService
+    ,AlertifyService
+    ,ProdcutService
+
   ],
   bootstrap: [AppComponent]
 })
