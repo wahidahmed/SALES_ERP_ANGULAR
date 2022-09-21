@@ -3,6 +3,7 @@ import { NgForm, NgModel } from '@angular/forms';
 import { ICustomer } from 'src/app/interfaces/ICustomer';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { CustomerService } from 'src/app/services/customer.service';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 @Component({
   selector: 'app-sales-entry',
@@ -11,9 +12,11 @@ import { ProdcutService } from 'src/app/services/prodcut.service';
 })
 export class SalesEntryComponent implements OnInit {
 
-  constructor(private productService:ProdcutService,private alertifyService:AlertifyService) { }
+  constructor(private productService:ProdcutService,private alertifyService:AlertifyService,private customerService:CustomerService) { }
 
 
+
+  customerList:Array<ICustomer>;
   productList:Array<IProduct>
   tableRowArray:Array<any>=[];
   private newAttribute: any =   {
@@ -32,6 +35,10 @@ export class SalesEntryComponent implements OnInit {
         this.productList= data
       }
     )
+
+    this.customerService.getAllCustomers().subscribe((data)=>{
+      this.customerList=data;
+    })
 
    this.addRow();
 
@@ -103,6 +110,7 @@ console.log('tableRowArray',this.tableRowArray)
   onAddCustomer(staticModal:any){
     staticModal.show()
   }
+
 
 }
 
