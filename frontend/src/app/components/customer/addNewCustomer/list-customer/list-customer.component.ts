@@ -13,7 +13,7 @@ export class ListCustomerComponent implements OnInit {
 
 allCustomers:Array<ICustomer>;
 getCustomer:ICustomer={
-  Id: 0,
+  CustomerId: 0,
   CustomerName:'',
   CustomerAddress:'',
   CustomerPhone:''
@@ -27,6 +27,7 @@ getCustomer:ICustomer={
 
   callGetAllCustomers(){
     this.customerService.getAllCustomers().subscribe((data)=>{
+      console.log(data);
       this.allCustomers=data;
     })
   }

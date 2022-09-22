@@ -97,7 +97,7 @@ console.log('tableRowArray',this.tableRowArray)
 	}
 
   getCustomer:ICustomer={
-    Id: 0,
+    CustomerId: 0,
     CustomerName:'',
     CustomerAddress:'',
     CustomerPhone:''

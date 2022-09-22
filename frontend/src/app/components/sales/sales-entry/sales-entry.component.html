@@ -16,7 +16,7 @@
         <div class="col-3">
           <select class="form-select form-select-sm" name="customerId" ngModel >
             <option value="" selected>select customer</option>
-            <option *ngFor="let item of customerList" value="{{item.Id}}">
+            <option *ngFor="let item of customerList" value="{{item.CustomerId}}">
                 {{item.CustomerName}}
             </option>
           </select>

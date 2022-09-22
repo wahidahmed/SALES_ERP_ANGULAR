@@ -5,29 +5,29 @@
   <div class="card-body">
 
     <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
-      <input type="hidden" ngModel name="Id"   [(ngModel)]="customerDataById.Id"/>
+      <input type="hidden" ngModel name="CustomerId"   [(ngModel)]="customerDataById.CustomerId"/>
       <div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="customerName">Customer Name</span>
-          <input type="text" class="form-control" aria-label="customerName" aria-describedby="customerName"ngModel name="customerName"required #customerName="ngModel" [(ngModel)]="customerDataById.CustomerName">
+          <span class="input-group-text" id="CustomerName">Customer Name</span>
+          <input type="text" class="form-control" aria-label="CustomerName" aria-describedby="CustomerName"ngModel name="CustomerName"required #customerName="ngModel" [(ngModel)]="customerDataById.CustomerName">
         </div>
         <span class="error_block" *ngIf="customerName.invalid && customerName.touched">Please provide customer name</span>
       </div>
 
       <div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="customerPhone">Phone/Mobile</span>
-          <input type="text" class="form-control" aria-label="customerPhone" aria-describedby="customerPhone"ngModel name="customerPhone"required #customerPhone="ngModel" [(ngModel)]="customerDataById.CustomerPhone">
+          <span class="input-group-text" id="CustomerPhone">Phone/Mobile</span>
+          <input type="text" class="form-control" aria-label="CustomerPhone" aria-describedby="CustomerPhone"ngModel name="CustomerPhone"required #CustomerPhone="ngModel" [(ngModel)]="customerDataById.CustomerPhone">
         </div>
-        <span class="error_block"*ngIf="customerPhone.invalid && customerPhone.touched">Please provide customer phone/mobile</span>
+        <span class="error_block"*ngIf="CustomerPhone.invalid && CustomerPhone.touched">Please provide customer phone/mobile</span>
       </div>
 
       <div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="customerAddr">Customer address</span>
-          <textarea type="text" class="form-control" aria-label="customerAddr" aria-describedby="customerAddr"ngModel name="customerAddr"required #customerAddr="ngModel" [(ngModel)]="customerDataById.CustomerAddress"></textarea>
+          <span class="input-group-text" id="CustomerAddress">Customer address</span>
+          <textarea type="text" class="form-control" aria-label="CustomerAddress" aria-describedby="CustomerAddress"ngModel name="CustomerAddress"required #CustomerAddress="ngModel" [(ngModel)]="customerDataById.CustomerAddress"></textarea>
         </div>
-        <span class="error_block" *ngIf="customerAddr.invalid && customerAddr.touched">Please provide customer address</span>
+        <span class="error_block" *ngIf="CustomerAddress.invalid && CustomerAddress.touched">Please provide customer address</span>
       </div>
 
 
