@@ -13,8 +13,8 @@ constructor(private http:HttpClient) { }
 url='/data/customer.json';
 
   getAllCustomers():Observable<ICustomer[]>{
-    // return this.http.get<ICustomer[]>(this.url);
-    return this.http.get<ICustomer[]>("http://localhost:5286/api/customer")
+    return this.http.get<ICustomer[]>(this.url);
+    // return this.http.get<ICustomer[]>("http://localhost:5286/api/customer")
   }
 
   getCustomerById(id:number){

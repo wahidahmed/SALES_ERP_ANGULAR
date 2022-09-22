@@ -17,6 +17,7 @@ import { ProdcutService } from './services/prodcut.service';
 import { SalesEntryComponent } from './components/sales/sales-entry/sales-entry.component';
 import { SalesEditComponent } from './components/sales/sales-edit/sales-edit.component';
 import { TestTableLstFormComponent } from './components/sales/test-table-lst-form/test-table-lst-form.component';
+import { AddUnitComponent } from './components/product/add-unit/add-unit.component';
 
 
 
@@ -31,17 +32,17 @@ const appRoutes:Routes=[
 ]
 @NgModule({
   declarations: [
-    AppComponent,
-    AddProductComponent,
-    TopNavbarComponent,
-    AddNewCustomerComponent,
-    ListCustomerComponent,
-    ListProductComponent,
-    SalesEntryComponent,
-    SalesEditComponent,
+    AppComponent
+    ,AddProductComponent
+    ,TopNavbarComponent
+    ,AddNewCustomerComponent
+    ,ListCustomerComponent
+    ,ListProductComponent
+    ,SalesEntryComponent
+    ,SalesEditComponent
+    ,AddUnitComponent
 
-
-    TestTableLstFormComponent
+    ,TestTableLstFormComponent
 
   ],
   imports: [
