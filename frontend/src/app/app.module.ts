@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -59,7 +60,7 @@ const appRoutes:Routes=[
     ModalModule.forRoot(),
     BrowserAnimationsModule,
 
-    MatButtonToggleModule, MatIconModule,
+    MatButtonToggleModule, MatIconModule,MatTableModule
 
   ],
   providers: [

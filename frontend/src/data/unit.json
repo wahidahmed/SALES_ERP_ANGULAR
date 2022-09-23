@@ -1,0 +1,22 @@
+[
+  {
+    "UnitId":1,
+    "UnitName":"KG",
+    "Status":true
+  },
+  {
+    "UnitId":2,
+    "UnitName":"GM",
+    "Status":true
+  },
+  {
+    "UnitId":3,
+    "UnitName":"PC",
+    "Status":true
+  },
+  {
+    "UnitId":4,
+    "UnitName":"Lot",
+    "Status":false
+  }
+]

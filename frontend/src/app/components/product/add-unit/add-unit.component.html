@@ -4,29 +4,39 @@
   <div class="card-body">
     <form [formGroup]="unitSaveForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-4">
+        <div class="col-md-4 col-sm-6">
           <input type="hidden" formControlName="UnitId" />
           <div>
             <div class="input-group mb-3">
               <span class="input-group-text" >Unit Name</span>
               <input type="text" class="form-control" formControlName="UnitName"/>
             </div>
+            <span class="error_block" *ngIf="getUnitName.invalid && (getUnitName.touched)">Please provide unit name</span>
           </div>
 
-          <div>
+          <div class="mb-2">
 
-              <mat-button-toggle-group formControlName="IsActive" aria-label="Font Style">
-                <mat-button-toggle value="bold">Bold</mat-button-toggle>
-                <mat-button-toggle value="italic">Italic</mat-button-toggle>
-                <mat-button-toggle value="underline">Underline</mat-button-toggle>
+              <mat-button-toggle-group formControlName="Status" aria-label="Font Style">
+                <mat-button-toggle value="true">Active</mat-button-toggle>
+                <mat-button-toggle value="false">Inactive</mat-button-toggle>
               </mat-button-toggle-group>
+
+              <span class="error_block" *ngIf="getUnitStatus.invalid && (getUnitStatus.touched)">Please select active/inactive</span>
           </div>
 
 
           <div class="input-group mb-3">
-            <button type="submit" class="btn btn-success">Save</button>
+            <button type="submit" [disabled]="unitSaveForm.invalid" class="btn btn-success">Save</button>
             <button type="reset" class="btn btn-danger">reset</button>
          </div>
+
+        </div>
+        <div class="col-md-8 col-sm-6">
+
+          <div class="mat-elevation-z8">
+
+          </div>
+
 
         </div>
       </div>
