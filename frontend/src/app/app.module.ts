@@ -18,6 +18,7 @@ import { SalesEntryComponent } from './components/sales/sales-entry/sales-entry.
 import { SalesEditComponent } from './components/sales/sales-edit/sales-edit.component';
 import { TestTableLstFormComponent } from './components/sales/test-table-lst-form/test-table-lst-form.component';
 import { AddUnitComponent } from './components/product/add-unit/add-unit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -54,6 +55,7 @@ const appRoutes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
+    BrowserAnimationsModule,
 
   ],
   providers: [
