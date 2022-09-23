@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule,Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from'@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -24,6 +24,7 @@ import { AddUnitComponent } from './components/product/add-unit/add-unit.compone
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
   ,{path:'product_list',component:ListProductComponent}
+  ,{path:'add_new_unit',component:AddUnitComponent}
   ,{path:'add_new_customer',component:AddNewCustomerComponent}
   ,{path:'customer_list',component:ListCustomerComponent}
   ,{path:'sales_entry',component:SalesEntryComponent}
@@ -49,6 +50,7 @@ const appRoutes:Routes=[
     BrowserModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
