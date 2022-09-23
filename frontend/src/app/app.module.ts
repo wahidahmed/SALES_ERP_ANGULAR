@@ -21,6 +21,8 @@ import { AddUnitComponent } from './components/product/add-unit/add-unit.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatIconModule} from '@angular/material/icon';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -56,6 +58,8 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
     BrowserAnimationsModule,
+
+    MatButtonToggleModule, MatIconModule,
 
   ],
   providers: [
