@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -50,9 +50,10 @@ export class ListUnitComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 
-
-onEdit(element:any){
+@Output() editEvent = new EventEmitter<IUnit>();
+onEdit(element:IUnit){
   console.log(element);
+  this.editEvent.emit(element);
 }
 
 onDelete(id:number){

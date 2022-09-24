@@ -1,6 +1,8 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IUnit } from 'src/app/interfaces/IUnit';
+import { Unit } from 'src/app/Models/Unit';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 
 
@@ -16,13 +18,13 @@ export class AddUnitComponent implements OnInit   {
   constructor(private productService:ProdcutService) { }
 
  unitSaveForm:FormGroup;
-
+ public model: Unit = new Unit();
   ngOnInit(): void {
     this.unitSaveForm=new FormGroup(
      {
-      UnitId:new FormControl(0),
-      UnitName:new FormControl(null,Validators.required),
-      Status:new FormControl(null,Validators.required)
+      UnitId:new FormControl(this.model.UnitId),
+      UnitName:new FormControl(this.model.UnitName,Validators.required),
+      Status:new FormControl(this.model.Status,Validators.required)
     }
     );
   }
@@ -44,17 +46,11 @@ export class AddUnitComponent implements OnInit   {
   }
 
 
-
+  getEditData(data:IUnit){
+    console.log('got in parent',data);
+    this.model=data;
+  }
 
 }
-
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 
 
