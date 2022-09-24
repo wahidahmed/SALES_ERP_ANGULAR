@@ -1,3 +1,7 @@
 .tp-selected-value {
   margin: 15px 0;
 }
+
+table {
+  width: 100%;
+}

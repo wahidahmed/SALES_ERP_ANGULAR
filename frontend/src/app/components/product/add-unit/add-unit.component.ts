@@ -1,10 +1,10 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
 import { IUnit } from 'src/app/interfaces/IUnit';
 import { ProdcutService } from 'src/app/services/prodcut.service';
-
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 
 @Component({
@@ -12,12 +12,21 @@ import { ProdcutService } from 'src/app/services/prodcut.service';
   templateUrl: './add-unit.component.html',
   styleUrls: ['./add-unit.component.css']
 })
-export class AddUnitComponent implements OnInit {
+export class AddUnitComponent implements OnInit   {
+
 
   constructor(private productService:ProdcutService) { }
 
  unitSaveForm:FormGroup;
- ELEMENT_DATA: IUnit[];
+ unitListData: IUnit[]=[];
+ unitDisplayedColumns: string[] = ['UnitId', 'UnitName', 'Status'];
+
+
+ @ViewChild(MatPaginator) paginator: MatPaginator;
+ dataSource = new MatTableDataSource<IUnit>(this.unitListData);
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   ngOnInit(): void {
     this.unitSaveForm=new FormGroup(
@@ -41,10 +50,10 @@ export class AddUnitComponent implements OnInit {
   get getUnitStatus(){
     return this.unitSaveForm.get('Status') as FormControl
   }
-  // dataSource = new MatTableDataSource<IUnit>(this.ELEMENT_DATA);
+
   getUnitList(){
     this.productService.getUnitList().subscribe((data)=>{
-      this.ELEMENT_DATA=data
+      this.unitListData=data
     })
   }
 
@@ -52,4 +61,10 @@ export class AddUnitComponent implements OnInit {
     console.log(this.unitSaveForm);
   }
 
+
+
+
 }
+
+
+
