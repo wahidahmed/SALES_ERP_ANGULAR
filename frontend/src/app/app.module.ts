@@ -20,11 +20,8 @@ import { TestTableLstFormComponent } from './components/sales/test-table-lst-for
 import { AddUnitComponent } from './components/product/add-unit/add-unit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { MatIconModule} from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { ListUnitComponent } from './components/product/add-unit/list-unit/list-unit.component';
+import { MaterialModuleModule } from './custom-module/material.module/material.module.module';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -48,7 +45,7 @@ const appRoutes:Routes=[
     ,SalesEditComponent
     ,AddUnitComponent
 
-    ,TestTableLstFormComponent
+    ,TestTableLstFormComponent, ListUnitComponent
 
   ],
   imports: [
@@ -60,9 +57,7 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
     BrowserAnimationsModule,
-
-    MatButtonToggleModule, MatIconModule,MatTableModule,MatPaginatorModule
-
+    MaterialModuleModule
   ],
   providers: [
     CustomerService

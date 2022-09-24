@@ -18,15 +18,6 @@ export class AddUnitComponent implements OnInit   {
   constructor(private productService:ProdcutService) { }
 
  unitSaveForm:FormGroup;
- unitListData: IUnit[]=[];
- unitDisplayedColumns: string[] = ['UnitId', 'UnitName', 'Status'];
-
-
- @ViewChild(MatPaginator) paginator: MatPaginator;
- dataSource = new MatTableDataSource<IUnit>(this.unitListData);
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
 
   ngOnInit(): void {
     this.unitSaveForm=new FormGroup(
@@ -36,9 +27,6 @@ export class AddUnitComponent implements OnInit   {
       Status:new FormControl(null,Validators.required)
     }
     );
-
-    this.getUnitList();
-
   }
 
   get getUnitId(){
@@ -51,11 +39,7 @@ export class AddUnitComponent implements OnInit   {
     return this.unitSaveForm.get('Status') as FormControl
   }
 
-  getUnitList(){
-    this.productService.getUnitList().subscribe((data)=>{
-      this.unitListData=data
-    })
-  }
+
 
   onSubmit(){
     console.log(this.unitSaveForm);
@@ -64,6 +48,14 @@ export class AddUnitComponent implements OnInit   {
 
 
 
+}
+
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
 }
 
 
