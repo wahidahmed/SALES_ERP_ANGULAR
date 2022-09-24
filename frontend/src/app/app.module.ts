@@ -20,7 +20,7 @@ import { TestTableLstFormComponent } from './components/sales/test-table-lst-for
 import { AddUnitComponent } from './components/product/add-unit/add-unit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ListUnitComponent } from './components/product/add-unit/list-unit/list-unit.component';
+import { ListUnitComponent } from './components/product/list-unit/list-unit.component';
 import { MaterialModuleModule } from './custom-module/material.module/material.module.module';
 
 const appRoutes:Routes=[
@@ -45,7 +45,8 @@ const appRoutes:Routes=[
     ,SalesEditComponent
     ,AddUnitComponent
 
-    ,TestTableLstFormComponent, ListUnitComponent
+    ,TestTableLstFormComponent
+    , ListUnitComponent
 
   ],
   imports: [
