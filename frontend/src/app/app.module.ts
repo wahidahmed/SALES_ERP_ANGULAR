@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ListUnitComponent } from './components/product/list-unit/list-unit.component';
 import { MaterialModuleModule } from './custom-module/material.module/material.module.module';
+import { AddSupplierComponent } from './components/supplier/add-supplier/add-supplier.component';
+import { ListSupplierComponent } from './components/supplier/list-supplier/list-supplier.component';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -31,6 +33,9 @@ const appRoutes:Routes=[
   ,{path:'customer_list',component:ListCustomerComponent}
   ,{path:'sales_entry',component:SalesEntryComponent}
   ,{path:'sales_edit',component:SalesEditComponent}
+  ,{path:'add_supplier',component:AddSupplierComponent}
+  ,{path:'supplier_list',component:ListSupplierComponent}
+
   ,{path:'sales_test',component:TestTableLstFormComponent}
 ]
 @NgModule({
@@ -46,7 +51,7 @@ const appRoutes:Routes=[
     ,AddUnitComponent
 
     ,TestTableLstFormComponent
-    , ListUnitComponent
+    , ListUnitComponent, AddSupplierComponent, ListSupplierComponent
 
   ],
   imports: [
