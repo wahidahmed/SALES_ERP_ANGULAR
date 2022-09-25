@@ -17,8 +17,8 @@
           <div class="mb-2">
 
               <mat-button-toggle-group formControlName="Status" [(ngModel)]="model.Status" aria-label="Font Style">
-                <mat-button-toggle value="true">Active</mat-button-toggle>
-                <mat-button-toggle value="false">Inactive</mat-button-toggle>
+                <mat-button-toggle [value]="true">Active</mat-button-toggle>
+                <mat-button-toggle [value]="false">Inactive</mat-button-toggle>
               </mat-button-toggle-group>
 
               <span class="error_block" *ngIf="getUnitStatus.invalid && (getUnitStatus.touched)">Please select active/inactive</span>
