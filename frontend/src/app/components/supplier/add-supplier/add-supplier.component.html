@@ -1,1 +1,48 @@
-<p>add-supplier works!</p>
+
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">manage supplier</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+          <form [formGroup]="saveForm" (ngSubmit)="onSubmit()">
+            <input type="hidden" formControlName="SupplierId"/>
+            <div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="SupplierName">Supplier Name</span>
+                <input type="text" class="form-control" aria-label="SupplierName" aria-describedby="SupplierName" formControlName="SupplierName">
+              </div>
+              <span class="error_block" *ngIf="getSupplierName.invalid && getSupplierName.touched">Please provide supplier name</span>
+            </div>
+
+            <div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="SupplierPhone">Phone/Mobile</span>
+                <input type="text" class="form-control" aria-label="SupplierPhone" aria-describedby="SupplierPhone" formControlName="SupplierPhone" >
+              </div>
+              <span class="error_block"*ngIf="">Please provide supplier phone/mobile</span>
+            </div>
+
+            <div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="SupplierAddress">Supplier address</span>
+                <textarea type="text" class="form-control" aria-label="SupplierAddress" aria-describedby="SupplierAddress" formControlName="SupplierAddress"></textarea>
+              </div>
+              <span class="error_block" *ngIf="">Please provide supplier address</span>
+            </div>
+
+            <div class="input-group mb-3">
+
+              <button [disabled]="saveForm.invalid" type="submit" class="btn btn-success">Save</button>
+              <button type="reset" class="btn btn-danger">reset</button>
+
+           </div>
+
+          </form>
+      </div>
+      <div class="col-md-8 col-sm-12"></div>
+    </div>
+  </div>
+</div>
