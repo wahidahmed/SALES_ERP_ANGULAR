@@ -20,8 +20,6 @@ export class AddSupplierComponent implements OnInit {
   filteredsupplierList: Array<Supplier> = [];
 
   saveForm:FormGroup;
-
-
   ngOnInit(): void {
 
   this.createSupplierForm();

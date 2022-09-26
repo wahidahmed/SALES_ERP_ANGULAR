@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUnit } from 'src/app/interfaces/IUnit';
 import { Unit } from 'src/app/Models/Unit';
@@ -22,9 +22,9 @@ export class AddUnitComponent implements OnInit   {
   ngOnInit(): void {
     this.unitSaveForm=new FormGroup(
      {
-      UnitId:new FormControl(this.model.UnitId),
-      UnitName:new FormControl(this.model.UnitName,Validators.required),
-      Status:new FormControl(this.model.Status,Validators.required)
+      UnitId:new FormControl(0),
+      UnitName:new FormControl(null,Validators.required),
+      Status:new FormControl(null,Validators.required)
     }
     );
   }
@@ -49,6 +49,11 @@ export class AddUnitComponent implements OnInit   {
   getEditData(data:IUnit){
     console.log('got in parent',data);
     this.model=data;
+    this.unitSaveForm.patchValue({
+      UnitId:data.UnitId,
+      UnitName:data.UnitName,
+      Status:data.Status
+    })
   }
 
 }
