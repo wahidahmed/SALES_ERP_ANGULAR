@@ -42,7 +42,35 @@
 
           </form>
       </div>
-      <div class="col-md-8 col-sm-12"></div>
+      <div class="col-md-8 col-sm-12">
+       <div class="row">
+              <div class="col-3">
+                <input [(ngModel)]="listFilter" type="text" class="form-control" id="filterInput" placeholder="Type to filter">
+            </div>
+            <div class="col">
+                <div *ngIf='listFilter' class="form-text text-muted">Filtered by: {{listFilter}}</div>
+            </div>
+       </div>
+
+        <table class="table table-bordered table-hover w-100">
+          <thead>
+            <tr>
+              <th>SupplierId</th>
+              <th>Supplier Name</th>
+              <th>Supplier Address</th>
+              <th>Supplier Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of filteredsupplierList">
+              <td>{{item.SupplierId}}</td>
+              <td>{{item.SupplierName}}</td>
+              <td>{{item.SupplierAddress}}</td>
+              <td>{{item.SupplierPhone}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

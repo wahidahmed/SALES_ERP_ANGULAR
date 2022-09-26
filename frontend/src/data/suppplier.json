@@ -1,0 +1,20 @@
+[
+  {
+    "SupplierId":1,
+    "SupplierName":"bazuuer Ltd.",
+    "SupplierAddress":"W.A.K Road, New york",
+    "SupplierPhone":"0018700111"
+  },
+  {
+    "SupplierId":2,
+    "SupplierName":"Raidmain Ltd.",
+    "SupplierAddress":"W.A.K Road, New york",
+    "SupplierPhone":"0018700122"
+  },
+  {
+    "SupplierId":3,
+    "SupplierName":"Raidmain Ltd.",
+    "SupplierAddress":"W.M.K Road, Jaind york",
+    "SupplierPhone":"00187001331"
+  }
+]
