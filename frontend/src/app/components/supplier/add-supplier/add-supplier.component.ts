@@ -50,6 +50,12 @@ export class AddSupplierComponent implements OnInit {
 
   getEditData(event: any){
     console.log('parent get edit data',event);
+    this.saveForm.patchValue({
+      SupplierId:event.SupplierId,
+      SupplierName:event.SupplierName,
+      SupplierAddress:event.SupplierAddress,
+      SupplierPhone:event.SupplierPhone,
+    })
   }
 
 }
