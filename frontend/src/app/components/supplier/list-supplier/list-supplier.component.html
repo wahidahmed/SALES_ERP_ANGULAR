@@ -1,1 +1,33 @@
-<p>list-supplier works!</p>
+
+
+<div class="row">
+  <div class="col-3">
+    <input [(ngModel)]="listFilter" type="text" class="form-control" id="filterInput" placeholder="search.....">
+</div>
+<div class="col">
+    <div *ngIf='listFilter' class="form-text text-muted">Filtered by: {{listFilter}}</div>
+</div>
+</div>
+
+<table class="table table-bordered table-hover w-100">
+<thead>
+<tr>
+  <th>SupplierId</th>
+  <th>Supplier Name</th>
+  <th>Supplier Address</th>
+  <th>Supplier Phone</th>
+  <th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let item of filteredsupplierList">
+  <td>{{item.SupplierId}}</td>
+  <td>{{item.SupplierName}}</td>
+  <td>{{item.SupplierAddress}}</td>
+  <td>{{item.SupplierPhone}}</td>
+  <td>
+    <button class="btn btn-sm btn-warning" (click)="onEdit(item)"><i class="fas fa-edit"></i></button>
+  </td>
+</tr>
+</tbody>
+</table>

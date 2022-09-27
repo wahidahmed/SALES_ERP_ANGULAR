@@ -15,15 +15,11 @@ export class AddSupplierComponent implements OnInit {
   }
 
   supplier=new Supplier();
-  supplierList=new Array<Supplier>();
-  _listFilter = '';
-  filteredsupplierList: Array<Supplier> = [];
 
   saveForm:FormGroup;
   ngOnInit(): void {
 
   this.createSupplierForm();
-  this.getSupplierList();
 
   }
 
@@ -50,30 +46,10 @@ export class AddSupplierComponent implements OnInit {
   onSubmit(){
     console.log(this.saveForm);
   }
-  getSupplierList(){
-    this.supplierService.getSupplierList().subscribe((data)=>{
-      this.supplierList=data;
-      let filterKeys = Object.keys(data);
-      console.log(data);
-      console.log(filterKeys);
-      this.filteredsupplierList=this.supplierList;
-    })
-  }
 
-get listFilter(): string {
-    return this._listFilter;
-}
-set listFilter(value: string) {
-    this._listFilter = value;
-    this.filteredsupplierList = this.listFilter ? this.doFilter(this.listFilter) : this.supplierList;
-}
-doFilter(filterBy: string): Supplier[] {
-  filterBy = filterBy.toLocaleLowerCase();
-  return this.supplierList.filter((data: Supplier) =>
-        data.SupplierName.toLocaleLowerCase().indexOf(filterBy) !== -1
-        || data.SupplierAddress.toLocaleLowerCase().indexOf(filterBy)!==-1
-        || data.SupplierPhone.toLocaleLowerCase().indexOf(filterBy)!==-1
-      );
-}
+
+  getEditData(event: any){
+    console.log('parent get edit data',event);
+  }
 
 }
