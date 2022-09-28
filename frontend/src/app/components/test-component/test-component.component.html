@@ -1,0 +1,6 @@
+<!-- <p [ngClass]="{red:number%5!=0 && isClicked,green:number%5==0 && isClicked}" (click)="onClicked()">
+{{number}}
+</p> -->
+
+
+<p appHighlight [number]="number" [divisibleBy]="5">{{number}}</p>

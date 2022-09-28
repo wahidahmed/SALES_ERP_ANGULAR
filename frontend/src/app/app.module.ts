@@ -24,6 +24,8 @@ import { ListUnitComponent } from './components/product/list-unit/list-unit.comp
 import { MaterialModuleModule } from './custom-module/material.module/material.module.module';
 import { AddSupplierComponent } from './components/supplier/add-supplier/add-supplier.component';
 import { ListSupplierComponent } from './components/supplier/list-supplier/list-supplier.component';
+import { HighlightDirective } from './customDirective/highlight.directive';
+import { TestComponentComponent } from './components/test-component/test-component.component';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -37,6 +39,7 @@ const appRoutes:Routes=[
   ,{path:'supplier_list',component:ListSupplierComponent}
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
+  ,{path:'test',component:TestComponentComponent}
 ]
 @NgModule({
   declarations: [
@@ -50,9 +53,10 @@ const appRoutes:Routes=[
     ,SalesEditComponent
     ,AddUnitComponent
 
-    ,TestTableLstFormComponent
+    ,TestTableLstFormComponent,TestComponentComponent
     , ListUnitComponent, AddSupplierComponent, ListSupplierComponent
 
+    ,HighlightDirective
   ],
   imports: [
     BrowserModule,
