@@ -7,3 +7,7 @@
   // https://www.bennadel.com/blog/3578-using-dynamic-template-driven-forms-in-angular-7-2-7.htm
   // ow to handle multiple click events in template driven forms
   </h4>
+  
+  <h4>this link for custom directive of sorting data
+  https://codezup.com/sort-angular-table-rows-by-using-column/
+  </h4>
