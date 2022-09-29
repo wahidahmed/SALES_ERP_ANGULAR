@@ -13,8 +13,14 @@
   },
   {
     "SupplierId":3,
-    "SupplierName":"Raidmain Ltd.",
+    "SupplierName":"Letin Ltd.",
     "SupplierAddress":"W.M.K Road, Jaind york",
     "SupplierPhone":"00187001331"
+  },
+  {
+    "SupplierId":4,
+    "SupplierName":"Tetiein Ltd.",
+    "SupplierAddress":"W.M.K Road, Jaind york",
+    "SupplierPhone":"00187001230"
   }
 ]

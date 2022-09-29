@@ -26,6 +26,7 @@ import { AddSupplierComponent } from './components/supplier/add-supplier/add-sup
 import { ListSupplierComponent } from './components/supplier/list-supplier/list-supplier.component';
 import { HighlightDirective } from './customDirective/highlight.directive';
 import { TestComponentComponent } from './components/test-component/test-component.component';
+import { SortDirective } from './customDirective/sort.directive';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -56,7 +57,7 @@ const appRoutes:Routes=[
     ,TestTableLstFormComponent,TestComponentComponent
     , ListUnitComponent, AddSupplierComponent, ListSupplierComponent
 
-    ,HighlightDirective
+    ,HighlightDirective,SortDirective
   ],
   imports: [
     BrowserModule,
