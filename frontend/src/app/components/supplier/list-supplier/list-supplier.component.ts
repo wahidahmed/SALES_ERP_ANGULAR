@@ -42,6 +42,20 @@ doFilter(filterBy: string): Supplier[] {
 //     console.log('data',data)
 //     console.log('filterKeys',filterKeys);
 
+// return this.supplierList.filter((data,i,arr)=>{
+//   let filterKeys = Object.keys(data);
+//   console.log('filterKeys',filterKeys);
+//   console.log('filterKeys index',filterKeys[0])
+//   console.log('arr',arr[i])
+//   const user = {
+//     age: 25,
+//     name: 'Jack'
+//   }//https://learn.coderslang.com/0140-dynamic-access-to-an-object-property-in-javascript/
+
+//   let key = "SupplierName";
+
+//   console.log(data[key]);
+// })
 
   return this.supplierList.filter((data: Supplier) =>
         data.SupplierName.toLocaleLowerCase().indexOf(filterBy) !== -1
