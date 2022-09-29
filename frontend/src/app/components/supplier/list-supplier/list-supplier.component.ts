@@ -24,9 +24,7 @@ export class ListSupplierComponent implements OnInit {
   getSupplierList(){
     this.supplierService.getSupplierList().subscribe((data)=>{
       this.supplierList=data;
-      let filterKeys = Object.keys(data);
-      console.log(data);
-      console.log(filterKeys);
+
       this.filteredsupplierList=this.supplierList;
     })
   }
@@ -40,6 +38,11 @@ set listFilter(value: string) {
 }
 doFilter(filterBy: string): Supplier[] {
   filterBy = filterBy.toLocaleLowerCase();
+//     let filterKeys = Object.keys(data);
+//     console.log('data',data)
+//     console.log('filterKeys',filterKeys);
+
+
   return this.supplierList.filter((data: Supplier) =>
         data.SupplierName.toLocaleLowerCase().indexOf(filterBy) !== -1
         || data.SupplierAddress.toLocaleLowerCase().indexOf(filterBy)!==-1
