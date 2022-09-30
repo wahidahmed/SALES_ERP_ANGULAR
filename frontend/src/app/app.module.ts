@@ -27,6 +27,7 @@ import { ListSupplierComponent } from './components/supplier/list-supplier/list-
 import { HighlightDirective } from './customDirective/highlight.directive';
 import { TestComponentComponent } from './components/test-component/test-component.component';
 import { SortDirective } from './customDirective/sort.directive';
+import { FilterDirective } from './customDirective/filter.directive';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -57,7 +58,7 @@ const appRoutes:Routes=[
     ,TestTableLstFormComponent,TestComponentComponent
     , ListUnitComponent, AddSupplierComponent, ListSupplierComponent
 
-    ,HighlightDirective,SortDirective
+    ,HighlightDirective,SortDirective,FilterDirective
   ],
   imports: [
     BrowserModule,
