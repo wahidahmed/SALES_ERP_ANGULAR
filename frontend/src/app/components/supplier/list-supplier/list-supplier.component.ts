@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { filter } from 'rxjs';
 import { Supplier } from 'src/app/Models/Supplier';
 import { SupplierService } from 'src/app/services/supplier.service';
 
@@ -56,6 +57,21 @@ doFilter(filterBy: string): Supplier[] {
 
 //   console.log(data[key]);
 // })
+
+      this.supplierList.filter((data,i,arr)=>{
+        let filterKeys = Object.keys(data);
+        console.log(data[filterKeys[1]]);
+       filterKeys.every(keys=>{
+      if(isNaN(data[keys])){
+        if(data[keys].toLocaleLowerCase().indexOf(filterBy)!==-1){
+          return true
+         }
+      }
+
+         console.log('arr',arr);
+         return arr;
+       })
+      })
 
   return this.supplierList.filter((data: Supplier) =>
         data.SupplierName.toLocaleLowerCase().indexOf(filterBy) !== -1
