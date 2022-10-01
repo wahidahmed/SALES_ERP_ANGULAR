@@ -28,6 +28,8 @@ import { HighlightDirective } from './customDirective/highlight.directive';
 import { TestComponentComponent } from './components/test-component/test-component.component';
 import { SortDirective } from './customDirective/sort.directive';
 import { FilterDirective } from './customDirective/filter.directive';
+import { PurchaseEntryComponent } from './components/purchase/purchase-entry/purchase-entry.component';
+import { PurchaseEditComponent } from './components/purchase/purchase-edit/purchase-edit.component';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -54,11 +56,11 @@ const appRoutes:Routes=[
     ,SalesEntryComponent
     ,SalesEditComponent
     ,AddUnitComponent
-
-    ,TestTableLstFormComponent,TestComponentComponent
-    , ListUnitComponent, AddSupplierComponent, ListSupplierComponent
+    , ListUnitComponent, AddSupplierComponent, ListSupplierComponent,PurchaseEntryComponent,PurchaseEditComponent
 
     ,HighlightDirective,SortDirective,FilterDirective
+
+    ,TestTableLstFormComponent,TestComponentComponent
   ],
   imports: [
     BrowserModule,
