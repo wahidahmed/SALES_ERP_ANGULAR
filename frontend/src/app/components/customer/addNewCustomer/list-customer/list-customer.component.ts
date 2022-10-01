@@ -12,6 +12,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class ListCustomerComponent implements OnInit {
 
 allCustomers:Array<ICustomer>;
+filteredCustomers:Array<ICustomer>;
 getCustomer:ICustomer={
   CustomerId: 0,
   CustomerName:'',
@@ -29,6 +30,7 @@ getCustomer:ICustomer={
     this.customerService.getAllCustomers().subscribe((data)=>{
       console.log(data);
       this.allCustomers=data;
+      this.filteredCustomers=this.allCustomers;
     })
   }
 
@@ -49,6 +51,10 @@ getCustomer:ICustomer={
     if(value){
       staticModal.hide()
     }
+  }
+
+  onFilterdData(event){
+    this.filteredCustomers=event;
   }
 
 }
