@@ -11,13 +11,18 @@ export class ListProductComponent implements OnInit {
 
 constructor(private prodService:ProdcutService) { }
 productList:Array<IProduct>;
+productFilteredList:Array<IProduct>;
 
   ngOnInit(): void {
     this.prodService.getProductList().subscribe(data=>{
       this.productList=data;
+      this.productFilteredList=this.productList;
     });
   }
 
-
+  onFilteredData(event:Array<IProduct>){
+    console.log('event',event);
+    this.productFilteredList=event;
+  }
 
 }

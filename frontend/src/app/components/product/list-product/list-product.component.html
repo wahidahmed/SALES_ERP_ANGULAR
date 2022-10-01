@@ -1,29 +1,43 @@
-<table class="table table-bordered ">
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Model</th>
-      <th>Catagory</th>
-      <th>Unit</th>
-      <th>Cost</th>
-      <th>Price</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of productList">
-      <td>{{item.ProdcutCode}}</td>
-      <td>{{item.ProdcutName}}</td>
-      <td>{{item.ModelId}}</td>
-      <td>{{item.CatagoryId}}</td>
-      <td>{{item.UnitId}}</td>
-      <td>{{item.CostPrice}}</td>
-      <td>{{item.SalesPrice}}</td>
-      <td>
-        <button class="btn btn-sm btn-danger">D</button>
-        <button class="btn btn-sm btn-warning ms-1" [routerLink]="['/add_new_product',item.Id]">E</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">product list</h3>
+  </div>
+  <div class="card-body">
+    <input [appFilter]="productList" [filterHead]="['ProdcutCode','ProdcutName']" (filteredData)="onFilteredData($event)"  type="text" class="form-control"  placeholder="search..."/>
+    <table class="table table-bordered ">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Model</th>
+          <th>Catagory</th>
+          <th>Unit</th>
+          <th>Cost</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productFilteredList">
+          <td>{{item.ProdcutCode}}</td>
+          <td>{{item.ProdcutName}}</td>
+          <td>{{item.ModelId}}</td>
+          <td>{{item.CatagoryId}}</td>
+          <td>{{item.UnitId}}</td>
+          <td>{{item.CostPrice}}</td>
+          <td>{{item.SalesPrice}}</td>
+          <td>
+            <button class="btn btn-sm btn-danger">D</button>
+            <button class="btn btn-sm btn-warning ms-1" [routerLink]="['/add_new_product',item.Id]">E</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
