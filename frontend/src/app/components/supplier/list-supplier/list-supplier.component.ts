@@ -32,31 +32,35 @@ export class ListSupplierComponent implements OnInit {
 
   get listFilter(): string {
     return this._listFilter;
-}
-set listFilter(value: string) {
-    this._listFilter = value;
-    this.filteredsupplierList = this.listFilter ? this.doFilter(this.listFilter) : this.supplierList;
-}
-doFilter(filterBy: string): Supplier[] {
-  filterBy = filterBy.toLocaleLowerCase();
+  }
+  set listFilter(value: string) {
+      this._listFilter = value;
+      this.filteredsupplierList = this.listFilter ? this.doFilter(this.listFilter) : this.supplierList;
+  }
 
-    return  this.supplierList.filter((data)=>{
-        let filterKeys = Object.keys(data);
-        console.log(filterKeys)
-     return filterKeys.some((keys,i,arr)=>{
-        console.log(data[keys])
-        return String(data[keys]).toLocaleLowerCase().indexOf(filterBy)!==-1;
-      })
+  doFilter(filterBy: string): Supplier[] {
+    filterBy = filterBy.toLocaleLowerCase();
 
-        // return data.SupplierName.toLocaleLowerCase().indexOf(filterBy) !== -1
-        // || data.SupplierAddress.toLocaleLowerCase().indexOf(filterBy)!==-1
-        // || data.SupplierPhone.toLocaleLowerCase().indexOf(filterBy)!==-1
-      })
-}
+      return  this.supplierList.filter((data)=>{
+      //     let filterKeys = Object.keys(data);
+      //     console.log(filterKeys)
+      // return filterKeys.some((keys,i,arr)=>{
+      //     console.log(data[keys])
+      //     return String(data[keys]).toLocaleLowerCase().indexOf(filterBy)!==-1;
+      //   })
 
-onEdit(item: any){
-  console.log('send edit data form child',item);
-  this.supplierDataEvent.emit(item);
-}
+          return data.SupplierName.toLocaleLowerCase().indexOf(filterBy) !== -1
+          || data.SupplierAddress.toLocaleLowerCase().indexOf(filterBy)!==-1
+          || data.SupplierPhone.toLocaleLowerCase().indexOf(filterBy)!==-1
+        })
+  }
 
+  onEdit(item: any){
+    console.log('send edit data form child',item);
+    this.supplierDataEvent.emit(item);
+  }
+  onFilteredData(event: Array<Supplier>){
+    console.log('event',event);
+    this.filteredsupplierList = event;
+  }
 }
