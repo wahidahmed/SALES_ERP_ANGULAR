@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProdcutService } from 'src/app/services/prodcut.service';
 
 @Component({
   selector: 'app-purchase-entry',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseEntryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService:ProdcutService) { }
 
-  ngOnInit() {
+  tableRowList=[
+  ];
+  perRow={
+    item:[],
+    itemPrice:null,
+    qty:null,
+    otherCost:null,
+    discount:null,
+    total:null,
+    remove:null
   }
 
+  ngOnInit() {
+  this.productService.getProductList().subscribe(data=>{
+    this.perRow.item=data;
+    })
+    this.tableRowList.push(this.perRow);
+  }
+
+  onAddNewRow(){
+    this.tableRowList.push(this.perRow);
+  }
+  deleteRow(i){
+
+  }
 }

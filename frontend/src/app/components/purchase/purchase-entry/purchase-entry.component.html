@@ -1,3 +1,41 @@
-<p>
-  purchase-entry works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">
+      purchase entry
+    </h3>
+  </div>
+  <div class="card-body">
+      <table class="table table-bordered w-100">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>item price</th>
+            <th>Quantity</th>
+            <th>other cost</th>
+            <th>Discount</th>
+            <th>Total</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of tableRowList; let i=index">
+            <td>
+              <select class="form-select form-select-sm">
+                <option>select</option>
+              </select>
+            </td>
+            <td>{{item.itemPrice}}</td>
+            <td>{{item.qty}}</td>
+            <td>{{item.otherCost}}</td>
+            <td>{{item.discount}}</td>
+            <td>{{item.total}}</td>
+            <td>
+              <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+  </div>
+</div>

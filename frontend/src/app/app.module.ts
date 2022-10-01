@@ -41,6 +41,8 @@ const appRoutes:Routes=[
   ,{path:'sales_edit',component:SalesEditComponent}
   ,{path:'add_supplier',component:AddSupplierComponent}
   ,{path:'supplier_list',component:ListSupplierComponent}
+  ,{path:'purchase_entry',component:PurchaseEntryComponent}
+  ,{path:'purchase_edit',component:PurchaseEditComponent}
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
   ,{path:'test',component:TestComponentComponent}
