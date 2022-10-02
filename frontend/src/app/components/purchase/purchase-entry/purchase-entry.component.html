@@ -22,6 +22,7 @@
             <td>
               <select class="form-select form-select-sm">
                 <option>select</option>
+                <option *ngFor="let p of item.pList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
               </select>
             </td>
             <td>{{item.itemPrice}}</td>
@@ -39,3 +40,6 @@
 
   </div>
 </div>
+
+
+

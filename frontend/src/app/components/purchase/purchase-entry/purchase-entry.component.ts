@@ -13,7 +13,7 @@ export class PurchaseEntryComponent implements OnInit {
   tableRowList=[
   ];
   perRow={
-    item:[],
+    pList:[],
     itemPrice:null,
     qty:null,
     otherCost:null,
@@ -22,12 +22,19 @@ export class PurchaseEntryComponent implements OnInit {
     remove:null
   }
 
+
+
   ngOnInit() {
-  this.productService.getProductList().subscribe(data=>{
-    this.perRow.item=data;
-    })
-    this.tableRowList.push(this.perRow);
+      // this.productService.getProductList().subscribe(data=>{
+      //   this.perRow.pList=data;
+      //   console.log(this.perRow);
+
+      //   this.tableRowList.push(this.perRow);
+      // })
+
   }
+
+
 
   onAddNewRow(){
     this.tableRowList.push(this.perRow);

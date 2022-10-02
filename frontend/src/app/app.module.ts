@@ -30,6 +30,7 @@ import { SortDirective } from './customDirective/sort.directive';
 import { FilterDirective } from './customDirective/filter.directive';
 import { PurchaseEntryComponent } from './components/purchase/purchase-entry/purchase-entry.component';
 import { PurchaseEditComponent } from './components/purchase/purchase-edit/purchase-edit.component';
+import { PromiseObservableComponent } from './components/promise-observable/promise-observable.component';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -46,6 +47,7 @@ const appRoutes:Routes=[
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
   ,{path:'test',component:TestComponentComponent}
+  ,{path:'promise_observable',component:PromiseObservableComponent}
 ]
 @NgModule({
   declarations: [
@@ -62,7 +64,7 @@ const appRoutes:Routes=[
 
     ,HighlightDirective,SortDirective,FilterDirective
 
-    ,TestTableLstFormComponent,TestComponentComponent
+    ,TestTableLstFormComponent,TestComponentComponent,PromiseObservableComponent
   ],
   imports: [
     BrowserModule,
