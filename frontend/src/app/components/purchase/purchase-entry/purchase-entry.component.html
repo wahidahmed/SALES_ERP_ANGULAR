@@ -22,7 +22,7 @@
             <td>
               <select class="form-select form-select-sm">
                 <option>select</option>
-                <option *ngFor="let p of item.pList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
+                <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
               </select>
             </td>
             <td>{{item.itemPrice}}</td>
@@ -32,7 +32,6 @@
             <td>{{item.total}}</td>
             <td>
               <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
-
             </td>
           </tr>
         </tbody>

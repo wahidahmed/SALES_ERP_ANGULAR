@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IProduct } from 'src/app/interfaces/IProduct';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 
 @Component({
@@ -22,24 +24,25 @@ export class PurchaseEntryComponent implements OnInit {
     remove:null
   }
 
+productList:IProduct[];
 
-
-  ngOnInit() {
-      // this.productService.getProductList().subscribe(data=>{
-      //   this.perRow.pList=data;
-      //   console.log(this.perRow);
-
-      //   this.tableRowList.push(this.perRow);
-      // })
+   ngOnInit() {
+       this.getProductList();
+      this.onAddNewRow();
 
   }
 
+   getProductList(){
+    this.productService.getProductList().subscribe(data=>{
+        this.productList=data;
+      })
 
+  }
 
-  onAddNewRow(){
+   onAddNewRow(){
     this.tableRowList.push(this.perRow);
   }
-  deleteRow(i){
+  deleteRow(i:number){
 
   }
 }
