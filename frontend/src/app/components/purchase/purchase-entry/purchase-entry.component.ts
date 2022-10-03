@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { ProdcutService } from 'src/app/services/prodcut.service';
@@ -25,10 +26,14 @@ export class PurchaseEntryComponent implements OnInit {
   }
 
 productList:IProduct[];
+saveForm:FormGroup;
 
    ngOnInit() {
        this.getProductList();
       this.onAddNewRow();
+      this.saveForm=new FormGroup({
+
+      })
 
   }
 
@@ -43,6 +48,10 @@ productList:IProduct[];
     this.tableRowList.push(this.perRow);
   }
   deleteRow(i:number){
+    this.tableRowList.splice(i,1);
+  }
+
+  onSubmit(){
 
   }
 }

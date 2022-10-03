@@ -5,6 +5,8 @@
     </h3>
   </div>
   <div class="card-body">
+    <form [formGroup]="saveForm" (ngSubmit)="onSubmit()">
+
       <table class="table table-bordered w-100">
         <thead>
           <tr>
@@ -41,11 +43,12 @@
             <td>
               <input class="form-control" placeholder="Grand Total" readonly/>
             </td>
-            <td><button type="button"   class="btn btn-sm btn-success"><i class="fa-solid fa-plus"></i></button></td>
+            <td><button type="button"   class="btn btn-sm btn-success" (click)="onAddNewRow()"><i class="fa-solid fa-plus"></i></button></td>
           </tr>
         </tfoot>
       </table>
 
+    </form>
   </div>
 </div>
 
