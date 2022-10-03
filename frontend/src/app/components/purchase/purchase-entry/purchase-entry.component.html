@@ -25,16 +25,25 @@
                 <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
               </select>
             </td>
-            <td>{{item.itemPrice}}</td>
-            <td>{{item.qty}}</td>
-            <td>{{item.otherCost}}</td>
-            <td>{{item.discount}}</td>
-            <td>{{item.total}}</td>
+            <td><input type="number" min="0" class="form-control form-control-sm text-end" /></td>
+            <td><input type="number" min="0" class="form-control form-control-sm text-end" /></td>
+            <td><input type="number" min="0" class="form-control form-control-sm text-end" /></td>
+            <td><input type="number" min="0" class="form-control form-control-sm text-end" /></td>
+            <td><input min="0" class="form-control form-control-sm text-end" readonly/></td>
             <td>
               <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5"></td>
+            <td>
+              <input class="form-control" placeholder="Grand Total" readonly/>
+            </td>
+            <td><button type="button"   class="btn btn-sm btn-success"><i class="fa-solid fa-plus"></i></button></td>
+          </tr>
+        </tfoot>
       </table>
 
   </div>
