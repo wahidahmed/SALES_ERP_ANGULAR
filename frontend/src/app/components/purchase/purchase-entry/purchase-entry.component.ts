@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 
