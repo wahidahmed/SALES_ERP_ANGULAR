@@ -31,6 +31,7 @@ import { FilterDirective } from './customDirective/filter.directive';
 import { PurchaseEntryComponent } from './components/purchase/purchase-entry/purchase-entry.component';
 import { PurchaseEditComponent } from './components/purchase/purchase-edit/purchase-edit.component';
 import { PromiseObservableComponent } from './components/promise-observable/promise-observable.component';
+import { FormArrayPracticeComponent } from './components/formArray-practice/formArray-practice.component';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -47,6 +48,7 @@ const appRoutes:Routes=[
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
   ,{path:'test',component:TestComponentComponent}
+  ,{path:'test-formArray',component:FormArrayPracticeComponent}
   ,{path:'promise_observable',component:PromiseObservableComponent}
 ]
 @NgModule({
@@ -64,7 +66,7 @@ const appRoutes:Routes=[
 
     ,HighlightDirective,SortDirective,FilterDirective
 
-    ,TestTableLstFormComponent,TestComponentComponent,PromiseObservableComponent
+    ,TestTableLstFormComponent,TestComponentComponent,PromiseObservableComponent,FormArrayPracticeComponent
   ],
   imports: [
     BrowserModule,
