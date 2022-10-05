@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import { ISupplier } from 'src/app/interfaces/ISupplier';
 import { ProdcutService } from 'src/app/services/prodcut.service';
+import { SupplierService } from 'src/app/services/supplier.service';
 
 @Component({
   selector: 'app-purchase-entry',
@@ -11,12 +13,10 @@ import { ProdcutService } from 'src/app/services/prodcut.service';
 export class PurchaseEntryComponent implements OnInit {
 
 
-  constructor(private productService:ProdcutService,private fb:FormBuilder) { }
+  constructor(private productService:ProdcutService,private fb:FormBuilder,private supplierService:SupplierService) { }
 
-  tableRowList=[
-  ];
   perRow={
-    productId:null,
+    productId:0,
     itemPrice:null,
     qty:null,
     otherCost:null,
@@ -25,16 +25,17 @@ export class PurchaseEntryComponent implements OnInit {
   }
 
 productList:IProduct[];
+supplierList:ISupplier[];
 saveForm:FormGroup;
 
    ngOnInit() {
        this.getProductList();
-      // this.onAddNewRow();
+      this.getSupplierList();
       this.saveForm= this.fb.group({
-        supplier:['test'],
+        supplier:'',
         itemList:this.fb.array([])
       })
-
+      this.onAddNewRow();
   }
 
 
@@ -44,14 +45,7 @@ get getItemList():FormArray{
 
 
 newItem():FormGroup{
-  return this.fb.group({
-    productId:0,
-    itemPrice:'',
-    qty:0,
-    otherCost:0,
-    discount:0,
-    total:0
-  })
+  return this.fb.group(this.perRow)
 }
 
 
@@ -63,8 +57,16 @@ newItem():FormGroup{
 
   }
 
+
+  getSupplierList(){
+    this.supplierService.getSupplierList().subscribe(data=>{
+        this.supplierList=data;
+      })
+
+  }
+
    onAddNewRow(){
-    this.getItemList.push(this.newItem);
+    this.getItemList.push(this.newItem());
     // this.tableRowList.push(this.perRow);
   }
   deleteRow(i:number){

@@ -1,53 +1,69 @@
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">
-      purchase entry
+      Purchase entry
     </h3>
   </div>
   <div class="card-body">
     <form [formGroup]="saveForm" (ngSubmit)="onSubmit()">
-      <input type="text" id="supplier" name="supplier" formControlName="supplier">
-      <table class="table table-bordered w-100">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>item price</th>
-            <th>Quantity</th>
-            <th>other cost</th>
-            <th>Discount</th>
-            <th>Total</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody formArrayName="itemList">
-          <!-- <tr *ngFor="let item of tableRowList; let i=index" > -->
-            <tr *ngFor="let item of getItemList.controls; let i=index" [formGroupName]="i" >
-            <td>
-              <select class="form-select form-select-sm" formControlName="productId">
-                <option>select</option>
-                <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
-              </select>
-            </td>
-            <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="itemPrice"/></td>
-            <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="qty"/></td>
-            <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost"/></td>
-            <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"/></td>
-            <td><input min="0" class="form-control form-control-sm text-end"  formControlName="total" value="1020" readonly/></td>
-            <td>
-              <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5"></td>
-            <td>
-              <input class="form-control" placeholder="Grand Total" readonly/>
-            </td>
-            <td><button type="button"   class="btn btn-sm btn-success" (click)="onAddNewRow()"><i class="fa-solid fa-plus"></i></button></td>
-          </tr>
-        </tfoot>
-      </table>
+      <div class="row">
+        <div class="col-sm-2">
+          <select class="form-select form-select-sm" formControlName="supplier">
+            <option selected value="">select supplier</option>
+            <option *ngFor="let p of supplierList" value="{{p.SupplierId}}">{{p.SupplierName}}</option>
+          </select>
+        </div>
+        <div class="col-12 mt-2">
+          <table class="table table-bordered w-100">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>item price</th>
+                <th>Quantity</th>
+                <th>other cost</th>
+                <th>Discount</th>
+                <th>Total</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody formArrayName="itemList">
+                <tr *ngFor="let item of getItemList.controls; let i=index" [formGroupName]="i" >
+                <td>
+                  <select class="form-select form-select-sm" formControlName="productId">
+                    <option selected value="0">select</option>
+                    <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
+                  </select>
+                </td>
+                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="itemPrice"/></td>
+                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="qty"/></td>
+                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost"/></td>
+                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"/></td>
+                <td><input min="0" class="form-control form-control-sm text-end"  formControlName="total" value="1020" readonly/></td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="5"></td>
+                <td>
+                  <input class="form-control" placeholder="Grand Total" readonly/>
+                </td>
+                <td><button type="button"   class="btn btn-sm btn-success" (click)="onAddNewRow()"><i class="fa-solid fa-plus"></i></button></td>
+              </tr>
+              <tr>
+                <td colspan="6"></td>
+                <td>
+                  <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+
 
     </form>
   </div>

@@ -12,7 +12,7 @@
 
 
   Skills:
-  <div formArrayName="skills">
+  <!-- <div formArrayName="skills">
     <div *ngFor="let skill of getSkills.controls; let i=index">
       <div [formGroupName]="i">
         {{i}}
@@ -24,7 +24,23 @@
         <button (click)="removeSkill(i)">Remove</button>
       </div>
     </div>
-  </div>
+  </div> -->
+  <table class="table table-bordered w-100">
+    <tbody formArrayName="skills">
+      <tr  *ngFor="let skill of getSkills.controls; let i=index" [formGroupName]="i" >
+        <td> skill name :
+          <input type="text" formControlName="skill">
+        </td>
+        <td>
+          exp:
+          <input type="text" formControlName="exp">
+        </td>
+        <td>
+          <button (click)="removeSkill(i)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <p>
     <button type="submit">Submit</button>

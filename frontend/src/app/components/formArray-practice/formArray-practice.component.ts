@@ -19,6 +19,8 @@ export class FormArrayPracticeComponent implements OnInit {
       name: '',
       skills: this.fb.array([]) ,
     });
+
+    this.addSkills();
   }
 
   get getSkills() : FormArray {
