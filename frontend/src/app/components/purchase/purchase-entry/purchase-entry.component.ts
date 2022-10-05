@@ -26,8 +26,9 @@ saveForm:FormGroup;
       this.getSupplierList();
      this.createForm();
       this.onAddNewRow();
-
-      console.log('getItemList',this.getItemList)
+      console.log('saveForm',this.saveForm.get('itemList'))
+      console.log('getItemList',this.getItemList.get(''))
+      console.log('test',((this.saveForm.get('itemList') as FormArray).at(0) as FormGroup).get('productId'))
   }
 
 
@@ -42,6 +43,10 @@ get getItemList():FormArray{
   return this.saveForm.get('itemList') as FormArray;
 }
 
+get getProductId(){
+//https://www.samarpaninfotech.com/blog/angular-n-level-formarray-with-reactive-form-validation/
+  return (this.getItemList.at(0) as FormGroup).get('productId') as FormControl;
+}
 
 newItem():FormGroup{
   return this.fb.group(
