@@ -27,8 +27,6 @@ export class PurchaseEntryComponent implements OnInit {
 
 productList:IProduct[];
 saveForm:FormGroup;
-public addresses: FormArray;
-public addressForm: FormGroup;//https://prodevhub.com/add-remove-multiple-input-fields-dynamically-using-form-array-in-reactive-forms-angular/
 
    ngOnInit() {
        this.getProductList();
@@ -37,37 +35,15 @@ public addressForm: FormGroup;//https://prodevhub.com/add-remove-multiple-input-
 
       })
 
-      this.addressForm = this.fb.group({
-        addresses: this.fb.array([ this.createAddress() ])
-     });
+
 
   }
 
-  get addressControls() {
-    return this.addressForm.get('addresses')['controls'];
-  }
 
-  createAddress(): FormGroup {
-    return this.fb.group({
-      address: '',
-      street: '',
-      city: '',
-      country: ''
-    });
-  }
 
-  addAddress(): void {
-    this.addresses = this.addressForm.get('addresses') as FormArray;
-    this.addresses.push(this.createAddress());
-  }
 
-  removeAddress(i: number) {
-    this.addresses.removeAt(i);
-  }
 
-  logValue() {
-    console.log('test',this.addresses);
-  }
+
 
    getProductList(){
     this.productService.getProductList().subscribe(data=>{

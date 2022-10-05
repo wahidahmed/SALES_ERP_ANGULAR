@@ -48,7 +48,7 @@ const appRoutes:Routes=[
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
   ,{path:'test',component:TestComponentComponent}
-  ,{path:'test-formArray',component:FormArrayPracticeComponent}
+  ,{path:'test_formArray',component:FormArrayPracticeComponent}
   ,{path:'promise_observable',component:PromiseObservableComponent}
 ]
 @NgModule({
