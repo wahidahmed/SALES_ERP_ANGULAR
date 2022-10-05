@@ -29,10 +29,20 @@
             <tbody formArrayName="itemList">
                 <tr *ngFor="let item of getItemList.controls; let i=index" [formGroupName]="i" >
                 <td>
-                  <select class="form-select form-select-sm" formControlName="productId">
+                  <select class="form-select form-select-sm" formControlName="productId" [ngClass]="{'is-invalid':
+                  getPerItem(i).controls['productId'].errors &&
+                  (getPerItem(i).controls['productId'].dirty ||
+                     getPerItem(i).controls['productId'].touched)}">
                     <option selected value="">select</option>
                     <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
                   </select>
+
+                  <div *ngFor="let validation of validation_message.productId"
+                      class="invalid-feedback">
+                      <div  *ngIf="getPerItem(i).controls['productId'].hasError(validation.type)
+                    && (getPerItem(i).controls['productId'].dirty || getPerItem(i).controls['productId'].touched)">
+                    {{ validation.message }} </div> </div>
+
                 </td>
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="itemPrice"/></td>
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="qty"/></td>

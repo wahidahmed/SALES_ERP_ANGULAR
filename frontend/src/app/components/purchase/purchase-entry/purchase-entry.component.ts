@@ -43,21 +43,28 @@ get getItemList():FormArray{
   return this.saveForm.get('itemList') as FormArray;
 }
 
-get getProductId(){
-  //https://www.google.com/search?q=how+to+set+validation+message+in+formarray+per+item+angular&oq=how+to+set+validation+message+in+formArray+per+item&aqs=chrome.1.69i57j33i10i160.19839j0j9&sourceid=chrome&ie=UTF-8
-//https://www.samarpaninfotech.com/blog/angular-n-level-formarray-with-reactive-form-validation/
-  return (this.getItemList.at(0) as FormGroup).get('productId') as FormControl;
+ getPerItem(index:number):FormGroup{
+   //https://www.samarpaninfotech.com/blog/angular-n-level-formarray-with-reactive-form-validation/
+  return this.getItemList.controls[index] as FormGroup;
 }
 
+
+validation_message = {
+  productId: [{ type: 'required', message: 'must select a product' }],
+  itemPrice: [{ type: 'required', message: 'itemPrice is required' }],
+  qty: [{ type: 'required', message: 'qty is required' }],
+  total: [{ type: 'required', message: 'total is required' }]
+};
 newItem():FormGroup{
   return this.fb.group(
     {
+
       productId:['',[Validators.required]],
       itemPrice:[null,[Validators.required]],
       qty:[null,[Validators.required]],
       otherCost:[0],
       discount:[null,[]],
-      total:[null,[Validators.required]],
+      total:[null,[]],
     }
   )
 }
