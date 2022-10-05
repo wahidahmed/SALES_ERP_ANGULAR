@@ -30,7 +30,7 @@
                 <tr *ngFor="let item of getItemList.controls; let i=index" [formGroupName]="i" >
                 <td>
                   <select class="form-select form-select-sm" formControlName="productId">
-                    <option selected value="0">select</option>
+                    <option selected value="">select</option>
                     <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
                   </select>
                 </td>
@@ -38,7 +38,7 @@
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="qty"/></td>
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost"/></td>
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"/></td>
-                <td><input min="0" class="form-control form-control-sm text-end"  formControlName="total" value="1020" readonly/></td>
+                <td><input min="0" class="form-control form-control-sm text-end"  formControlName="total"  readonly/></td>
                 <td>
                   <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
                 </td>

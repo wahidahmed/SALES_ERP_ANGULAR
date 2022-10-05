@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { ISupplier } from 'src/app/interfaces/ISupplier';
 import { ProdcutService } from 'src/app/services/prodcut.service';
@@ -15,14 +15,7 @@ export class PurchaseEntryComponent implements OnInit {
 
   constructor(private productService:ProdcutService,private fb:FormBuilder,private supplierService:SupplierService) { }
 
-  perRow={
-    productId:0,
-    itemPrice:null,
-    qty:null,
-    otherCost:null,
-    discount:null,
-    total:null
-  }
+
 
 productList:IProduct[];
 supplierList:ISupplier[];
@@ -31,13 +24,19 @@ saveForm:FormGroup;
    ngOnInit() {
        this.getProductList();
       this.getSupplierList();
-      this.saveForm= this.fb.group({
-        supplier:'',
-        itemList:this.fb.array([])
-      })
+     this.createForm();
       this.onAddNewRow();
+
+      console.log('getItemList',this.getItemList)
   }
 
+
+  createForm(){
+    this.saveForm= this.fb.group({
+      supplier:['',[Validators.required]],
+      itemList:this.fb.array([])
+    })
+  }
 
 get getItemList():FormArray{
   return this.saveForm.get('itemList') as FormArray;
@@ -45,9 +44,17 @@ get getItemList():FormArray{
 
 
 newItem():FormGroup{
-  return this.fb.group(this.perRow)
+  return this.fb.group(
+    {
+      productId:['',[Validators.required]],
+      itemPrice:[null,[Validators.required]],
+      qty:[null,[Validators.required]],
+      otherCost:[0],
+      discount:[null,[]],
+      total:[null,[Validators.required]],
+    }
+  )
 }
-
 
 
    getProductList(){
@@ -75,6 +82,6 @@ newItem():FormGroup{
   }
 
   onSubmit(){
-    console.log(this.saveForm.value)
+    console.log(this.saveForm)
   }
 }
