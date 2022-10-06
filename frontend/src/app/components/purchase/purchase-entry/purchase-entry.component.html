@@ -44,11 +44,34 @@
                     {{ validation.message }} </div> </div>
 
                 </td>
-                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="itemPrice"/></td>
-                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="qty"/></td>
+                <td>
+                  <input type="number" min="0" class="form-control form-control-sm text-end" formControlName="itemPrice" [ngClass]="{'is-invalid':
+                  getPerItem(i).controls['itemPrice'].errors &&
+                  (getPerItem(i).controls['itemPrice'].dirty ||
+                     getPerItem(i).controls['itemPrice'].touched)}"/>
+                    <div *ngFor="let validation of validation_message.itemPrice"
+                    class="invalid-feedback">
+                    <div  *ngIf="getPerItem(i).controls['itemPrice'].hasError(validation.type)
+                  && (getPerItem(i).controls['itemPrice'].dirty || getPerItem(i).controls['itemPrice'].touched)">
+                  {{ validation.message }} </div> </div>
+
+                </td>
+                <td>
+                  <input type="number" min="0" class="form-control form-control-sm text-end" formControlName="qty" [ngClass]="{'is-invalid':
+                  getPerItem(i).controls['qty'].errors &&
+                  (getPerItem(i).controls['qty'].dirty ||
+                     getPerItem(i).controls['qty'].touched)}"/>
+
+                     <div *ngFor="let validation of validation_message.qty"
+                      class="invalid-feedback">
+                      <div  *ngIf="getPerItem(i).controls['qty'].hasError(validation.type)
+                    && (getPerItem(i).controls['qty'].dirty || getPerItem(i).controls['qty'].touched)">
+                    {{ validation.message }} </div> </div>
+
+                </td>
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost"/></td>
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"/></td>
-                <td><input min="0" class="form-control form-control-sm text-end"  formControlName="total"  readonly/></td>
+                <td><input min="0" class="form-control form-control-sm text-end"  formControlName="total" [ngModel]="getPerItem(i).controls['itemPrice'].value"  readonly/></td>
                 <td>
                   <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
                 </td>
