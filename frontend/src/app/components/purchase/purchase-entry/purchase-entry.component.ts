@@ -22,13 +22,12 @@ supplierList:ISupplier[];
 saveForm:FormGroup;
 
    ngOnInit() {
+
        this.getProductList();
       this.getSupplierList();
      this.createForm();
       this.onAddNewRow();
-      console.log('saveForm',this.saveForm.get('itemList'))
-      console.log('getItemList',this.getItemList.get(''))
-      console.log('test',((this.saveForm.get('itemList') as FormArray).at(0) as FormGroup).get('productId'))
+
   }
 
 
@@ -39,9 +38,11 @@ saveForm:FormGroup;
     })
   }
 
+
 get getItemList():FormArray{
   return this.saveForm.get('itemList') as FormArray;
 }
+
 
  getPerItem(index:number):FormGroup{
    //https://www.samarpaninfotech.com/blog/angular-n-level-formarray-with-reactive-form-validation/
@@ -52,7 +53,7 @@ get getItemList():FormArray{
 validation_message = {
   productId: [{ type: 'required', message: 'must select a product' }],
   itemPrice: [{ type: 'required', message: 'itemPrice is required' }],
-  qty: [{ type: 'required', message: 'qty is required' }],
+  qty: [{ type: 'required', message: 'qty is required' },{ type: 'min', message: 'qty cannot 0' }],
   total: [{ type: 'required', message: 'total is required' }]
 };
 newItem():FormGroup{
@@ -60,11 +61,11 @@ newItem():FormGroup{
     {
 
       productId:['',[Validators.required]],
-      itemPrice:[null,[Validators.required]],
-      qty:[null,[Validators.required]],
-      otherCost:[0],
-      discount:[null,[]],
-      total:[null,[]],
+      itemPrice:[null,[Validators.required,Validators.min(0)]],
+      qty:[null,[Validators.required,Validators.min(1)]],
+      otherCost:[null,Validators.min(0)],
+      discount:[null,[Validators.min(0)]],
+      total:[0,[Validators.min(0)]],
     }
   )
 }
@@ -85,9 +86,19 @@ newItem():FormGroup{
 
   }
 
+  isAddNew:boolean=false;
    onAddNewRow(){
-    this.getItemList.push(this.newItem());
-    // this.tableRowList.push(this.perRow);
+    console.log(this.saveForm)
+    if(this.getItemList.length==0){
+      this.getItemList.push(this.newItem());
+    }
+    else if(this.saveForm.valid){
+      this.getItemList.push(this.newItem());
+      this.isAddNew=false;
+    }
+    else{
+      this.isAddNew=true;
+    }
   }
   deleteRow(i:number){
     this.getItemList.removeAt(i);
@@ -95,6 +106,6 @@ newItem():FormGroup{
   }
 
   onSubmit(){
-    console.log(this.saveForm)
+    console.log(this.saveForm.valid)
   }
 }

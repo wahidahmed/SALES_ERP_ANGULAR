@@ -1,3 +1,11 @@
 tr{
   border-color: #dee2e6 !important;
 }
+
+.invalid-feedback1 {
+
+  width: 100%;
+  margin-top: .25rem;
+  font-size: .875em;
+  color: #dc3545;
+}

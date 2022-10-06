@@ -12,6 +12,9 @@
             <option selected value="">select supplier</option>
             <option *ngFor="let p of supplierList" value="{{p.SupplierId}}">{{p.SupplierName}}</option>
           </select>
+          <div>
+
+          </div>
         </div>
         <div class="col-12 mt-2">
           <table class="table table-bordered w-100">
@@ -32,7 +35,7 @@
                   <select class="form-select form-select-sm" formControlName="productId" [ngClass]="{'is-invalid':
                   getPerItem(i).controls['productId'].errors &&
                   (getPerItem(i).controls['productId'].dirty ||
-                     getPerItem(i).controls['productId'].touched)}">
+                     getPerItem(i).controls['productId'].touched ||isAddNew)}">
                     <option selected value="">select</option>
                     <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
                   </select>
@@ -40,7 +43,7 @@
                   <div *ngFor="let validation of validation_message.productId"
                       class="invalid-feedback">
                       <div  *ngIf="getPerItem(i).controls['productId'].hasError(validation.type)
-                    && (getPerItem(i).controls['productId'].dirty || getPerItem(i).controls['productId'].touched)">
+                    && (getPerItem(i).controls['productId'].dirty || getPerItem(i).controls['productId'].touched ||isAddNew)">
                     {{ validation.message }} </div> </div>
 
                 </td>
@@ -48,11 +51,11 @@
                   <input type="number" min="0" class="form-control form-control-sm text-end" formControlName="itemPrice" [ngClass]="{'is-invalid':
                   getPerItem(i).controls['itemPrice'].errors &&
                   (getPerItem(i).controls['itemPrice'].dirty ||
-                     getPerItem(i).controls['itemPrice'].touched)}"/>
+                     getPerItem(i).controls['itemPrice'].touched ||isAddNew)}" #tv_price/>
                     <div *ngFor="let validation of validation_message.itemPrice"
-                    class="invalid-feedback">
+                    class="invalid-feedback" >
                     <div  *ngIf="getPerItem(i).controls['itemPrice'].hasError(validation.type)
-                  && (getPerItem(i).controls['itemPrice'].dirty || getPerItem(i).controls['itemPrice'].touched)">
+                  && (getPerItem(i).controls['itemPrice'].dirty || getPerItem(i).controls['itemPrice'].touched ||isAddNew)">
                   {{ validation.message }} </div> </div>
 
                 </td>
@@ -60,20 +63,25 @@
                   <input type="number" min="0" class="form-control form-control-sm text-end" formControlName="qty" [ngClass]="{'is-invalid':
                   getPerItem(i).controls['qty'].errors &&
                   (getPerItem(i).controls['qty'].dirty ||
-                     getPerItem(i).controls['qty'].touched)}"/>
+                     getPerItem(i).controls['qty'].touched ||isAddNew)}" #tv_qty/>
 
                      <div *ngFor="let validation of validation_message.qty"
                       class="invalid-feedback">
                       <div  *ngIf="getPerItem(i).controls['qty'].hasError(validation.type)
-                    && (getPerItem(i).controls['qty'].dirty || getPerItem(i).controls['qty'].touched)">
+                    && (getPerItem(i).controls['qty'].dirty || getPerItem(i).controls['qty'].touched ||isAddNew)">
                     {{ validation.message }} </div> </div>
 
+
                 </td>
-                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost"/></td>
-                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"/></td>
-                <td><input min="0" class="form-control form-control-sm text-end"  formControlName="total" [ngModel]="getPerItem(i).controls['itemPrice'].value"  readonly/></td>
+                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost" #tv_cost/></td>
+                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"#tv_discount/></td>
                 <td>
-                  <button type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
+                  <input type="number" class="form-control form-control-sm text-end"  formControlName="total"  [value]="(  ((+tv_qty.value)*(+tv_price.value))+(+tv_cost.value)-(+tv_discount.value) )" readonly/>
+
+                </td>
+                <td>
+
+                  <button *ngIf="i>0" type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -95,8 +103,6 @@
           </table>
         </div>
       </div>
-
-
 
     </form>
   </div>
