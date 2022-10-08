@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { ISupplier } from 'src/app/interfaces/ISupplier';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 import { SupplierService } from 'src/app/services/supplier.service';
 
@@ -13,10 +14,10 @@ import { SupplierService } from 'src/app/services/supplier.service';
 export class PurchaseEntryComponent implements OnInit {
 
 
-  constructor(private productService:ProdcutService,private fb:FormBuilder,private supplierService:SupplierService) { }
+  constructor(private productService:ProdcutService,private fb:FormBuilder,private supplierService:SupplierService,private alertifyService:AlertifyService) { }
 
 
-
+isAddNew:boolean=false;
 productList:IProduct[];
 supplierList:ISupplier[];
 saveForm:FormGroup;
@@ -34,7 +35,8 @@ saveForm:FormGroup;
   createForm(){
     this.saveForm= this.fb.group({
       supplier:['',[Validators.required]],
-      itemList:this.fb.array([])
+      itemList:this.fb.array([]),
+      grandTotal:[null,Validators.required]
     })
   }
 
@@ -47,6 +49,7 @@ get getItemList():FormArray{
 
 
  getPerItem(index:number):FormGroup{
+
    //https://www.samarpaninfotech.com/blog/angular-n-level-formarray-with-reactive-form-validation/
   return this.getItemList.controls[index] as FormGroup;
 }
@@ -72,23 +75,6 @@ newItem():FormGroup{
   )
 }
 
-
-   getProductList(){
-    this.productService.getProductList().subscribe(data=>{
-        this.productList=data;
-      })
-
-  }
-
-
-  getSupplierList(){
-    this.supplierService.getSupplierList().subscribe(data=>{
-        this.supplierList=data;
-      })
-
-  }
-
-  isAddNew:boolean=false;
    onAddNewRow(){
     if(this.getItemList.length==0){
       this.getItemList.push(this.newItem());
@@ -106,6 +92,29 @@ newItem():FormGroup{
     // this.tableRowList.splice(i,1);
   }
 
+
+  onChangeProduct(event:any,i:number){
+    // console.log('saveform',this.saveForm.get('itemList'));
+    // console.log('getItemList',this.saveForm.value);
+    this.saveForm.get('grandTotal').setValue(200);
+    if(event.target.value){
+
+      let arr=this.saveForm.get('itemList').value.filter((item,index:number)=>{
+
+        return index!==i;
+      })
+      console.log('arr',arr)
+      arr.forEach((element:any) => {
+
+        if (event.target.value==element.productId) {
+          this.getItemList.controls[i].patchValue({productId:'',itemPrice:null,qty:null,otherCost:null,discount:null});
+          this.alertifyService.warning('This product has been already added');
+        }
+
+      });
+    }
+  }
+
   onSubmit(){
     console.log(this.saveForm)
   }
@@ -114,4 +123,21 @@ newItem():FormGroup{
   selectFullContent($event){
     $event.target.select();
   }
+
+
+  getProductList(){
+    this.productService.getProductList().subscribe(data=>{
+        this.productList=data;
+      })
+
+  }
+
+
+  getSupplierList(){
+    this.supplierService.getSupplierList().subscribe(data=>{
+        this.supplierList=data;
+      })
+
+  }
+
 }

@@ -36,7 +36,7 @@
                   <select class="form-select form-select-sm" formControlName="productId" [ngClass]="{'is-invalid':
                   getPerItem(i).controls['productId'].errors &&
                   (getPerItem(i).controls['productId'].dirty ||
-                     getPerItem(i).controls['productId'].touched ||isAddNew)}">
+                     getPerItem(i).controls['productId'].touched ||isAddNew)}" (change)="onChangeProduct($event,i)">
                     <option selected value="">select</option>
                     <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
                   </select>
@@ -77,7 +77,7 @@
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost" #tv_cost (focus)="selectFullContent($event)"/></td>
                 <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"#tv_discount (focus)="selectFullContent($event)"/></td>
                 <td>
-                  <input type="number" class="form-control form-control-sm text-end"  formControlName="total"  [value]="(  ((+tv_qty.value)*(+tv_price.value))+(+tv_cost.value)-(+tv_discount.value) )" readonly/>
+                  <input type="number" class="form-control form-control-sm text-end"  formControlName="total"  [value]="(  ((+tv_qty.value)*(+tv_price.value))+(+tv_cost.value)-(+tv_discount.value) )"  readonly/>
 
                 </td>
                 <td>
@@ -90,7 +90,7 @@
               <tr>
                 <td colspan="5"></td>
                 <td>
-                  <input class="form-control" placeholder="Grand Total" readonly/>
+                  <input class="form-control text-end" placeholder="Grand Total" formControlName="grandTotal"  readonly/>
                 </td>
                 <td><button type="button"   class="btn btn-sm btn-success" (click)="onAddNewRow()"><i class="fa-solid fa-plus"></i></button></td>
               </tr>
