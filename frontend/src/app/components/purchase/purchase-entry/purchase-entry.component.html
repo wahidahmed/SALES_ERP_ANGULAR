@@ -8,10 +8,11 @@
     <form [formGroup]="saveForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-sm-2">
-          <select class="form-select form-select-sm" formControlName="supplier">
+          <select class="form-select form-select-sm" formControlName="supplier" [ngClass]="{'is-invalid': getSupplier.invalid && (getSupplier.touched||isAddNew)}">
             <option selected value="">select supplier</option>
             <option *ngFor="let p of supplierList" value="{{p.SupplierId}}">{{p.SupplierName}}</option>
           </select>
+          <span *ngIf="getSupplier.invalid && (getSupplier.touched||isAddNew)"class="invalid-feedback">Must select supplier</span>
           <div>
 
           </div>
@@ -51,9 +52,9 @@
                   <input type="number" min="0" class="form-control form-control-sm text-end" formControlName="itemPrice" [ngClass]="{'is-invalid':
                   getPerItem(i).controls['itemPrice'].errors &&
                   (getPerItem(i).controls['itemPrice'].dirty ||
-                     getPerItem(i).controls['itemPrice'].touched ||isAddNew)}" #tv_price/>
+                     getPerItem(i).controls['itemPrice'].touched ||isAddNew)}" #tv_price (focus)="selectFullContent($event)"/>
                     <div *ngFor="let validation of validation_message.itemPrice"
-                    class="invalid-feedback" >
+                    class="invalid-feedback"  >
                     <div  *ngIf="getPerItem(i).controls['itemPrice'].hasError(validation.type)
                   && (getPerItem(i).controls['itemPrice'].dirty || getPerItem(i).controls['itemPrice'].touched ||isAddNew)">
                   {{ validation.message }} </div> </div>
@@ -63,7 +64,7 @@
                   <input type="number" min="0" class="form-control form-control-sm text-end" formControlName="qty" [ngClass]="{'is-invalid':
                   getPerItem(i).controls['qty'].errors &&
                   (getPerItem(i).controls['qty'].dirty ||
-                     getPerItem(i).controls['qty'].touched ||isAddNew)}" #tv_qty/>
+                     getPerItem(i).controls['qty'].touched ||isAddNew)}" #tv_qty (focus)="selectFullContent($event)"/>
 
                      <div *ngFor="let validation of validation_message.qty"
                       class="invalid-feedback">
@@ -73,8 +74,8 @@
 
 
                 </td>
-                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost" #tv_cost/></td>
-                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"#tv_discount/></td>
+                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="otherCost" #tv_cost (focus)="selectFullContent($event)"/></td>
+                <td><input type="number" min="0" class="form-control form-control-sm text-end" formControlName="discount"#tv_discount (focus)="selectFullContent($event)"/></td>
                 <td>
                   <input type="number" class="form-control form-control-sm text-end"  formControlName="total"  [value]="(  ((+tv_qty.value)*(+tv_price.value))+(+tv_cost.value)-(+tv_discount.value) )" readonly/>
 

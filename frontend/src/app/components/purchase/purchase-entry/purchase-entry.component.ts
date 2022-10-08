@@ -38,7 +38,9 @@ saveForm:FormGroup;
     })
   }
 
-
+get getSupplier(){
+  return this.saveForm.get('supplier') as FormControl;
+}
 get getItemList():FormArray{
   return this.saveForm.get('itemList') as FormArray;
 }
@@ -88,7 +90,6 @@ newItem():FormGroup{
 
   isAddNew:boolean=false;
    onAddNewRow(){
-    console.log(this.saveForm)
     if(this.getItemList.length==0){
       this.getItemList.push(this.newItem());
     }
@@ -106,6 +107,11 @@ newItem():FormGroup{
   }
 
   onSubmit(){
-    console.log(this.saveForm.valid)
+    console.log(this.saveForm)
+  }
+
+
+  selectFullContent($event){
+    $event.target.select();
   }
 }

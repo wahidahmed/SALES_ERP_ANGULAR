@@ -68,7 +68,7 @@ console.log('tableRowArray',this.tableRowArray)
     },0)
   }
 
-  selectAllContent($event) {
+  selectFullContent($event) {
     $event.target.select();
   }
 

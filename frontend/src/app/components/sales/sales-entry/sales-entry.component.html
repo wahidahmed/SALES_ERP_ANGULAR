@@ -63,10 +63,10 @@
 
           </td>
           <td>
-            <input type="number" min="0"  class="form-control form-control-sm text-end" name="salePrice_{{i}}" placeholder="sale Price"  [(ngModel)]="item.salePrice" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" required>
+            <input type="number" min="0"  class="form-control form-control-sm text-end" name="salePrice_{{i}}" placeholder="sale Price"  [(ngModel)]="item.salePrice" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectFullContent($event)" required>
           </td>
           <td>
-            <input type="number"  class="form-control form-control-sm text-end" name="discount_{{i}}" placeholder="discount" [(ngModel)]="item.discount" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectAllContent($event)" min="0">
+            <input type="number"  class="form-control form-control-sm text-end" name="discount_{{i}}" placeholder="discount" [(ngModel)]="item.discount" (keyup)="getGrandTotal(tableRowArray)" (focus)="selectFullContent($event)" min="0">
           </td>
           <td>
 
