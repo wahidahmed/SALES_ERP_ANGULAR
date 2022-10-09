@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Purchase } from 'src/app/Models/purchase';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 @Component({
   selector: 'app-purchase-list',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private purchaseService:PurchaseService) { }
 
+  public purchaseList:Array<Purchase>;
   ngOnInit() {
+
+  }
+
+  public getPurchaseList(){
+
+    this.purchaseService.getPurchaseList().subscribe(
+      (data:Purchase[])=>{
+        this.purchaseList=data
+      }
+    )
   }
 
 }

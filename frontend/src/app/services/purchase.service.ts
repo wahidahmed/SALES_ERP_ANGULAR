@@ -21,7 +21,7 @@ constructor(private httpClient:HttpClient) { }
     return this.getPurchaseList().pipe(
       map(
         (data)=>{
-          return data.find(p=>p.purchaseMasterId==id);
+          return data.find(p=>p.PurchaseMasterId==id);
         }
       )
     )

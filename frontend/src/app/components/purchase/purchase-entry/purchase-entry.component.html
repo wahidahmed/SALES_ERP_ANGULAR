@@ -7,16 +7,20 @@
   <div class="card-body">
     <form [formGroup]="saveForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-sm-2">
+        <div class="col-md-2">
           <select class="form-select form-select-sm" formControlName="supplierId" [ngClass]="{'is-invalid': getSupplier.invalid && (getSupplier.touched||isAddNew)}">
             <option selected value="">select supplier</option>
             <option *ngFor="let p of supplierList" value="{{p.SupplierId}}">{{p.SupplierName}}</option>
           </select>
-          <span *ngIf="getSupplier.invalid && (getSupplier.touched||isAddNew)"class="invalid-feedback">Must select supplier</span>
-          <div>
+          <div *ngIf="getSupplier.invalid && (getSupplier.touched||isAddNew)"class="invalid-feedback">Must select supplier</div>
 
-          </div>
         </div>
+        <div class="col-md-2">
+            <input type="date" class="form-control form-control-sm text-center" />
+        </div>
+      </div>
+      <div class="row">
+
         <div class="col-12 mt-2">
           <table class="table table-bordered w-100">
             <thead>
