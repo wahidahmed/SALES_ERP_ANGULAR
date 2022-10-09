@@ -33,6 +33,7 @@ import { PurchaseEditComponent } from './components/purchase/purchase-edit/purch
 import { PromiseObservableComponent } from './components/promise-observable/promise-observable.component';
 import { FormArrayPracticeComponent } from './components/formArray-practice/formArray-practice.component';
 import { PurchaseListComponent } from './components/purchase/purchase-list/purchase-list.component';
+import { PurchaseService } from './services/purchase.service';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -85,6 +86,7 @@ const appRoutes:Routes=[
     CustomerService
     ,AlertifyService
     ,ProdcutService
+    ,PurchaseService
 
   ],
   bootstrap: [AppComponent]

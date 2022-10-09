@@ -8,7 +8,7 @@
     <form [formGroup]="saveForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-sm-2">
-          <select class="form-select form-select-sm" formControlName="supplier" [ngClass]="{'is-invalid': getSupplier.invalid && (getSupplier.touched||isAddNew)}">
+          <select class="form-select form-select-sm" formControlName="supplierId" [ngClass]="{'is-invalid': getSupplier.invalid && (getSupplier.touched||isAddNew)}">
             <option selected value="">select supplier</option>
             <option *ngFor="let p of supplierList" value="{{p.SupplierId}}">{{p.SupplierName}}</option>
           </select>

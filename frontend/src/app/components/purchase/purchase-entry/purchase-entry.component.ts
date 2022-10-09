@@ -32,16 +32,16 @@ saveForm:FormGroup;
   }
 
 
-  createForm(){
+createForm(){
     this.saveForm= this.fb.group({
-      supplier:['',[Validators.required]],
+      supplierId:['',[Validators.required]],
       itemList:this.fb.array([]),
       grandTotal:[null,[]]
     })
   }
 
 get getSupplier(){
-  return this.saveForm.get('supplier') as FormControl;
+  return this.saveForm.get('supplierId') as FormControl;
 }
 get getItemList():FormArray{
   return this.saveForm.get('itemList') as FormArray;
