@@ -32,6 +32,7 @@ import { PurchaseEntryComponent } from './components/purchase/purchase-entry/pur
 import { PurchaseEditComponent } from './components/purchase/purchase-edit/purchase-edit.component';
 import { PromiseObservableComponent } from './components/promise-observable/promise-observable.component';
 import { FormArrayPracticeComponent } from './components/formArray-practice/formArray-practice.component';
+import { PurchaseListComponent } from './components/purchase/purchase-list/purchase-list.component';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -45,6 +46,7 @@ const appRoutes:Routes=[
   ,{path:'supplier_list',component:ListSupplierComponent}
   ,{path:'purchase_entry',component:PurchaseEntryComponent}
   ,{path:'purchase_edit',component:PurchaseEditComponent}
+  ,{path:'purchase_list',component:PurchaseListComponent}
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
   ,{path:'test',component:TestComponentComponent}
@@ -62,7 +64,7 @@ const appRoutes:Routes=[
     ,SalesEntryComponent
     ,SalesEditComponent
     ,AddUnitComponent
-    , ListUnitComponent, AddSupplierComponent, ListSupplierComponent,PurchaseEntryComponent,PurchaseEditComponent
+    , ListUnitComponent, AddSupplierComponent, ListSupplierComponent,PurchaseEntryComponent,PurchaseEditComponent,PurchaseListComponent
 
     ,HighlightDirective,SortDirective,FilterDirective
 
