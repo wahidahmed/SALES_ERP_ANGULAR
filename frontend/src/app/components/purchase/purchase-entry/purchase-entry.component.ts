@@ -36,7 +36,7 @@ saveForm:FormGroup;
     this.saveForm= this.fb.group({
       supplier:['',[Validators.required]],
       itemList:this.fb.array([]),
-      grandTotal:[null,Validators.required]
+      grandTotal:[null,[]]
     })
   }
 
@@ -47,9 +47,8 @@ get getItemList():FormArray{
   return this.saveForm.get('itemList') as FormArray;
 }
 
-
- getPerItem(index:number):FormGroup{
-
+getPerItem(index:number):FormGroup{
+  this.grandTotal();
    //https://www.samarpaninfotech.com/blog/angular-n-level-formarray-with-reactive-form-validation/
   return this.getItemList.controls[index] as FormGroup;
 }
@@ -75,7 +74,7 @@ newItem():FormGroup{
   )
 }
 
-   onAddNewRow(){
+onAddNewRow(){
     if(this.getItemList.length==0){
       this.getItemList.push(this.newItem());
     }
@@ -87,16 +86,15 @@ newItem():FormGroup{
       this.isAddNew=true;
     }
   }
-  deleteRow(i:number){
+deleteRow(i:number){
     this.getItemList.removeAt(i);
     // this.tableRowList.splice(i,1);
   }
 
 
-  onChangeProduct(event:any,i:number){
+onChangeProduct(event:any,i:number){
     // console.log('saveform',this.saveForm.get('itemList'));
     // console.log('getItemList',this.saveForm.value);
-    this.saveForm.get('grandTotal').setValue(200);
     if(event.target.value){
 
       let arr=this.saveForm.get('itemList').value.filter((item,index:number)=>{
@@ -115,17 +113,27 @@ newItem():FormGroup{
     }
   }
 
-  onSubmit(){
+grandTotal(){
+   let total= this.saveForm.get('itemList').value.reduce((acc,{itemPrice,qty,otherCost,discount})=>{
+      acc+= (Number(itemPrice|0)* Number(qty|0))+ Number(otherCost|0)- Number(discount|0) ;
+      return acc;
+    },0)
+    // console.log('total',total)
+    this.saveForm.get('grandTotal').setValue(total);
+  }
+
+onSubmit(){
+
     console.log(this.saveForm)
   }
 
 
-  selectFullContent($event){
+selectFullContent($event){
     $event.target.select();
   }
 
 
-  getProductList(){
+getProductList(){
     this.productService.getProductList().subscribe(data=>{
         this.productList=data;
       })
@@ -133,7 +141,7 @@ newItem():FormGroup{
   }
 
 
-  getSupplierList(){
+getSupplierList(){
     this.supplierService.getSupplierList().subscribe(data=>{
         this.supplierList=data;
       })
