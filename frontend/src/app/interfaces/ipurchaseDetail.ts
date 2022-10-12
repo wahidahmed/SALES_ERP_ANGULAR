@@ -4,5 +4,6 @@ export interface IpurchaseDetail {
   ItemPrice:number;
   Qty:number;
   OtherCost?:number;
-  Discount?:number
+  Discount?:number;
+  Total:number;
 }

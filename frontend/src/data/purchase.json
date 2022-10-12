@@ -1,20 +1,22 @@
 [
   {
-    "purchaseMasterId":1,
-    "supplierId":1,
-    "itemList":[
-      {"purchaseDetailId":1,"productId": 1, "itemPrice": 10, "qty": 10, "otherCost": 0, "discount": null},
-      {"purchaseDetailId":2,"productId": 2, "itemPrice": 12, "qty": 5, "otherCost": 12, "discount": 2}
+    "PurchaseMasterId":1,
+    "SupplierId":1,
+    "PurchaseDate":"11-jun-2022",
+    "ItemList":[
+      {"PurchaseDetailId":1,"ProductId": 1, "ItemPrice": 10, "Qty": 10, "OtherCost": 0, "Discount": null},
+      {"PurchaseDetailId":2,"ProductId": 2, "ItemPrice": 12, "Qty": 5, "OtherCost": 12, "Discount": 2}
     ],
-    "grandTotal":170
+    "GrandTotal":170
   },
   {
-    "purchaseMasterId":2,
-    "supplierId":2,
-    "itemList":[
-      {"purchaseDetailId":3,"productId": 1, "itemPrice": 20, "qty": 10, "otherCost": 0, "discount": null},
-      {"purchaseDetailId":4,"productId": 3, "itemPrice": 12, "qty": 6, "otherCost": 10, "discount": 2}
+    "PurchaseMasterId":2,
+    "SupplierId":2,
+    "PurchaseDate":"12-dec-2022",
+    "ItemList":[
+      {"PurchaseDetailId":3,"ProductId": 1, "ItemPrice": 20, "Qty": 10, "OtherCost": 0, "Discount": 20},
+      {"PurchaseDetailId":4,"ProductId": 3, "ItemPrice": 12, "Qty": 6, "OtherCost": 10, "Discount": 12}
     ],
-    "grandTotal":280
+    "GrandTotal":250
   }
 ]

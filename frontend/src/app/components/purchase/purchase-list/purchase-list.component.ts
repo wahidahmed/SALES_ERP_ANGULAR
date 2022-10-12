@@ -13,14 +13,23 @@ export class PurchaseListComponent implements OnInit {
 
   public purchaseList:Array<Purchase>;
   ngOnInit() {
-
+    this.getPurchaseList();
   }
 
   public getPurchaseList(){
 
     this.purchaseService.getPurchaseList().subscribe(
       (data:Purchase[])=>{
-        this.purchaseList=data
+
+        this.purchaseList=data;
+          this.purchaseList.forEach(item=>{
+              item.ItemList.reduce((acc:number,{ItemPrice,Qty,OtherCost,Discount,Total})=>{
+                acc+=(Number(Qty||0)*Number(ItemPrice||0))-Number(Discount||0);
+                Total=acc;
+                return Total
+              },0)
+          })
+        console.log(this.purchaseList)
       }
     )
   }

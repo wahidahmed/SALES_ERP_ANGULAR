@@ -8,7 +8,7 @@
     <form [formGroup]="saveForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-md-2">
-          <select class="form-select form-select-sm" formControlName="supplierId" [ngClass]="{'is-invalid': getSupplier.invalid && (getSupplier.touched||isAddNew)}">
+          <select class="form-select form-select-sm" formControlName="SupplierId" [ngClass]="{'is-invalid': getSupplier.invalid && (getSupplier.touched||isAddNew)}">
             <option selected value="">select supplier</option>
             <option *ngFor="let p of supplierList" value="{{p.SupplierId}}">{{p.SupplierName}}</option>
           </select>
@@ -16,7 +16,8 @@
 
         </div>
         <div class="col-md-2">
-            <input type="date" class="form-control form-control-sm text-center" />
+            <input type="date" class="form-control form-control-sm text-center" formControlName="PurchaseDate"[ngClass]="{'is-invalid': getPurchaseDate.invalid && (getPurchaseDate.touched||isAddNew)}" />
+            <div *ngIf="getPurchaseDate.invalid && (getPurchaseDate.touched||isAddNew)"class="invalid-feedback">Must select purchase date</div>
         </div>
       </div>
       <div class="row">
