@@ -17,17 +17,25 @@
         </tr>
         <tr>
 
-          <th class="text-center">purchase</th>
+          <th class="text-center">Amount</th>
           <th class="text-center">Cost</th>
           <th class="text-center">Discount</th>
 
         </tr>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <tr *ngFor="let item of purchaseList; let i=index;">
           <td>{{item.PurchaseDate}}</td>
           <td>{{item.SupplierId}}</td>
-          <td></td>
+          <td>{{item.Amount}}</td>
+          <td>{{item.Cost}}</td>
+          <td>{{item.Discount}}</td>
+          <td>{{item.GrandTotal}}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-warning">
+                <i class="fas fa-edit"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

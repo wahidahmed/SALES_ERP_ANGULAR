@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isNgTemplate } from '@angular/compiler';
+import { Component, OnInit, Output } from '@angular/core';
 import { Purchase } from 'src/app/Models/purchase';
 import { PurchaseService } from 'src/app/services/purchase.service';
 
@@ -20,16 +21,21 @@ export class PurchaseListComponent implements OnInit {
 
     this.purchaseService.getPurchaseList().subscribe(
       (data:Purchase[])=>{
+        this.purchaseList=data.map((obj)=>{
+          let output=obj.ItemList.map((item)=>{
+            item.Total= Number(item.Qty|0)*Number(item.ItemPrice|0);
+            obj.Amount=(obj.Amount|0)+item.Total;
+            obj.Cost=(obj.Cost|0)+item.OtherCost|0;
+            obj.Discount=(obj.Discount|0)+item.Discount|0;
+            return{...item};
+          });
 
-        this.purchaseList=data;
-          this.purchaseList.forEach(item=>{
-              item.ItemList.reduce((acc:number,{ItemPrice,Qty,OtherCost,Discount,Total})=>{
-                acc+=(Number(Qty||0)*Number(ItemPrice||0))-Number(Discount||0);
-                Total=acc;
-                return Total
-              },0)
-          })
-        console.log(this.purchaseList)
+          return {
+            ...obj,ItemList:output
+          }
+        })
+        console.log('this.purchaseList',this.purchaseList)
+
       }
     )
   }

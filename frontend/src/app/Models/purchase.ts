@@ -6,5 +6,8 @@ export class Purchase implements IPurchaseMaster{
   PurchaseMasterId: number;
   SupplierId: number;
   GrandTotal: number;
+  Amount: number;
+  Cost: number;
+  Discount: number;
   ItemList: IpurchaseDetail[];
 }
