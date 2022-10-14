@@ -34,7 +34,7 @@ export class PurchaseListComponent implements OnInit {
             ...obj,ItemList:output
           }
         })
-        console.log('this.purchaseList',this.purchaseList)
+
 
       }
     )
