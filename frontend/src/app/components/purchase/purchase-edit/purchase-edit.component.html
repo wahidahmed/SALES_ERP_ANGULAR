@@ -6,10 +6,33 @@
     </h3>
   </div>
   <div class="card-body">
-    <form>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
+        <div class="col-md-2">
+          <select class="form-select form-select-sm" formControlName="SupplierId">
+            <option selected value="">select supplier</option>
+            <option *ngFor="let p of supplierList" value="{{p.SupplierId}}">{{p.SupplierName}}</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <input type="" class="form-control form-control-sm text-center" formControlName="PurchaseDate" />
+        </div>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-bordered w-100">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>item price</th>
+              <th>Quantity</th>
+              <th>other cost</th>
+              <th>Discount</th>
+              <th>Total</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </form>
   </div>

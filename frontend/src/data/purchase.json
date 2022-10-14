@@ -2,7 +2,7 @@
   {
     "PurchaseMasterId":1,
     "SupplierId":1,
-    "PurchaseDate":"11-jun-2022",
+    "PurchaseDate":"11-Jun-2022",
     "ItemList":[
       {"PurchaseDetailId":1,"ProductId": 1, "ItemPrice": 10, "Qty": 10, "OtherCost": 0, "Discount": null},
       {"PurchaseDetailId":2,"ProductId": 2, "ItemPrice": 12, "Qty": 5, "OtherCost": 12, "Discount": 2}
@@ -12,7 +12,7 @@
   {
     "PurchaseMasterId":2,
     "SupplierId":2,
-    "PurchaseDate":"12-dec-2022",
+    "PurchaseDate":"12-Dec-2022",
     "ItemList":[
       {"PurchaseDetailId":3,"ProductId": 1, "ItemPrice": 20, "Qty": 10, "OtherCost": 0, "Discount": 20},
       {"PurchaseDetailId":4,"ProductId": 3, "ItemPrice": 12, "Qty": 6, "OtherCost": 10, "Discount": 12}
