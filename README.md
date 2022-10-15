@@ -11,3 +11,4 @@
   <h4>this link for custom directive of sorting data
   https://codezup.com/sort-angular-table-rows-by-using-column/
   </h4>
+  <h4>how to set obseravable data in formArray https://www.concretepage.com/angular/angular-formarray-setvalue-patchvalue</h4>
