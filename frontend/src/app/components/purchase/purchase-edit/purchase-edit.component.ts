@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ISupplier } from 'src/app/interfaces/ISupplier';
 import { Purchase } from 'src/app/Models/purchase';
@@ -19,27 +19,45 @@ export class PurchaseEditComponent implements OnInit {
   editForm:FormGroup;
   ngOnInit() {
 
-    this.editForm=this.fb.group({
+    this.createForm();
+
+
+    this.getSupplierList();
+
+
+  }
+
+  createForm(){
+    this.editForm= this.fb.group({
       SupplierId:['',[Validators.required]],
       PurchaseDate:['',[Validators.required]],
       itemList:this.fb.array([]),
       grandTotal:[null,[]]
-   })
+    })
+  }
+
+  editData(){
 
     const id= +this.acRoute.snapshot.paramMap.get('id');
     this.purchaseService.getPurchaseById(id).subscribe((data:Purchase)=>{
+      this.editForm.get('itemList').patchValue(data.ItemList)
+
       this.editForm.patchValue(
         {
           SupplierId:data.SupplierId,
           //how to set obseravable data in formArray https://www.concretepage.com/angular/angular-formarray-setvalue-patchvalue
         }
       )
+
       console.log(this.editForm);
     })
-    this.getSupplierList();
-
-
   }
+
+  get getItemList():FormArray{
+    return this.editForm.get('itemList') as FormArray;
+  }
+
+
   getSupplierList(){
     this.supplierService.getSupplierList().subscribe(data=>{
         this.supplierList=data;
