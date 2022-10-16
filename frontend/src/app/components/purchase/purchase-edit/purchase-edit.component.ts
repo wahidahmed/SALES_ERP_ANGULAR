@@ -20,10 +20,8 @@ export class PurchaseEditComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
-
-
     this.getSupplierList();
-this.editData();
+    this.editData();
 
   }
 
