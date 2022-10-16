@@ -23,7 +23,7 @@ export class PurchaseEditComponent implements OnInit {
 
 
     this.getSupplierList();
-
+this.editData();
 
   }
 
