@@ -43,7 +43,6 @@ export class PurchaseEditComponent implements OnInit {
       this.editForm.patchValue(
         {
           SupplierId:data.SupplierId,
-          //how to set obseravable data in formArray https://www.concretepage.com/angular/angular-formarray-setvalue-patchvalue
         }
       )
 
