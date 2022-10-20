@@ -34,6 +34,8 @@ import { PromiseObservableComponent } from './components/promise-observable/prom
 import { FormArrayPracticeComponent } from './components/formArray-practice/formArray-practice.component';
 import { PurchaseListComponent } from './components/purchase/purchase-list/purchase-list.component';
 import { PurchaseService } from './services/purchase.service';
+import { AddEmployeeComponent } from './components/HR/add-employee/add-employee.component';
+import { ListEmployeeComponent } from './components/HR/list-employee/list-employee.component';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -48,6 +50,8 @@ const appRoutes:Routes=[
   ,{path:'purchase_entry',component:PurchaseEntryComponent}
   ,{path:'purchase_edit/:id',component:PurchaseEditComponent}
   ,{path:'purchase_list',component:PurchaseListComponent}
+  ,{path:'add_employee',component:AddEmployeeComponent}
+  ,{path:'employee_list',component:ListEmployeeComponent}
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
   ,{path:'test',component:TestComponentComponent}
@@ -65,8 +69,14 @@ const appRoutes:Routes=[
     ,SalesEntryComponent
     ,SalesEditComponent
     ,AddUnitComponent
-    , ListUnitComponent, AddSupplierComponent, ListSupplierComponent,PurchaseEntryComponent,PurchaseEditComponent,PurchaseListComponent
-
+    , ListUnitComponent
+    , AddSupplierComponent
+    , ListSupplierComponent
+    ,PurchaseEntryComponent
+    ,PurchaseEditComponent
+    ,PurchaseListComponent
+    ,AddEmployeeComponent
+    ,ListEmployeeComponent
     ,HighlightDirective,SortDirective,FilterDirective
 
     ,TestTableLstFormComponent,TestComponentComponent,PromiseObservableComponent,FormArrayPracticeComponent
