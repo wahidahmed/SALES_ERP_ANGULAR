@@ -119,13 +119,15 @@ export class AddEmployeeComponent implements OnInit {
   onContactPrefernceChange(value){
     if(value=='phone'){
       this.PhoneControl.setValidators([Validators.required]);
-
+      this.emailControl.clearValidators();
     }
     else{
       this.PhoneControl.clearValidators();
+      this.emailControl.setValidators([Validators.required]);
     }
 
     this.PhoneControl.updateValueAndValidity();
+    this.emailControl.updateValueAndValidity();
   }
 
   onSubmit(){
