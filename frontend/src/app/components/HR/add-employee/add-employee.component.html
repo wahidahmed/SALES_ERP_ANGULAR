@@ -8,12 +8,9 @@
         <label class="col-sm-2 control-label" for="FullName">Full Name</label>
         <div class="col-sm-8">
           <input id="FullName" type="text" class="form-control" formControlName="FullName"
-          [ngClass]="{'is-invalid': ((fullNameControl.touched ||
-          fullNameControl.dirty) &&
-          fullNameControl.errors)}">
-          <span *ngIf="fullNameControl.errors &&(fullNameControl.touched || fullNameControl.dirty)"  class="invalid-feedback">
-            <span  *ngIf="fullNameControl.errors['required']">Full Name is required</span>
-            <span  *ngIf="fullNameControl.errors['minlength']">Full Name must be atleast 5 chararter</span>
+          [ngClass]="{'is-invalid': formErrors.FullName}" (blur)="logValidationErrors()">
+          <span *ngIf="formErrors.FullName"  class="invalid-feedback">
+            {{formErrors.FullName}}
           </span>
 
         </div>
@@ -22,7 +19,8 @@
       <div class="form-group">
         <label class="col-sm-2 control-label" for="Email">Email</label>
         <div class="col-sm-8">
-          <input id="Email" type="text" class="form-control" formControlName="Email">
+          <input id="Email" type="text" class="form-control" formControlName="Email" [ngClass]="{'is-invalid':formErrors.Email}" (blur)="logValidationErrors()">
+          <span *ngIf="formErrors.Email" class="invalid-feedback">{{formErrors.Email}}</span>
         </div>
       </div>
 
@@ -30,29 +28,33 @@
         <div class="form-group row mt-2">
           <label class="col-sm-1 control-label" for="SkillName">Skill Name</label>
           <div class="col-sm-3">
-            <input id="SkillName" placeholder="Skill Name"class="form-control" formControlName="SkillName"/>
+            <input id="SkillName" placeholder="Skill Name"class="form-control" formControlName="SkillName" [ngClass]="{'is-invalid':formErrors.SkillName}" (blur)="logValidationErrors()"/>
+            <span *ngIf="formErrors.SkillName" class="invalid-feedback">{{formErrors.SkillName}}</span>
           </div>
           <div class="col-sm-3">
-            <input  placeholder="Experience Years"class="form-control" formControlName="ExperienceYears"/>
+            <input  placeholder="Experience Years"class="form-control" formControlName="ExperienceYears"[ngClass]="{'is-invalid':formErrors.ExperienceYears}" (blur)="logValidationErrors()"/>
+            <span *ngIf="formErrors.ExperienceYears" class="invalid-feedback">{{formErrors.ExperienceYears}}</span>
           </div>
         </div>
 
-        <div class="form-group mt-2">
+        <div class="form-group row mt-2">
           <label class="col-md-2 control-label">Proficiency</label>
-          <div class="col-md-8">
+          <div class="col-md-8" [ngClass]="{'is-invalid':formErrors.Proficiency}">
             <label class="radio-inline">
               <input id="Proficiency" type="radio" value="beginner"
-                     formControlName="Proficiency">Beginner
+                     formControlName="Proficiency"(blur)="logValidationErrors()">Beginner
             </label>
             <label class="radio-inline">
               <input id="Proficiency" type="radio" value="intermediate"
-                     formControlName="Proficiency">Intermediate
+                     formControlName="Proficiency"(blur)="logValidationErrors()">Intermediate
             </label>
             <label class="radio-inline">
               <input id="Proficiency" type="radio" value="advanced"
-                     formControlName="Proficiency">Advanced
+                     formControlName="Proficiency"(blur)="logValidationErrors()">Advanced
             </label>
+
           </div>
+          <span *ngIf="formErrors.Proficiency" class="invalid-feedback" >{{formErrors.Proficiency}}</span>
         </div>
 
 
@@ -61,6 +63,7 @@
     </div>
     <div class="panel-footer">
       <button class="btn btn-primary" type="submit">Save</button>
+
     </div>
   </div>
 </form>
