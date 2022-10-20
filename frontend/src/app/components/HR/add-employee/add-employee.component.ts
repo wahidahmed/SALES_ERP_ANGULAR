@@ -13,6 +13,7 @@ export class AddEmployeeComponent implements OnInit {
   formErrors = {
     'FullName': '',
     'Email': '',
+    'Phone':'',
     'SkillName': '',
     'ExperienceYears': '',
     'Proficiency': ''
@@ -24,7 +25,11 @@ export class AddEmployeeComponent implements OnInit {
       'maxlength': 'Full Name must be less than 10 characters.'
     },
     'Email': {
-      'required': 'Email is required.'
+      'required': 'Email is required.',
+      'emailDomain': 'Email domian should be prgaimtech.com'
+    },
+    'Phone': {
+      'required': 'Phone is required.'
     },
     'SkillName': {
       'required': 'Skill Name is required.',
@@ -43,7 +48,9 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit() {
     this.employeeForm=this.fb.group({
       FullName:[null,[Validators.required,Validators.minLength(5)]],
+      contactPreference:['email'],
       Email:[null,[Validators.required]],
+      Phone:[null],
       Skills:this.fb.group({
         SkillName:[null,[Validators.required]],
         ExperienceYears:[null,[Validators.required]],
@@ -53,6 +60,10 @@ export class AddEmployeeComponent implements OnInit {
 
     this.employeeForm.valueChanges.subscribe((v)=>{
       this.logValidationErrors(this.employeeForm);
+    });
+
+    this.contactPreferenceControl.valueChanges.subscribe((val)=>{
+      this.onContactPrefernceChange(val);
     });
   }
 
@@ -64,6 +75,9 @@ export class AddEmployeeComponent implements OnInit {
   get emailControl():FormControl{
     return this.employeeForm.get('Email') as FormControl;
   }
+  get PhoneControl():FormControl{
+    return this.employeeForm.get('Phone') as FormControl;
+  }
 
   get skillsGroup():FormGroup{
     return this.employeeForm.get('Skills') as FormGroup;
@@ -71,6 +85,10 @@ export class AddEmployeeComponent implements OnInit {
 
   get skillNameControl():FormControl{
     return this.skillsGroup.get('SkillName') as FormControl;
+  }
+
+  get contactPreferenceControl():FormControl{
+    return this.employeeForm.get('contactPreference') as FormControl;
   }
 
   logValidationErrors(group:FormGroup=this.employeeForm):void{
@@ -98,10 +116,27 @@ export class AddEmployeeComponent implements OnInit {
     });
   }
 
+  onContactPrefernceChange(value){
+    if(value=='phone'){
+      this.PhoneControl.setValidators([Validators.required]);
+
+    }
+    else{
+      this.PhoneControl.clearValidators();
+    }
+
+    this.PhoneControl.updateValueAndValidity();
+  }
 
   onSubmit(){
     this.isSubmitted=true;
-    this.logValidationErrors();
+    if(this.employeeForm.valid){
+      this.isSubmitted=false;
+    }
+    else{
+      this.logValidationErrors();
+    }
+
     console.log(this.employeeForm)
   }
 

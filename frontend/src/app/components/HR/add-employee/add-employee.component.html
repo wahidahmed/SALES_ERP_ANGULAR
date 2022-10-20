@@ -17,10 +17,35 @@
       </div>
 
       <div class="form-group">
+        <label class="col-md-2 control-label">Contact Preference</label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio" value="email" formControlName="contactPreference"
+                    >Email
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="phone" formControlName="contactPreference"
+                  >Phone
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
         <label class="col-sm-2 control-label" for="Email">Email</label>
         <div class="col-sm-8">
           <input id="Email" type="text" class="form-control" formControlName="Email" [ngClass]="{'is-invalid':formErrors.Email}" (blur)="logValidationErrors()">
           <span *ngIf="formErrors.Email" class="invalid-feedback">{{formErrors.Email}}</span>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <label class="col-sm-2 control-label" for="Phone">Phone</label>
+        <div class="col-sm-8">
+          <input id="Phone" type="text" class="form-control"[ngClass]="{'is-invalid': formErrors.Phone}"
+                  formControlName="Phone" (blur)="logValidationErrors()">
+          <span class="invalid-feedback" *ngIf="formErrors.Phone">
+            {{formErrors.Phone}}
+          </span>
         </div>
       </div>
 
