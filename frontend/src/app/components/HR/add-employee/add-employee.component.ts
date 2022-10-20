@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-employee',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEmployeeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb:FormBuilder) { }
+
+  employeeForm:FormGroup;
 
   ngOnInit() {
+    this.employeeForm=this.fb.group({
+      FullName:['',[Validators.required,Validators.minLength(5)]],
+      Email:[null,[Validators.required]],
+      Skills:this.fb.group({
+        SkillName:[null],
+        ExperienceYears:[],
+        Proficiency:[]
+      })
+    })
+  }
+
+
+  get fullNameControl():FormControl{
+    return this.employeeForm.get('FullName') as FormControl;
+  }
+
+
+  onSubmit(){
+    console.log(this.employeeForm)
   }
 
 }

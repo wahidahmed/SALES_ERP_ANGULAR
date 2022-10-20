@@ -1,3 +1,89 @@
-<p>
-  add-employee works!
-</p>
+<form class="row g-3" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Create Employee</h3>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="FullName">Full Name</label>
+        <div class="col-sm-8">
+          <input id="FullName" type="text" class="form-control" formControlName="FullName"
+          [ngClass]="{'is-invalid': ((fullNameControl.touched ||
+          fullNameControl.dirty) &&
+          fullNameControl.errors)}">
+          <span *ngIf="fullNameControl.errors &&(fullNameControl.touched || fullNameControl.dirty)"  class="invalid-feedback">
+            <span  *ngIf="fullNameControl.errors['required']">Full Name is required</span>
+            <span  *ngIf="fullNameControl.errors['minlength']">Full Name must be atleast 5 chararter</span>
+          </span>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="Email">Email</label>
+        <div class="col-sm-8">
+          <input id="Email" type="text" class="form-control" formControlName="Email">
+        </div>
+      </div>
+
+      <div formGroupName="Skills">
+        <div class="form-group row mt-2">
+          <label class="col-sm-1 control-label" for="SkillName">Skill Name</label>
+          <div class="col-sm-3">
+            <input id="SkillName" placeholder="Skill Name"class="form-control" formControlName="SkillName"/>
+          </div>
+          <div class="col-sm-3">
+            <input  placeholder="Experience Years"class="form-control" formControlName="ExperienceYears"/>
+          </div>
+        </div>
+
+        <div class="form-group mt-2">
+          <label class="col-md-2 control-label">Proficiency</label>
+          <div class="col-md-8">
+            <label class="radio-inline">
+              <input id="Proficiency" type="radio" value="beginner"
+                     formControlName="Proficiency">Beginner
+            </label>
+            <label class="radio-inline">
+              <input id="Proficiency" type="radio" value="intermediate"
+                     formControlName="Proficiency">Intermediate
+            </label>
+            <label class="radio-inline">
+              <input id="Proficiency" type="radio" value="advanced"
+                     formControlName="Proficiency">Advanced
+            </label>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+  </div>
+</form>
+
+
+<table border="1">
+  <tr>
+    <th style="padding: 10px">FormGroup</th>
+    <th style="padding: 10px">FormControl (fullName)</th>
+  </tr>
+  <tr>
+    <td style="padding: 10px">
+      touched : {{ employeeForm.touched }}
+      <br/> dirty : {{ employeeForm.dirty }}
+      <br/> valid : {{ employeeForm.valid }}
+      <br/> Form Values : {{employeeForm.value | json}}
+    </td>
+    <td style="padding: 10px">
+      touched : {{ employeeForm.get('FullName').touched }}
+      <br/> dirty : {{ employeeForm.get('FullName').dirty }}
+      <br/> valid : {{ employeeForm.get('FullName').valid }}
+      <br/> FullName Value : {{employeeForm.get('FullName').value}}
+    </td>
+  </tr>
+</table>
+
