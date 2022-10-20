@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-employee',
@@ -128,6 +128,11 @@ export class AddEmployeeComponent implements OnInit {
 
     this.PhoneControl.updateValueAndValidity();
     this.emailControl.updateValueAndValidity();
+  }
+
+
+  private emailDomain(control: AbstractControl): { [key: string]: any } | null {
+    return {'key':true};
   }
 
   onSubmit(){
