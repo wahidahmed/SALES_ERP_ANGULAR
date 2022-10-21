@@ -59,33 +59,40 @@
               <div class="form-group row mt-2">
                 <label class="col-sm-3 control-label" [for]="'SkillName'+i">Skill Name</label>
                 <div class="col-sm-5">
-                  <input [id]="'SkillName'+i" placeholder="Skill Name"class="form-control" formControlName="SkillName" [ngClass]="{'is-invalid':formErrors.SkillsErr[i].SkillName}" (blur)="logValidationErrors()"/>
-                  <span *ngIf="formErrors.SkillsErr[i].SkillName" class="invalid-feedback">{{formErrors.SkillsErr[i].SkillName}}</span>
+                  <input [id]="'SkillName'+i" placeholder="Skill Name"class="form-control" formControlName="SkillName"
+                  [ngClass]="{'is-invalid':item.get('SkillName').invalid && (item.get('SkillName').touched|| isSubmitted)}"/>
+                  <span *ngIf="item.get('SkillName').errors?.['required'] && (item.get('SkillName').touched|| isSubmitted)" class="invalid-feedback">
+                    skill name is required
+                  </span>
                 </div>
                 <div class="col-sm-4">
-                  <input  placeholder="Experience Years"class="form-control" [id]="'ExperienceYears'+i"  formControlName="ExperienceYears"[ngClass]="{'is-invalid':formErrors.ExperienceYears}" (blur)="logValidationErrors()"/>
-                  <span *ngIf="formErrors.ExperienceYears" class="invalid-feedback">{{formErrors.ExperienceYears}}</span>
+                  <input  placeholder="Experience Years"class="form-control" [id]="'ExperienceYears'+i"  formControlName="ExperienceYears"[ngClass]="{'is-invalid':item.get('ExperienceYears').invalid && (item.get('ExperienceYears').touched|| isSubmitted)}" />
+                  <span *ngIf="item.get('ExperienceYears').errors?.['required'] && (item.get('ExperienceYears').touched|| isSubmitted)" class="invalid-feedback">
+                    Experience is required
+                  </span>
                 </div>
               </div>
 
               <div class="form-group row mt-2">
                 <label class="col-md-3 control-label">Proficiency</label>
-                <div class="col-md-8" [ngClass]="{'is-invalid':formErrors.Proficiency}">
+                <div class="col-md-8" [ngClass]="{'is-invalid':item.get('Proficiency').invalid && (item.get('Proficiency').touched|| isSubmitted)}">
                   <label class="radio-inline">
                     <input id="Proficiency" type="radio" value="beginner"
-                           formControlName="Proficiency"(blur)="logValidationErrors()">Beginner
+                           formControlName="Proficiency">Beginner
                   </label>
                   <label class="radio-inline">
                     <input id="Proficiency" type="radio" value="intermediate"
-                           formControlName="Proficiency"(blur)="logValidationErrors()">Intermediate
+                           formControlName="Proficiency">Intermediate
                   </label>
                   <label class="radio-inline">
                     <input id="Proficiency" type="radio" value="advanced"
-                           formControlName="Proficiency"(blur)="logValidationErrors()">Advanced
+                           formControlName="Proficiency">Advanced
                   </label>
 
                 </div>
-                <span *ngIf="formErrors.Proficiency" class="invalid-feedback" >{{formErrors.Proficiency}}</span>
+                <span *ngIf="item.get('Proficiency').errors?.['required'] && (item.get('Proficiency').touched|| isSubmitted)" class="invalid-feedback">
+                  Proficiency is required
+                </span>
               </div>
             </div>
           </div>

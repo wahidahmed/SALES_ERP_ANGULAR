@@ -14,11 +14,7 @@ export class AddEmployeeComponent implements OnInit {
   formErrors = {
     'FullName': '',
     'Email': '',
-    'Phone':'',
-    'SkillName': '',
-    'ExperienceYears': '',
-    'Proficiency': '',
-    'SkillsErr':[{'SkillName': '','ExperienceYears': '','Proficiency': ''}]
+    'Phone':''
   };
   validationMessages = {
     'FullName': {
@@ -32,16 +28,7 @@ export class AddEmployeeComponent implements OnInit {
     },
     'Phone': {
       'required': 'Phone is required.'
-    },
-    'SkillName': {
-      'required': 'Skill Name is required.',
-    },
-    'ExperienceYears': {
-      'required': 'Experience is required.',
-    },
-    'Proficiency': {
-      'required': 'Proficiency is required.',
-    },
+    }
   };
 
   employeeForm:FormGroup;
@@ -78,9 +65,8 @@ export class AddEmployeeComponent implements OnInit {
     })
   }
   addSkillButtonClick(){
+
     (<FormArray>this.employeeForm.get('Skills')).push(this.addSkillFormGroup());
-    this.formErrors.SkillsErr.push({'SkillName': '','ExperienceYears': '','Proficiency': ''})
-    console.log(this.formErrors.SkillsErr);
   }
 
 
@@ -119,13 +105,6 @@ export class AddEmployeeComponent implements OnInit {
       if (abstractControl instanceof FormGroup) {
         this.logValidationErrors(abstractControl);
       }
-      else if (abstractControl instanceof FormArray) {
-       for(let control of abstractControl.controls){
-        if (control instanceof FormGroup) {
-          this.logValidationErrors(control);
-        }
-       }
-      }
       else{
         // console.log('Key = ' + key + ' && Value = ' + abstractControl.value);
         this.formErrors[key]='';
@@ -135,9 +114,6 @@ export class AddEmployeeComponent implements OnInit {
           // console.log('abstractControl.errors',abstractControl.errors);
           for (const errorKey in abstractControl.errors) {
             if(errorKey){
-              if(this.skillsFormArray.invalid){
-
-              }
               this.formErrors[key]+=message[errorKey]+' ';
             }
           }
@@ -147,7 +123,7 @@ export class AddEmployeeComponent implements OnInit {
     });
   }
 
-  onContactPrefernceChange(value){
+  onContactPrefernceChange(value: string){
     if(value=='phone'){
       this.PhoneControl.setValidators([Validators.required]);
       this.emailControl.clearValidators();
