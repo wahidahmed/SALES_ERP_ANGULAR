@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidatiors } from 'src/app/helpers/custom.validators';
 
 @Component({
@@ -52,11 +52,9 @@ export class AddEmployeeComponent implements OnInit {
       contactPreference:['email'],
       Email:[null,[Validators.required,CustomValidatiors.emailDomain('gmail.com')]],
       Phone:[null],
-      Skills:this.fb.group({
-        SkillName:[null,[Validators.required]],
-        ExperienceYears:[null,[Validators.required]],
-        Proficiency:[null,[Validators.required]]
-      })
+      Skills:this.fb.array([
+        this.addSkillFormGroup()
+      ])
     });
 
     this.employeeForm.valueChanges.subscribe((v)=>{
@@ -66,6 +64,15 @@ export class AddEmployeeComponent implements OnInit {
     this.contactPreferenceControl.valueChanges.subscribe((val)=>{
       this.onContactPrefernceChange(val);
     });
+  }
+
+
+  addSkillFormGroup():FormGroup{
+   return this.fb.group({
+      SkillName:[null,[Validators.required]],
+      ExperienceYears:[null,[Validators.required]],
+      Proficiency:[null,[Validators.required]]
+    })
   }
 
 
@@ -99,6 +106,13 @@ export class AddEmployeeComponent implements OnInit {
       if (abstractControl instanceof FormGroup) {
         this.logValidationErrors(abstractControl);
       }
+      else if (abstractControl instanceof FormArray) {
+       for(let control of abstractControl.controls){
+        if (control instanceof FormGroup) {
+          this.logValidationErrors(control);
+        }
+       }
+      }
       else{
         // console.log('Key = ' + key + ' && Value = ' + abstractControl.value);
         this.formErrors[key]='';
@@ -131,28 +145,6 @@ export class AddEmployeeComponent implements OnInit {
     this.emailControl.updateValueAndValidity();
   }
 
-
-//    emailDomain(domainName:string){
-
-//     return((control: AbstractControl): { [key: string]: any } | null=> {
-
-//         if(control.value){
-//           console.log('sub',control)
-//           const email:string=control.value;
-//           const domian=email.substring(email.lastIndexOf('@')+1);
-//           if(domian.toLocaleLowerCase()===domainName.toLocaleLowerCase()){
-//             return null;
-//           }
-//           else{
-//           return {'emailDomain':true};
-//           }
-//         }
-//         else{
-//           return null
-//         }
-//   })
-
-// }
 
   onSubmit(){
     this.isSubmitted=true;

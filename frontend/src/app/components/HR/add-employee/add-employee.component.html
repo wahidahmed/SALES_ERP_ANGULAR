@@ -52,41 +52,42 @@
             </div>
           </div>
 
-          <div formGroupName="Skills">
-            <div class="form-group row mt-2">
-              <label class="col-sm-3 control-label" for="SkillName">Skill Name</label>
-              <div class="col-sm-5">
-                <input id="SkillName" placeholder="Skill Name"class="form-control" formControlName="SkillName" [ngClass]="{'is-invalid':formErrors.SkillName}" (blur)="logValidationErrors()"/>
-                <span *ngIf="formErrors.SkillName" class="invalid-feedback">{{formErrors.SkillName}}</span>
+          <div formArrayName="Skills">
+            <div formGroupName="0">
+              <div class="form-group row mt-2">
+                <label class="col-sm-3 control-label" for="SkillName">Skill Name</label>
+                <div class="col-sm-5">
+                  <input id="SkillName" placeholder="Skill Name"class="form-control" formControlName="SkillName" [ngClass]="{'is-invalid':formErrors.SkillName}" (blur)="logValidationErrors()"/>
+                  <span *ngIf="formErrors.SkillName" class="invalid-feedback">{{formErrors.SkillName}}</span>
+                </div>
+                <div class="col-sm-4">
+                  <input  placeholder="Experience Years"class="form-control" formControlName="ExperienceYears"[ngClass]="{'is-invalid':formErrors.ExperienceYears}" (blur)="logValidationErrors()"/>
+                  <span *ngIf="formErrors.ExperienceYears" class="invalid-feedback">{{formErrors.ExperienceYears}}</span>
+                </div>
               </div>
-              <div class="col-sm-4">
-                <input  placeholder="Experience Years"class="form-control" formControlName="ExperienceYears"[ngClass]="{'is-invalid':formErrors.ExperienceYears}" (blur)="logValidationErrors()"/>
-                <span *ngIf="formErrors.ExperienceYears" class="invalid-feedback">{{formErrors.ExperienceYears}}</span>
+
+              <div class="form-group row mt-2">
+                <label class="col-md-3 control-label">Proficiency</label>
+                <div class="col-md-8" [ngClass]="{'is-invalid':formErrors.Proficiency}">
+                  <label class="radio-inline">
+                    <input id="Proficiency" type="radio" value="beginner"
+                           formControlName="Proficiency"(blur)="logValidationErrors()">Beginner
+                  </label>
+                  <label class="radio-inline">
+                    <input id="Proficiency" type="radio" value="intermediate"
+                           formControlName="Proficiency"(blur)="logValidationErrors()">Intermediate
+                  </label>
+                  <label class="radio-inline">
+                    <input id="Proficiency" type="radio" value="advanced"
+                           formControlName="Proficiency"(blur)="logValidationErrors()">Advanced
+                  </label>
+
+                </div>
+                <span *ngIf="formErrors.Proficiency" class="invalid-feedback" >{{formErrors.Proficiency}}</span>
               </div>
             </div>
-
-            <div class="form-group row mt-2">
-              <label class="col-md-3 control-label">Proficiency</label>
-              <div class="col-md-8" [ngClass]="{'is-invalid':formErrors.Proficiency}">
-                <label class="radio-inline">
-                  <input id="Proficiency" type="radio" value="beginner"
-                         formControlName="Proficiency"(blur)="logValidationErrors()">Beginner
-                </label>
-                <label class="radio-inline">
-                  <input id="Proficiency" type="radio" value="intermediate"
-                         formControlName="Proficiency"(blur)="logValidationErrors()">Intermediate
-                </label>
-                <label class="radio-inline">
-                  <input id="Proficiency" type="radio" value="advanced"
-                         formControlName="Proficiency"(blur)="logValidationErrors()">Advanced
-                </label>
-
-              </div>
-              <span *ngIf="formErrors.Proficiency" class="invalid-feedback" >{{formErrors.Proficiency}}</span>
-            </div>
-
-
           </div>
+
 
         </div>
         <div class="panel-footer">
