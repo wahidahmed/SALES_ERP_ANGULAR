@@ -74,6 +74,10 @@ export class AddEmployeeComponent implements OnInit {
       Proficiency:[null,[Validators.required]]
     })
   }
+  addSkillButtonClick(){
+    (<FormArray>this.employeeForm.get('Skills')).push(this.addSkillFormGroup());
+  }
+
 
 
   get fullNameControl():FormControl{
@@ -87,8 +91,12 @@ export class AddEmployeeComponent implements OnInit {
     return this.employeeForm.get('Phone') as FormControl;
   }
 
+  get skillsFormArray():FormArray{
+    return this.employeeForm.get('Skills') as FormArray;
+  }
+
   get skillsGroup():FormGroup{
-    return this.employeeForm.get('Skills') as FormGroup;
+    return this.skillsFormArray.get('Skills') as FormGroup;
   }
 
   get skillNameControl():FormControl{

@@ -52,16 +52,18 @@
             </div>
           </div>
 
-          <div formArrayName="Skills">
-            <div formGroupName="0">
+
+
+          <div formArrayName="Skills" *ngFor="let item of skillsFormArray.controls; let i=index">
+            <div [formGroupName]="i">
               <div class="form-group row mt-2">
-                <label class="col-sm-3 control-label" for="SkillName">Skill Name</label>
+                <label class="col-sm-3 control-label" [for]="'SkillName'+i">Skill Name</label>
                 <div class="col-sm-5">
-                  <input id="SkillName" placeholder="Skill Name"class="form-control" formControlName="SkillName" [ngClass]="{'is-invalid':formErrors.SkillName}" (blur)="logValidationErrors()"/>
+                  <input [id]="'SkillName'+i" placeholder="Skill Name"class="form-control" formControlName="SkillName" [ngClass]="{'is-invalid':formErrors.SkillName}" (blur)="logValidationErrors()"/>
                   <span *ngIf="formErrors.SkillName" class="invalid-feedback">{{formErrors.SkillName}}</span>
                 </div>
                 <div class="col-sm-4">
-                  <input  placeholder="Experience Years"class="form-control" formControlName="ExperienceYears"[ngClass]="{'is-invalid':formErrors.ExperienceYears}" (blur)="logValidationErrors()"/>
+                  <input  placeholder="Experience Years"class="form-control" [id]="'ExperienceYears'+i"  formControlName="ExperienceYears"[ngClass]="{'is-invalid':formErrors.ExperienceYears}" (blur)="logValidationErrors()"/>
                   <span *ngIf="formErrors.ExperienceYears" class="invalid-feedback">{{formErrors.ExperienceYears}}</span>
                 </div>
               </div>
@@ -85,6 +87,14 @@
                 </div>
                 <span *ngIf="formErrors.Proficiency" class="invalid-feedback" >{{formErrors.Proficiency}}</span>
               </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-2">
+            <div class="col-md-offset-2 col-md-4">
+              <button type="button" class="btn btn-primary" (click)="addSkillButtonClick()">
+                Add Skill
+              </button>
             </div>
           </div>
 
