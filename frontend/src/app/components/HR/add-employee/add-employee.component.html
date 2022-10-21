@@ -59,8 +59,8 @@
               <div class="form-group row mt-2">
                 <label class="col-sm-3 control-label" [for]="'SkillName'+i">Skill Name</label>
                 <div class="col-sm-5">
-                  <input [id]="'SkillName'+i" placeholder="Skill Name"class="form-control" formControlName="SkillName" [ngClass]="{'is-invalid':formErrors.SkillName}" (blur)="logValidationErrors()"/>
-                  <span *ngIf="formErrors.SkillName" class="invalid-feedback">{{formErrors.SkillName}}</span>
+                  <input [id]="'SkillName'+i" placeholder="Skill Name"class="form-control" formControlName="SkillName" [ngClass]="{'is-invalid':formErrors.SkillsErr[i].SkillName}" (blur)="logValidationErrors()"/>
+                  <span *ngIf="formErrors.SkillsErr[i].SkillName" class="invalid-feedback">{{formErrors.SkillsErr[i].SkillName}}</span>
                 </div>
                 <div class="col-sm-4">
                   <input  placeholder="Experience Years"class="form-control" [id]="'ExperienceYears'+i"  formControlName="ExperienceYears"[ngClass]="{'is-invalid':formErrors.ExperienceYears}" (blur)="logValidationErrors()"/>

@@ -17,7 +17,8 @@ export class AddEmployeeComponent implements OnInit {
     'Phone':'',
     'SkillName': '',
     'ExperienceYears': '',
-    'Proficiency': ''
+    'Proficiency': '',
+    'SkillsErr':[{'SkillName': '','ExperienceYears': '','Proficiency': ''}]
   };
   validationMessages = {
     'FullName': {
@@ -47,6 +48,7 @@ export class AddEmployeeComponent implements OnInit {
   isSubmitted:boolean=false;
 
   ngOnInit() {
+
     this.employeeForm=this.fb.group({
       FullName:[null,[Validators.required,Validators.minLength(5)]],
       contactPreference:['email'],
@@ -58,6 +60,7 @@ export class AddEmployeeComponent implements OnInit {
     });
 
     this.employeeForm.valueChanges.subscribe((v)=>{
+      console.log('value change',v);
       this.logValidationErrors(this.employeeForm);
     });
 
@@ -76,6 +79,8 @@ export class AddEmployeeComponent implements OnInit {
   }
   addSkillButtonClick(){
     (<FormArray>this.employeeForm.get('Skills')).push(this.addSkillFormGroup());
+    this.formErrors.SkillsErr.push({'SkillName': '','ExperienceYears': '','Proficiency': ''})
+    console.log(this.formErrors.SkillsErr);
   }
 
 
@@ -130,6 +135,9 @@ export class AddEmployeeComponent implements OnInit {
           // console.log('abstractControl.errors',abstractControl.errors);
           for (const errorKey in abstractControl.errors) {
             if(errorKey){
+              if(this.skillsFormArray.invalid){
+
+              }
               this.formErrors[key]+=message[errorKey]+' ';
             }
           }
