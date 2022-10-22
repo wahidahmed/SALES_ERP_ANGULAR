@@ -137,6 +137,10 @@ export class AddEmployeeComponent implements OnInit {
     this.emailControl.updateValueAndValidity();
   }
 
+  removeSkillButtonClick(i){
+    this.skillsFormArray.removeAt(i);
+  }
+
 
   onSubmit(){
     this.isSubmitted=true;
