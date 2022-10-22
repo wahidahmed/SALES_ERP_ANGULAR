@@ -1,0 +1,25 @@
+[
+  {
+    "EmployeeId":1,
+    "FullName":"wahid ahmed",
+    "contactPreference":"email",
+    "Email":"wahid@gmail.com",
+    "Phone":"",
+    "Skills":[
+      {"SkillName":"C#","ExperienceYears":4,"Proficiency":"intermediate"},
+      {"SkillName":"php","ExperienceYears":2,"Proficiency":"beginner"}
+    ]
+  },
+  {
+    "EmployeeId":2,
+    "FullName":"jalal uddin",
+    "contactPreference":"phone",
+    "Email":"",
+    "Phone":"0183349000",
+    "Skills":[
+      {"SkillName":"C#","ExperienceYears":4,"Proficiency":"intermediate"},
+      {"SkillName":"angular","ExperienceYears":2,"Proficiency":"advanced"},
+      {"SkillName":"react","ExperienceYears":2,"Proficiency":"beginner"}
+    ]
+  }
+]
