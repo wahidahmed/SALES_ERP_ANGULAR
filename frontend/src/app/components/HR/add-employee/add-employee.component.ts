@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidatiors } from 'src/app/helpers/custom.validators';
+import { Iemployee } from 'src/app/interfaces/iemployee';
 
 @Component({
   selector: 'app-add-employee',
@@ -141,7 +142,7 @@ export class AddEmployeeComponent implements OnInit {
     this.skillsFormArray.removeAt(i);
   }
 
-  getEditData(event){
+  getEditData(event:Iemployee){
     console.log(event);
   }
 
