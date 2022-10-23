@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidatiors } from 'src/app/helpers/custom.validators';
 import { Iemployee } from 'src/app/interfaces/iemployee';
+import { IemployeeSkill } from 'src/app/interfaces/iemployeeSkill';
 
 @Component({
   selector: 'app-add-employee',
@@ -87,13 +88,13 @@ export class AddEmployeeComponent implements OnInit {
     return this.employeeForm.get('Skills') as FormArray;
   }
 
-  get skillsGroup():FormGroup{
-    return this.skillsFormArray.get('Skills') as FormGroup;
-  }
+  // get skillsGroup():FormGroup{
+  //   return this.skillsFormArray.get('Skills') as FormGroup;
+  // }
 
-  get skillNameControl():FormControl{
-    return this.skillsGroup.get('SkillName') as FormControl;
-  }
+  // get skillNameControl():FormControl{
+  //   return this.skillsGroup.get('SkillName') as FormControl;
+  // }
 
   get contactPreferenceControl():FormControl{
     return this.employeeForm.get('contactPreference') as FormControl;
@@ -142,8 +143,28 @@ export class AddEmployeeComponent implements OnInit {
     this.skillsFormArray.removeAt(i);
   }
 
-  getEditData(event:Iemployee){
-    console.log(event);
+  getEditData(data:Iemployee){
+    this.employeeForm.patchValue({
+      FullName:data.FullName,
+      contactPreference:data.contactPreference,
+      Email:data.Email,
+      Phone:data.Phone,
+    })
+
+    this.employeeForm.setControl('Skills',this.setExistingSkills(data.Skills))
+
+  }
+  setExistingSkills(skillSet:IemployeeSkill[]):FormArray{
+    const formArray=new FormArray([]);
+    skillSet.forEach((s)=>{
+     let rr= this.fb.group({
+        SkillName:s.SkillName,
+        ExperienceYears:s.ExperienceYears,
+        Proficiency:s.Proficiency
+      })
+      formArray.push(rr);
+    })
+    return formArray;
   }
 
   onSubmit(){
