@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import { IpurchaseDetail } from 'src/app/interfaces/ipurchaseDetail';
 import { ISupplier } from 'src/app/interfaces/ISupplier';
 import { Purchase } from 'src/app/Models/purchase';
 import { ProdcutService } from 'src/app/services/prodcut.service';
@@ -33,7 +34,6 @@ export class PurchaseEditComponent implements OnInit {
     this.productService.getProductList().subscribe(data=>{
         this.productList=data;
       })
-
   }
 
   createForm(){
@@ -43,6 +43,19 @@ export class PurchaseEditComponent implements OnInit {
       itemList:this.fb.array([]),
       grandTotal:[null,[]]
     })
+  }
+
+  addNewItemList():FormGroup{
+    return this.fb.group(
+      {
+        productId:['',[Validators.required]],
+        itemPrice:[null,[Validators.required,Validators.min(0)]],
+        qty:[null,[Validators.required,Validators.min(1)]],
+        otherCost:[null,Validators.min(0)],
+        discount:[null,[Validators.min(0)]],
+        total:[0,[Validators.min(0)]],
+      }
+    );
   }
 
 
@@ -59,12 +72,30 @@ export class PurchaseEditComponent implements OnInit {
       this.editForm.patchValue(
         {
           SupplierId:data.SupplierId,
+          PurchaseDate:data.PurchaseDate,
+          grandTotal:data.GrandTotal
         }
       )
-      console.log(this.editForm);
+      this.editForm.setControl('itemList',this.setExistItemList(data.ItemList))
+      console.log('editForm',this.editForm);
     })
   }
+    setExistItemList(data:IpurchaseDetail[]){
+      const formArray=new FormArray([]);
+    data.forEach((item)=>{
+      let result=this.fb.group({
+        productId:item.ProductId,
+        itemPrice:item.ItemPrice,
+        qty:item.Qty,
+        otherCost:item.OtherCost,
+        discount:item.Discount,
+        total:item.Discount
+      })
+      formArray.push(result);
+    })
+return formArray;
 
+    }
 
   getSupplierList(){
     this.supplierService.getSupplierList().subscribe(data=>{
@@ -72,10 +103,14 @@ export class PurchaseEditComponent implements OnInit {
       })
   }
 
+  onAddNewRow(){
+    this.itemListFormArray.push(this.addNewItemList());
+  }
+  deleteRow(i:number){
+      this.itemListFormArray.removeAt(i);
+  }
   onSubmit(){
     console.log(this.editForm);
   }
 
-
-  //testing
 }

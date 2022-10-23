@@ -35,12 +35,49 @@
               <tr [formGroupName]="i">
                   <td>
                     <select class="form-select form-select-sm" formControlName="productId">
-                    <option selected value="">select</option>
-                    <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
-                  </select>
+                      <option selected value="">select</option>
+                      <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
+                    </select>
                   </td>
+                  <td>
+                    <input type="number"  class="form-control form-control-sm text-end" formControlName="itemPrice" />
+
+
+                  </td>
+                  <td>
+                    <input type="number"  class="form-control form-control-sm text-end" formControlName="qty" />
+
+
+
+                  </td>
+                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="otherCost" /></td>
+                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="discount"/></td>
+                  <td>
+                    <input type="number" class="form-control form-control-sm text-end"  formControlName="total"   readonly/>
+
+                  </td>
+                  <td>
+
+                    <button *ngIf="itemListFormArray.length>1" type="button" class="btn btn-sm btn-danger"(click)="deleteRow(i)"><i class="fa-solid fa-trash"></i></button>
+                  </td>
+
               </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5"></td>
+              <td>
+                <input class="form-control text-end" placeholder="Grand Total" formControlName="grandTotal"  readonly/>
+              </td>
+              <td><button type="button"   class="btn btn-sm btn-success" (click)="onAddNewRow()"><i class="fa-solid fa-plus"></i></button></td>
+            </tr>
+            <tr>
+              <td colspan="6"></td>
+              <td>
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </form>
