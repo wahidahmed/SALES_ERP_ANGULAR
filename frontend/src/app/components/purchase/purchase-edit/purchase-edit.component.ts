@@ -34,6 +34,11 @@ export class PurchaseEditComponent implements OnInit {
     })
   }
 
+
+  get getItemList():FormArray{
+    return this.editForm.get('itemList') as FormArray;
+  }
+
   editData(){
 
     const id= +this.acRoute.snapshot.paramMap.get('id');
@@ -45,13 +50,8 @@ export class PurchaseEditComponent implements OnInit {
           SupplierId:data.SupplierId,
         }
       )
-
       console.log(this.editForm);
     })
-  }
-
-  get getItemList():FormArray{
-    return this.editForm.get('itemList') as FormArray;
   }
 
 
