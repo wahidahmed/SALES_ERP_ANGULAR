@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { IProduct } from 'src/app/interfaces/IProduct';
 import { ISupplier } from 'src/app/interfaces/ISupplier';
 import { Purchase } from 'src/app/Models/purchase';
+import { ProdcutService } from 'src/app/services/prodcut.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { SupplierService } from 'src/app/services/supplier.service';
 
@@ -13,8 +15,9 @@ import { SupplierService } from 'src/app/services/supplier.service';
 })
 export class PurchaseEditComponent implements OnInit {
 
-  constructor(private purchaseService:PurchaseService,private supplierService:SupplierService,private acRoute:ActivatedRoute,private fb:FormBuilder) { }
+  constructor(private purchaseService:PurchaseService,private supplierService:SupplierService,private acRoute:ActivatedRoute,private fb:FormBuilder,private productService:ProdcutService) { }
   supplierList:ISupplier[];
+  productList:IProduct[];
 
   editForm:FormGroup;
   ngOnInit() {
@@ -22,6 +25,14 @@ export class PurchaseEditComponent implements OnInit {
     this.createForm();
     this.getSupplierList();
     this.editData();
+    this.getProductList();
+
+  }
+
+  getProductList(){
+    this.productService.getProductList().subscribe(data=>{
+        this.productList=data;
+      })
 
   }
 
@@ -35,7 +46,7 @@ export class PurchaseEditComponent implements OnInit {
   }
 
 
-  get getItemList():FormArray{
+  get itemListFormArray():FormArray{
     return this.editForm.get('itemList') as FormArray;
   }
 

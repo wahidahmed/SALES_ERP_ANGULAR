@@ -31,7 +31,16 @@
               <th>Remove</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody formArrayName="itemList" *ngFor="let item of itemListFormArray.controls; let i =index">
+              <tr [formGroupName]="i">
+                  <td>
+                    <select class="form-select form-select-sm" formControlName="productId">
+                    <option selected value="">select</option>
+                    <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
+                  </select>
+                  </td>
+              </tr>
+          </tbody>
         </table>
       </div>
     </form>
