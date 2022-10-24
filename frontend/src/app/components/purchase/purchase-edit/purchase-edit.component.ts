@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { IpurchaseDetail } from 'src/app/interfaces/ipurchaseDetail';
@@ -33,8 +33,6 @@ export class PurchaseEditComponent implements OnInit {
     this.getSupplierList();
     this.editData();
     this.getProductList();
-
-
   }
 
   getProductList(){
@@ -43,6 +41,14 @@ export class PurchaseEditComponent implements OnInit {
       })
   }
 
+  createForm(){
+    this.editForm= this.fb.group({
+      SupplierId:['',[Validators.required]],
+      PurchaseDate:['',[Validators.required]],
+      itemList:this.fb.array([]),
+      grandTotal:[null,[]]
+    })
+  }
 
   addNewItemList():FormGroup{
     return this.fb.group(
@@ -62,16 +68,12 @@ export class PurchaseEditComponent implements OnInit {
     return this.editForm.get('itemList') as FormArray;
   }
 
-  get purchaseDateControl():FormControl{
-    return this.editForm.get('PurchaseDate') as FormControl;
-  }
-
-
-
   editData(){
 
     const id= +this.acRoute.snapshot.paramMap.get('id');
     this.purchaseService.getPurchaseById(id).subscribe((data:Purchase)=>{
+      this.editForm.get('itemList').patchValue(data.ItemList)
+
       this.editForm.patchValue(
         {
           SupplierId:data.SupplierId,
@@ -80,23 +82,23 @@ export class PurchaseEditComponent implements OnInit {
         }
       )
       this.editForm.setControl('itemList',this.setExistItemList(data.ItemList))
+      console.log('editForm',this.editForm);
     })
   }
     setExistItemList(data:IpurchaseDetail[]){
       const formArray=new FormArray([]);
     data.forEach((item)=>{
       let result=this.fb.group({
-        productId:[item.ProductId,[Validators.required]],
-        itemPrice:[item.ItemPrice,[Validators.required,Validators.min(1)]],
-        qty:[item.Qty,[Validators.required,Validators.min(1)]],
-        otherCost:[item.OtherCost,Validators.min(0)],
-        discount:[item.Discount,[Validators.min(0)]],
-        total:[(Number(item.ItemPrice)*Number(item.Qty)+Number(item.OtherCost|0)-Number(item.Discount|0)),[Validators.min(0)]]
+        productId:item.ProductId,
+        itemPrice:item.ItemPrice,
+        qty:item.Qty,
+        otherCost:item.OtherCost,
+        discount:item.Discount,
+        total:item.Discount
       })
       formArray.push(result);
-    });
-
-      return formArray;
+    })
+    return formArray;
 
     }
 
@@ -110,6 +112,9 @@ export class PurchaseEditComponent implements OnInit {
     // this.itemListFormArray.push(this.addNewItemList());
     (<FormArray>this.editForm.get('itemList')).push(this.addNewItemList());
     console.log('test')
+
+    this.itemListFormArray.push(this.addNewItemList());
+
   }
   deleteRow(i:number){
       this.itemListFormArray.removeAt(i);
