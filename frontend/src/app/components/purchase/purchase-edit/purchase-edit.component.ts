@@ -85,22 +85,22 @@ export class PurchaseEditComponent implements OnInit {
       console.log('editForm',this.editForm);
     })
   }
-    setExistItemList(data:IpurchaseDetail[]){
-      const formArray=new FormArray([]);
-    data.forEach((item)=>{
-      let result=this.fb.group({
-        productId:item.ProductId,
-        itemPrice:item.ItemPrice,
-        qty:item.Qty,
-        otherCost:item.OtherCost,
-        discount:item.Discount,
-        total:item.Discount
-      })
-      formArray.push(result);
+  setExistItemList(data:IpurchaseDetail[]){
+    const formArray=new FormArray([]);
+  data.forEach((item)=>{
+    let result=this.fb.group({
+      productId:[item.ProductId,[Validators.required]],
+      itemPrice:[item.ItemPrice,[Validators.required,Validators.min(1)]],
+      qty:[item.Qty,[Validators.required,Validators.min(1)]],
+      otherCost:[item.OtherCost,Validators.min(0)],
+      discount:[item.Discount,[Validators.min(0)]],
+      total:[(Number(item.ItemPrice)*Number(item.Qty)+Number(item.OtherCost|0)-Number(item.Discount|0)),[Validators.min(0)]]
     })
-    return formArray;
+    formArray.push(result);
+  });
 
-    }
+    return formArray;
+}
 
   getSupplierList(){
     this.supplierService.getSupplierList().subscribe(data=>{

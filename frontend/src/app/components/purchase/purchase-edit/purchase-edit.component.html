@@ -34,10 +34,15 @@
           <tbody formArrayName="itemList" *ngFor="let item of itemListFormArray.controls; let i =index">
               <tr [formGroupName]="i">
                   <td>
-                    <select class="form-select form-select-sm" formControlName="productId">
+                    <select class="form-select form-select-sm" formControlName="productId" [ngClass]="{
+                      'is-invalid':
+                        item.get('productId').invalid &&
+                        (item.get('productId').touched)
+                    }">
                       <option selected value="">select</option>
                       <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
                     </select>
+
                   </td>
                   <td>
                     <input type="number"  class="form-control form-control-sm text-end" formControlName="itemPrice" />
