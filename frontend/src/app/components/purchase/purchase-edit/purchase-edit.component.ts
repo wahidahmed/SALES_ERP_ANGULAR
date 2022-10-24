@@ -23,11 +23,16 @@ export class PurchaseEditComponent implements OnInit {
   editForm:FormGroup;
   ngOnInit() {
 
-    this.createForm();
+    this.editForm= this.fb.group({
+      SupplierId:['',[Validators.required]],
+      PurchaseDate:['',[Validators.required]],
+      itemList:this.fb.array([]),
+      grandTotal:[null,[]]
+    })
+
     this.getSupplierList();
     this.editData();
     this.getProductList();
-
   }
 
   getProductList(){
@@ -104,7 +109,12 @@ export class PurchaseEditComponent implements OnInit {
   }
 
   onAddNewRow(){
+    // this.itemListFormArray.push(this.addNewItemList());
+    (<FormArray>this.editForm.get('itemList')).push(this.addNewItemList());
+    console.log('test')
+
     this.itemListFormArray.push(this.addNewItemList());
+
   }
   deleteRow(i:number){
       this.itemListFormArray.removeAt(i);
