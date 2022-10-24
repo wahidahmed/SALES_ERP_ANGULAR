@@ -43,16 +43,37 @@
                       <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
                     </select>
 
+                    <div *ngFor="let validation of validation_message.productId"
+                    class="invalid-feedback">
+                    <div  *ngIf="item.get('productId').hasError(validation.type)
+                  && (item.get('productId').dirty || item.get('productId').touched)">
+                  {{ validation.message }} </div> </div>
+
                   </td>
                   <td>
-                    <input type="number"  class="form-control form-control-sm text-end" formControlName="itemPrice" />
+                    <input type="number"  class="form-control form-control-sm text-end" formControlName="itemPrice" [ngClass]="{'is-invalid':
+                    item.get('itemPrice').errors &&
+                    (item.get('itemPrice').dirty ||
+                    item.get('itemPrice').touched)}"/>
 
+                    <div *ngFor="let validation of validation_message.itemPrice"
+                    class="invalid-feedback"  >
+                    <div  *ngIf="item.get('itemPrice').hasError(validation.type)
+                  && (item.get('itemPrice').dirty || item.get('itemPrice').touched)">
+                  {{ validation.message }} </div> </div>
 
                   </td>
                   <td>
-                    <input type="number"  class="form-control form-control-sm text-end" formControlName="qty" />
+                    <input type="number"  class="form-control form-control-sm text-end" formControlName="qty" [ngClass]="{'is-invalid':
+                    item.get('qty').errors &&
+                    (item.get('qty').dirty ||
+                    item.get('qty').touched)}" />
 
-
+                    <div *ngFor="let validation of validation_message.qty"
+                    class="invalid-feedback">
+                    <div  *ngIf="item.get('qty').hasError(validation.type)
+                  && (item.get('qty').dirty || item.get('qty').touched)">
+                  {{ validation.message }} </div> </div>
 
                   </td>
                   <td><input type="number" class="form-control form-control-sm text-end" formControlName="otherCost" /></td>
