@@ -49,13 +49,13 @@ export class AddEmployeeComponent implements OnInit {
     });
 
     this.employeeForm.valueChanges.subscribe((v)=>{
-      console.log('value change',v);
       this.logValidationErrors(this.employeeForm);
     });
 
     this.contactPreferenceControl.valueChanges.subscribe((val)=>{
       this.onContactPrefernceChange(val);
     });
+
   }
 
 
