@@ -93,7 +93,7 @@ export class PurchaseEditComponent implements OnInit {
       })
       formArray.push(result);
     })
-return formArray;
+    return formArray;
 
     }
 
