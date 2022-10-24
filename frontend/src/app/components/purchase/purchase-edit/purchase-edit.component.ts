@@ -21,6 +21,13 @@ export class PurchaseEditComponent implements OnInit {
   productList:IProduct[];
 
   editForm:FormGroup;
+
+  validation_message = {
+    productId: [{ type: 'required', message: 'must select a product' }],
+    itemPrice: [{ type: 'required', message: 'itemPrice is required' }],
+    qty: [{ type: 'required', message: 'qty is required' },{ type: 'min', message: 'qty cannot 0' }],
+    total: [{ type: 'required', message: 'total is required' }]
+  };
   ngOnInit() {
 
     this.editForm= this.fb.group({
