@@ -23,22 +23,18 @@ export class PurchaseEditComponent implements OnInit {
   editForm:FormGroup;
   ngOnInit() {
 
-    this.createForm();
+    this.editForm= this.fb.group({
+      SupplierId:['',[Validators.required]],
+      PurchaseDate:['',[Validators.required]],
+      itemList:this.fb.array([]),
+      grandTotal:[null,[]]
+    })
+
     this.getSupplierList();
     this.editData();
     this.getProductList();
-      this.editForm.valueChanges.subscribe(v=>{
 
-        // console.log('v',v.itemList);
-        if(v.itemList){
-          v.itemList.reduce((acc:number,{discount,itemPrice,otherCost,productId,qty,total})=>{
-          //   console.log('acc',acc)
-          //   console.log('cur',{discount,itemPrice,otherCost,productId,qty,total});
-          //  acc+= (Number(itemPrice)*Number(qty));
-          //  total=(Number(itemPrice)*Number(qty));
-          },0)
-        }
-      })
+
   }
 
   getProductList(){
@@ -47,14 +43,6 @@ export class PurchaseEditComponent implements OnInit {
       })
   }
 
-  createForm(){
-    this.editForm= this.fb.group({
-      SupplierId:['',[Validators.required]],
-      PurchaseDate:['',[Validators.required]],
-      itemList:this.fb.array([ this.addNewItemList()]),
-      grandTotal:[null,[]]
-    })
-  }
 
   addNewItemList():FormGroup{
     return this.fb.group(
@@ -121,6 +109,7 @@ export class PurchaseEditComponent implements OnInit {
   onAddNewRow(){
     // this.itemListFormArray.push(this.addNewItemList());
     (<FormArray>this.editForm.get('itemList')).push(this.addNewItemList());
+    console.log('test')
   }
   deleteRow(i:number){
       this.itemListFormArray.removeAt(i);
