@@ -15,7 +15,7 @@
           </select>
         </div>
         <div class="col-md-2">
-          <input type="" class="form-control form-control-sm text-center" formControlName="PurchaseDate" />
+          <input type="date" class="form-control form-control-sm text-center" formControlName="PurchaseDate" />
         </div>
       </div>
       <div class="col-md-12">
@@ -54,7 +54,7 @@
                     <input type="number"  class="form-control form-control-sm text-end" formControlName="itemPrice" [ngClass]="{'is-invalid':
                     item.get('itemPrice').errors &&
                     (item.get('itemPrice').dirty ||
-                    item.get('itemPrice').touched)}"/>
+                    item.get('itemPrice').touched)}" #itemPrice />
 
                     <div *ngFor="let validation of validation_message.itemPrice"
                     class="invalid-feedback"  >
@@ -67,7 +67,7 @@
                     <input type="number"  class="form-control form-control-sm text-end" formControlName="qty" [ngClass]="{'is-invalid':
                     item.get('qty').errors &&
                     (item.get('qty').dirty ||
-                    item.get('qty').touched)}" />
+                    item.get('qty').touched)}" #qty />
 
                     <div *ngFor="let validation of validation_message.qty"
                     class="invalid-feedback">
@@ -76,10 +76,10 @@
                   {{ validation.message }} </div> </div>
 
                   </td>
-                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="otherCost" /></td>
-                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="discount"/></td>
+                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="otherCost" #tv_cost /></td>
+                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="discount" #tv_dis /></td>
                   <td>
-                    <input type="number" class="form-control form-control-sm text-end"  formControlName="total"   readonly/>
+                    <input type="number" class="form-control form-control-sm text-end"  formControlName="total" [value]="(+itemPrice.value* +qty.value + (+tv_cost.value)-(+tv_dis.value))"  readonly/>
 
                   </td>
                   <td>

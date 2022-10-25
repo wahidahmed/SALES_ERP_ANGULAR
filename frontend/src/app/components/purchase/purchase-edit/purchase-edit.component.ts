@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { IpurchaseDetail } from 'src/app/interfaces/ipurchaseDetail';
@@ -48,16 +48,8 @@ export class PurchaseEditComponent implements OnInit {
       })
   }
 
-  createForm(){
-    this.editForm= this.fb.group({
-      SupplierId:['',[Validators.required]],
-      PurchaseDate:['',[Validators.required]],
-      itemList:this.fb.array([]),
-      grandTotal:[null,[]]
-    })
-  }
 
-  addNewItemList():FormGroup{
+ private addNewItemList():FormGroup{
     return this.fb.group(
       {
         productId:['',[Validators.required]],
@@ -65,7 +57,7 @@ export class PurchaseEditComponent implements OnInit {
         qty:[null,[Validators.required,Validators.min(1)]],
         otherCost:[null,Validators.min(0)],
         discount:[null,[Validators.min(0)]],
-        total:[0,[Validators.min(0)]],
+        total:[null,[Validators.min(0)]],
       }
     );
   }
@@ -75,7 +67,11 @@ export class PurchaseEditComponent implements OnInit {
     return this.editForm.get('itemList') as FormArray;
   }
 
-  editData(){
+  get grandTotalControl():FormControl{
+    return this.editForm.get('grandTotal') as FormControl;
+  }
+
+private  editData(){
 
     const id= +this.acRoute.snapshot.paramMap.get('id');
     this.purchaseService.getPurchaseById(id).subscribe((data:Purchase)=>{
@@ -84,7 +80,7 @@ export class PurchaseEditComponent implements OnInit {
       this.editForm.patchValue(
         {
           SupplierId:data.SupplierId,
-          PurchaseDate:data.PurchaseDate,
+          PurchaseDate:[this.formatDate(new Date(data.PurchaseDate))],
           grandTotal:data.GrandTotal
         }
       )
@@ -92,7 +88,18 @@ export class PurchaseEditComponent implements OnInit {
       console.log('editForm',this.editForm);
     })
   }
-  setExistItemList(data:IpurchaseDetail[]){
+
+  private formatDate(date) {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
+  }
+
+  private setExistItemList(data:IpurchaseDetail[]){
     const formArray=new FormArray([]);
   data.forEach((item)=>{
     let result=this.fb.group({
@@ -115,14 +122,9 @@ export class PurchaseEditComponent implements OnInit {
       })
   }
 
-
   onAddNewRow(){
     // this.itemListFormArray.push(this.addNewItemList());
     (<FormArray>this.editForm.get('itemList')).push(this.addNewItemList());
-    console.log('test')
-
-    this.itemListFormArray.push(this.addNewItemList());
-
   }
   deleteRow(i:number){
       this.itemListFormArray.removeAt(i);
