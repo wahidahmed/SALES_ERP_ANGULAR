@@ -9,13 +9,15 @@
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-md-2">
-          <select class="form-select form-select-sm" formControlName="SupplierId">
+          <select class="form-select form-select-sm" formControlName="SupplierId"[ngClass]="{'is-invalid': supplierControl.invalid && (supplierControl.touched||isAddNew)}">
             <option selected value="">select supplier</option>
             <option *ngFor="let p of supplierList" value="{{p.SupplierId}}">{{p.SupplierName}}</option>
           </select>
+          <div *ngIf="supplierControl.invalid && (supplierControl.touched||isAddNew)"class="invalid-feedback">Must select supplier</div>
         </div>
         <div class="col-md-2">
-          <input type="date" class="form-control form-control-sm text-center" formControlName="PurchaseDate" />
+          <input type="date" class="form-control form-control-sm text-center" formControlName="PurchaseDate" [ngClass]="{'is-invalid': purchaseDateControl.invalid && (purchaseDateControl.touched||isAddNew)}"/>
+          <div *ngIf="purchaseDateControl.invalid && (purchaseDateControl.touched||isAddNew)"class="invalid-feedback">Must select purchase date</div>
         </div>
       </div>
       <div class="col-md-12">
@@ -37,8 +39,8 @@
                     <select class="form-select form-select-sm" formControlName="productId" [ngClass]="{
                       'is-invalid':
                         item.get('productId').invalid &&
-                        (item.get('productId').touched)
-                    }">
+                        (item.get('productId').touched||isAddNew)
+                    }" (change)="onChangeProduct($event,i)">
                       <option selected value="">select</option>
                       <option *ngFor="let p of productList" value="{{p.Id}}">{{p.ProdcutCode}}-{{p.ProdcutName}}</option>
                     </select>
@@ -46,7 +48,7 @@
                     <div *ngFor="let validation of validation_message.productId"
                     class="invalid-feedback">
                     <div  *ngIf="item.get('productId').hasError(validation.type)
-                  && (item.get('productId').dirty || item.get('productId').touched)">
+                  && (item.get('productId').dirty || item.get('productId').touched||isAddNew)">
                   {{ validation.message }} </div> </div>
 
                   </td>
@@ -54,12 +56,12 @@
                     <input type="number"  class="form-control form-control-sm text-end" formControlName="itemPrice" [ngClass]="{'is-invalid':
                     item.get('itemPrice').errors &&
                     (item.get('itemPrice').dirty ||
-                    item.get('itemPrice').touched)}" #itemPrice />
+                    item.get('itemPrice').touched||isAddNew)}" #itemPrice (focus)="selectFullContent($event)" (keyup)="onChangePrice(item)"/>
 
                     <div *ngFor="let validation of validation_message.itemPrice"
                     class="invalid-feedback"  >
                     <div  *ngIf="item.get('itemPrice').hasError(validation.type)
-                  && (item.get('itemPrice').dirty || item.get('itemPrice').touched)">
+                  && (item.get('itemPrice').dirty || item.get('itemPrice').touched||isAddNew)">
                   {{ validation.message }} </div> </div>
 
                   </td>
@@ -67,17 +69,17 @@
                     <input type="number"  class="form-control form-control-sm text-end" formControlName="qty" [ngClass]="{'is-invalid':
                     item.get('qty').errors &&
                     (item.get('qty').dirty ||
-                    item.get('qty').touched)}" #qty />
+                    item.get('qty').touched||isAddNew)}" #qty (keyup)="onChangeQty(item)" (focus)="selectFullContent($event)"/>
 
                     <div *ngFor="let validation of validation_message.qty"
                     class="invalid-feedback">
                     <div  *ngIf="item.get('qty').hasError(validation.type)
-                  && (item.get('qty').dirty || item.get('qty').touched)">
+                  && (item.get('qty').dirty || item.get('qty').touched||isAddNew)">
                   {{ validation.message }} </div> </div>
 
                   </td>
-                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="otherCost" #tv_cost /></td>
-                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="discount" #tv_dis /></td>
+                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="otherCost" #tv_cost (focus)="selectFullContent($event)" (keyup)="onChangeCost(item)"/></td>
+                  <td><input type="number" class="form-control form-control-sm text-end" formControlName="discount" #tv_dis (focus)="selectFullContent($event)" (keyup)="onChangeDiscount(item)"/></td>
                   <td>
                     <input type="number" class="form-control form-control-sm text-end"  formControlName="total" [value]="(+itemPrice.value* +qty.value + (+tv_cost.value)-(+tv_dis.value))"  readonly/>
 

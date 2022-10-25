@@ -5,6 +5,7 @@ import { IProduct } from 'src/app/interfaces/IProduct';
 import { IpurchaseDetail } from 'src/app/interfaces/ipurchaseDetail';
 import { ISupplier } from 'src/app/interfaces/ISupplier';
 import { Purchase } from 'src/app/Models/purchase';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { ProdcutService } from 'src/app/services/prodcut.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { SupplierService } from 'src/app/services/supplier.service';
@@ -16,12 +17,11 @@ import { SupplierService } from 'src/app/services/supplier.service';
 })
 export class PurchaseEditComponent implements OnInit {
 
-  constructor(private purchaseService:PurchaseService,private supplierService:SupplierService,private acRoute:ActivatedRoute,private fb:FormBuilder,private productService:ProdcutService) { }
+  constructor(private purchaseService:PurchaseService,private supplierService:SupplierService,private acRoute:ActivatedRoute,private fb:FormBuilder,private productService:ProdcutService,private alertifyService:AlertifyService) { }
   supplierList:ISupplier[];
   productList:IProduct[];
-
   editForm:FormGroup;
-
+  isAddNew:boolean=false;
   validation_message = {
     productId: [{ type: 'required', message: 'must select a product' }],
     itemPrice: [{ type: 'required', message: 'itemPrice is required' }],
@@ -70,6 +70,13 @@ export class PurchaseEditComponent implements OnInit {
   get grandTotalControl():FormControl{
     return this.editForm.get('grandTotal') as FormControl;
   }
+  get supplierControl():FormControl{
+    return this.editForm.get('SupplierId') as FormControl;
+  }
+
+  get purchaseDateControl():FormControl{
+    return this.editForm.get('PurchaseDate') as FormControl;
+  }
 
 private  editData(){
 
@@ -85,7 +92,7 @@ private  editData(){
         }
       )
       this.editForm.setControl('itemList',this.setExistItemList(data.ItemList))
-      console.log('editForm',this.editForm);
+      // console.log('editForm',this.editForm);
     })
   }
 
@@ -122,15 +129,75 @@ private  editData(){
       })
   }
 
+
   onAddNewRow(){
-    // this.itemListFormArray.push(this.addNewItemList());
-    (<FormArray>this.editForm.get('itemList')).push(this.addNewItemList());
+    if(this.itemListFormArray.length==0){
+      (<FormArray>this.editForm.get('itemList')).push(this.addNewItemList());
+    }
+    else if(this.editForm.valid){
+      (<FormArray>this.editForm.get('itemList')).push(this.addNewItemList());
+      this.isAddNew=false;
+    }
+    else{
+      this.isAddNew=true;
+    }
+
+  }
+  onChangeQty(item){
+
+    this.getGrandTotal();
+  }
+  onChangePrice(item){
+
+    this.getGrandTotal();
+  }
+  onChangeDiscount(item){
+
+    this.getGrandTotal();
+  }
+  onChangeCost(item){
+
+    this.getGrandTotal();
+  }
+
+  onChangeProduct(event:any,i:number){
+
+    if(event.target.value){
+
+      let arr=this.editForm.get('itemList').value.filter((item,index:number)=>{
+
+        return index!==i;
+      })
+      console.log('arr',arr)
+      arr.forEach((element:any) => {
+
+        if (event.target.value==element.productId) {
+          this.itemListFormArray.controls[i].patchValue({productId:'',itemPrice:null,qty:null,otherCost:null,discount:null});
+          this.alertifyService.warning('This product has been already added');
+        }
+
+      });
+    }
+  }
+
+  getGrandTotal(){
+
+   let total =this.itemListFormArray.value.reduce((acc:number,{discount,itemPrice,otherCost,qty})=>{
+      acc +=Number(itemPrice|0)*Number(qty|0)+Number(otherCost|0)-Number(discount | 0);
+      return acc;
+    },0);
+    console.log('total',total)
+    this.grandTotalControl.patchValue(total);
+  }
+
+  selectFullContent($event){
+    $event.target.select();
   }
   deleteRow(i:number){
       this.itemListFormArray.removeAt(i);
   }
   onSubmit(){
-    console.log(this.editForm);
+    // console.log(this.editForm);
   }
 
 }
