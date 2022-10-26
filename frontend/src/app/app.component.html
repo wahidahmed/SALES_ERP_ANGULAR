@@ -1,4 +1,10 @@
+<app-header *ngIf="!(_router.url === '/pages-register' || _router.url === '/pages-login' || _router.url === '/pages-error404')" ></app-header>
+<app-sidebar *ngIf="!(_router.url === '/pages-register' || _router.url === '/pages-login' || _router.url === '/pages-error404')" ></app-sidebar>
+<router-outlet></router-outlet>
+<!-- <app-footer *ngIf="!(_router.url === '/pages-register' || _router.url === '/pages-login' || _router.url === '/pages-error404')" ></app-footer> -->
 
+
+<!-- <app-header></app-header>
 <div class="row">
   <div class="col-12">
     <div class="container-fluid">
@@ -8,5 +14,5 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-</div>
+</div> -->
 

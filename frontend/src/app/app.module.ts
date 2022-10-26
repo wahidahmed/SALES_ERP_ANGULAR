@@ -36,6 +36,9 @@ import { PurchaseListComponent } from './components/purchase/purchase-list/purch
 import { PurchaseService } from './services/purchase.service';
 import { AddEmployeeComponent } from './components/HR/add-employee/add-employee.component';
 import { ListEmployeeComponent } from './components/HR/list-employee/list-employee.component';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { HeaderComponent } from './layouts/header/header.component';
+import { FooterComponent } from './layouts/footer/footer.component';
 
 const appRoutes:Routes=[
   {path:'add_new_product/:id',component:AddProductComponent}
@@ -77,10 +80,13 @@ const appRoutes:Routes=[
     ,PurchaseListComponent
     ,AddEmployeeComponent
     ,ListEmployeeComponent
+    ,SidebarComponent
+    ,HeaderComponent
+    ,FooterComponent
     ,HighlightDirective,SortDirective,FilterDirective
 
-    ,TestTableLstFormComponent,TestComponentComponent,PromiseObservableComponent,FormArrayPracticeComponent
-  ],
+    ,TestTableLstFormComponent,TestComponentComponent,PromiseObservableComponent,FormArrayPracticeComponent,
+   ],
   imports: [
     BrowserModule,
     RouterModule,
