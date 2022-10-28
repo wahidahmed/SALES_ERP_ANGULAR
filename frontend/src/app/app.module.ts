@@ -39,28 +39,9 @@ import { ListEmployeeComponent } from './components/HR/list-employee/list-employ
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { AppRoutingModule } from './custom-module/app-routing/app-routing.module';
 
-const appRoutes:Routes=[
-  {path:'add_new_product/:id',component:AddProductComponent}
-  ,{path:'product_list',component:ListProductComponent}
-  ,{path:'add_new_unit',component:AddUnitComponent}
-  ,{path:'add_new_customer',component:AddNewCustomerComponent}
-  ,{path:'customer_list',component:ListCustomerComponent}
-  ,{path:'sales_entry',component:SalesEntryComponent}
-  ,{path:'sales_edit',component:SalesEditComponent}
-  ,{path:'add_supplier',component:AddSupplierComponent}
-  ,{path:'supplier_list',component:ListSupplierComponent}
-  ,{path:'purchase_entry',component:PurchaseEntryComponent}
-  ,{path:'purchase_edit/:id',component:PurchaseEditComponent}
-  ,{path:'purchase_list',component:PurchaseListComponent}
-  ,{path:'add_employee',component:AddEmployeeComponent}
-  ,{path:'employee_list',component:ListEmployeeComponent}
 
-  ,{path:'sales_test',component:TestTableLstFormComponent}
-  ,{path:'test',component:TestComponentComponent}
-  ,{path:'test_formArray',component:FormArrayPracticeComponent}
-  ,{path:'promise_observable',component:PromiseObservableComponent}
-]
 @NgModule({
   declarations: [
     AppComponent
@@ -89,14 +70,13 @@ const appRoutes:Routes=[
    ],
   imports: [
     BrowserModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
     BrowserAnimationsModule,
-    MaterialModuleModule
+    MaterialModuleModule,
+    AppRoutingModule
   ],
   providers: [
     CustomerService
