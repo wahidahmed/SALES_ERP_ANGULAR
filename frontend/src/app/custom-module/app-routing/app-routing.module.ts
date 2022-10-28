@@ -19,6 +19,8 @@ import { TestTableLstFormComponent } from 'src/app/components/sales/test-table-l
 import { TestComponentComponent } from 'src/app/components/test-component/test-component.component';
 import { FormArrayPracticeComponent } from 'src/app/components/formArray-practice/formArray-practice.component';
 import { PromiseObservableComponent } from 'src/app/components/promise-observable/promise-observable.component';
+import { RegisterComponent } from 'src/app/components/administation/register/register.component';
+import { LoginComponent } from 'src/app/components/administation/login/login.component';
 
 
 const appRoutes:Routes=[
@@ -36,6 +38,8 @@ const appRoutes:Routes=[
   ,{path:'purchase_list',component:PurchaseListComponent}
   ,{path:'add_employee',component:AddEmployeeComponent}
   ,{path:'employee_list',component:ListEmployeeComponent}
+  ,{path:'register',component:RegisterComponent}
+  ,{path:'login',component:LoginComponent}
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
   ,{path:'test',component:TestComponentComponent}
