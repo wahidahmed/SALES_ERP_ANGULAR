@@ -38,6 +38,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppRoutingModule } from './custom-module/app-routing/app-routing.module';
+import { RegisterComponent } from './components/administation/register/register.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { AppRoutingModule } from './custom-module/app-routing/app-routing.module
     ,SidebarComponent
     ,HeaderComponent
     ,FooterComponent
+    ,RegisterComponent
     ,HighlightDirective,SortDirective,FilterDirective
 
     ,TestTableLstFormComponent,TestComponentComponent,PromiseObservableComponent,FormArrayPracticeComponent,

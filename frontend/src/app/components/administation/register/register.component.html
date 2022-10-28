@@ -5,26 +5,34 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-4">
-        <form>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" />
-          </div>
+        <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
+
           <div class="mb-3">
             <label for="userName" class="form-label">User Name</label>
-            <input type="text" class="form-control" id="userName" />
+            <input type="text" class="form-control" id="userName" formControlName="UserName" />
           </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" formControlName="Email" />
+          </div>
+
+        <div formGroupName="PW">
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" />
+            <input type="password" class="form-control" id="password" formControlName="Password" />
           </div>
+
           <div class="mb-3">
             <label for="consfirmPassord" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="consfirmPassord" />
+            <input type="password" class="form-control" id="consfirmPassord" formControlName="ConfirmPassword"/>
           </div>
+        </div>
+
           <div class="mb-3">
-           <button class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
           </div>
+
         </form>
       </div>
     </div>
