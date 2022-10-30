@@ -9,23 +9,30 @@
 
           <div class="mb-3">
             <label for="userName" class="form-label">User Name</label>
-            <input type="text" class="form-control" id="userName" formControlName="UserName" />
+            <input type="text" class="form-control" id="userName" formControlName="UserName" [ngClass]="{'is-invalid':userNameControl.invalid &&(userNameControl.touched)}"/>
+            <div *ngFor="let validation of validation_Messge.UserName"
+            class="invalid-feedback">
+                <div  *ngIf="userNameControl.hasError(validation.type)
+              && (userNameControl.dirty || userNameControl.touched)">
+              {{ validation.message }}
+                </div>
+            </div>
           </div>
 
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" formControlName="Email" />
+            <input type="email" class="form-control" id="email" formControlName="Email" [ngClass]="{'is-invalid':emailControl.invalid &&(emailControl.touched)}"/>
           </div>
 
         <div formGroupName="PW">
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" formControlName="Password" />
+            <input type="password" class="form-control" id="password" formControlName="Password" [ngClass]="{'is-invalid':passwordControl.invalid &&(passwordControl.touched)}"/>
           </div>
 
           <div class="mb-3">
             <label for="consfirmPassord" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="consfirmPassord" formControlName="ConfirmPassword"/>
+            <input type="password" class="form-control" id="consfirmPassord" formControlName="ConfirmPassword"[ngClass]="{'is-invalid':conPasswordControl.invalid &&(conPasswordControl.touched)}"/>
           </div>
         </div>
 
