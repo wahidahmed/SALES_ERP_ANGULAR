@@ -22,4 +22,15 @@ export class CustomValidatiors{
         })
 
       }
+
+      static passwordMatch(group:AbstractControl): { [key: string]: any } | null{
+        const password=group.get('Password');
+        const conPassword=group.get('ConfirmPassword');
+        if(password.value===conPassword.value){
+          return null;
+        }
+        else{
+          return {'misMatch':true};
+        }
+      }
 }

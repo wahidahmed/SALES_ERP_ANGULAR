@@ -17,15 +17,16 @@ validation_Messge={
   ,Email:[{type:'emailDomain',message:'email must be "gmail.com" domain'}]
   ,Password:[{type:'required',message:'Password is required'},{type:'minlength',message:'atleast 3 charachters are required'}]
   ,ConfirmPassword:[{type:'required',message:'ConfirmPassword is required'},{type:'misMatch',message:'ConfirmPassword is mismatched'}]
+  // ,PasswordGroup:[{type:'misMatch',message:'ConfirmPassword is mismatched'}]
 }
   ngOnInit() {
     this.registerForm=this.fb.group({
       UserName:[null,[Validators.required]],
       Email:[null,[CustomValidatiors.emailDomain('gmail.com')]],
-      PW:this.fb.group({
+      PasswordGroup:this.fb.group({
         Password:[null,[Validators.required,Validators.minLength(3)]],
         ConfirmPassword:[null,[Validators.required]]
-      })
+      },{ validator: CustomValidatiors.passwordMatch })
     })
   }
 
@@ -36,7 +37,7 @@ validation_Messge={
     return this.registerForm.get('Email') as FormControl;
   }
   get pwControl():FormGroup{
-    return this.registerForm.get('PW') as FormGroup;
+    return this.registerForm.get('PasswordGroup') as FormGroup;
   }
 
   get passwordControl():FormControl{

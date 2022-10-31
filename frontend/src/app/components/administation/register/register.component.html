@@ -22,19 +22,51 @@
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="email" class="form-control" id="email" formControlName="Email" [ngClass]="{'is-invalid':emailControl.invalid &&(emailControl.touched)}"/>
+            <div *ngFor="let validation of validation_Messge.Email"
+            class="invalid-feedback">
+                <div  *ngIf="emailControl.hasError(validation.type)
+              && (emailControl.dirty || emailControl.touched)">
+              {{ validation.message }}
+                </div>
+            </div>
           </div>
 
-        <div formGroupName="PW">
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" formControlName="Password" [ngClass]="{'is-invalid':passwordControl.invalid &&(passwordControl.touched)}"/>
-          </div>
+          <div formGroupName="PasswordGroup">
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="Password" [ngClass]="{'is-invalid':passwordControl.invalid &&(passwordControl.touched)}"/>
+                <div *ngFor="let validation of validation_Messge.Password"
+                class="invalid-feedback">
+                    <div  *ngIf="passwordControl.hasError(validation.type)
+                  && (passwordControl.dirty || passwordControl.touched)">
+                  {{ validation.message }}
+                    </div>
+                </div>
+            </div>
 
-          <div class="mb-3">
-            <label for="consfirmPassord" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="consfirmPassord" formControlName="ConfirmPassword"[ngClass]="{'is-invalid':conPasswordControl.invalid &&(conPasswordControl.touched)}"/>
+            <div class="mb-3">
+              <label for="consfirmPassord" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="consfirmPassord" formControlName="ConfirmPassword"[ngClass]="{'is-invalid':(conPasswordControl.invalid || pwControl.invalid) && (conPasswordControl.touched)}"/>
+                <div *ngFor="let validation of validation_Messge.ConfirmPassword"
+                class="invalid-feedback">
+                      <div  *ngIf="conPasswordControl.hasError(validation.type)
+                          && (conPasswordControl.dirty || conPasswordControl.touched)">
+                          {{ validation.message }}
+                      </div>
+                      <div  *ngIf="pwControl.hasError(validation.type)
+                            && (pwControl.dirty || pwControl.touched)">
+                            {{ validation.message }}
+                      </div>
+                </div>
+                <!-- <div *ngFor="let validation of validation_Messge.PasswordGroup"
+                class="invalid-feedback">
+                    <div  *ngIf="pwControl.hasError(validation.type)
+                  && (pwControl.dirty || pwControl.touched)">
+                  {{ validation.message }}
+                    </div>
+                </div> -->
+            </div>
           </div>
-        </div>
 
           <div class="mb-3">
             <button type="submit" class="btn btn-success">Submit</button>
