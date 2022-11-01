@@ -1,80 +1,137 @@
 <div class="card">
   <div class="card-header">
-   <h2 class="card-title"> Add new user</h2>
+    <h2 class="card-title">Add new user</h2>
   </div>
   <div class="card-body">
     <div class="row">
       <div class="col-md-4">
-        <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
-
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="userName" class="form-label">User Name</label>
-            <input type="text" class="form-control" id="userName" formControlName="UserName" [ngClass]="{'is-invalid':userNameControl.invalid &&(userNameControl.touched)}"/>
-            <div *ngFor="let validation of validation_Messge.UserName"
-            class="invalid-feedback">
-                <div  *ngIf="userNameControl.hasError(validation.type)
-              && (userNameControl.dirty || userNameControl.touched)">
-              {{ validation.message }}
-                </div>
+            <input
+              type="text"
+              class="form-control"
+              id="userName"
+              formControlName="UserName"
+              [ngClass]="{
+                'is-invalid': userNameControl.invalid && userNameControl.touched
+              }"
+            />
+            <div
+              *ngFor="let validation of validation_Messge.UserName"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="
+                  userNameControl.hasError(validation.type) &&
+                  (userNameControl.dirty || userNameControl.touched)
+                "
+              >
+                {{ validation.message }}
+              </div>
             </div>
           </div>
 
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" formControlName="Email" [ngClass]="{'is-invalid':emailControl.invalid &&(emailControl.touched)}"/>
-            <div *ngFor="let validation of validation_Messge.Email"
-            class="invalid-feedback">
-                <div  *ngIf="emailControl.hasError(validation.type)
-              && (emailControl.dirty || emailControl.touched)">
-              {{ validation.message }}
-                </div>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="Email"
+              [ngClass]="{
+                'is-invalid': emailControl.invalid && emailControl.touched
+              }"
+            />
+            <div
+              *ngFor="let validation of validation_Messge.Email"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="
+                  emailControl.hasError(validation.type) &&
+                  (emailControl.dirty || emailControl.touched)
+                "
+              >
+                {{ validation.message }}
+              </div>
             </div>
           </div>
 
           <div formGroupName="PasswordGroup">
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" formControlName="Password" [ngClass]="{'is-invalid':passwordControl.invalid &&(passwordControl.touched)}"/>
-                <div *ngFor="let validation of validation_Messge.Password"
-                class="invalid-feedback">
-                    <div  *ngIf="passwordControl.hasError(validation.type)
-                  && (passwordControl.dirty || passwordControl.touched)">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="Password"
+                [ngClass]="{
+                  'is-invalid':
+                    passwordControl.invalid && passwordControl.touched
+                }"
+              />
+              <div
+                *ngFor="let validation of validation_Messge.Password"
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="
+                    passwordControl.hasError(validation.type) &&
+                    (passwordControl.dirty || passwordControl.touched)
+                  "
+                >
                   {{ validation.message }}
-                    </div>
                 </div>
+              </div>
             </div>
 
             <div class="mb-3">
-              <label for="consfirmPassord" class="form-label">Confirm Password</label>
-              <input type="password" class="form-control" id="consfirmPassord" formControlName="ConfirmPassword"[ngClass]="{'is-invalid':(conPasswordControl.invalid || pwControl.invalid) && (conPasswordControl.touched)}"/>
-                <div *ngFor="let validation of validation_Messge.ConfirmPassword"
-                class="invalid-feedback">
-                      <div  *ngIf="conPasswordControl.hasError(validation.type)
-                          && (conPasswordControl.dirty || conPasswordControl.touched)">
-                          {{ validation.message }}
-                      </div>
-                      <div  *ngIf="pwControl.hasError(validation.type)
-                            && (pwControl.dirty || pwControl.touched)">
-                            {{ validation.message }}
-                      </div>
-                </div>
-                <!-- <div *ngFor="let validation of validation_Messge.PasswordGroup"
-                class="invalid-feedback">
-                    <div  *ngIf="pwControl.hasError(validation.type)
-                  && (pwControl.dirty || pwControl.touched)">
+              <label for="consfirmPassord" class="form-label"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="consfirmPassord"
+                formControlName="ConfirmPassword"
+                [ngClass]="{
+                  'is-invalid':
+                    (conPasswordControl.invalid || pwControl.invalid) &&
+                    conPasswordControl.touched
+                }"
+              />
+              <div
+                *ngFor="let validation of validation_Messge.ConfirmPassword"
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="
+                    conPasswordControl.hasError(validation.type) &&
+                    (conPasswordControl.dirty || conPasswordControl.touched)
+                  "
+                >
                   {{ validation.message }}
-                    </div>
-                </div> -->
+                </div>
+              </div>
+              <div
+                *ngFor="let validation of validation_Messge.PasswordGroup"
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="pwControl.hasError(validation.type) && pwControl.dirty&& conPasswordControl.value"
+                >
+                  {{ validation.message }}
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="mb-3">
             <button type="submit" class="btn btn-success">Submit</button>
           </div>
-
         </form>
       </div>
     </div>
-
   </div>
 </div>
