@@ -25,11 +25,12 @@
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input
-              type="password"
+              [type]="type"
               class="form-control"
               id="password"
 
             />
+            <span (click)="hideShowEye()" class="fa fa-eye-slash" style="position: absolute;bottom: 95px;left: 30%;"></span>
           </div>
 
 

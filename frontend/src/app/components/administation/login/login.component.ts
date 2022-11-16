@@ -9,7 +9,13 @@ export class LoginComponent implements OnInit {
 
   constructor() { }
 
+  type:string='password';
+
   ngOnInit() {
+  }
+
+  hideShowEye(){
+
   }
 
 }
