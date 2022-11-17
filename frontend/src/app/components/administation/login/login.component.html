@@ -13,9 +13,9 @@
               class="form-control"
               id="userName"
               formControlName="userName"
-              [ngClass]="{'is-invalid':(userNameControl.invalid)&& userNameControl.touched}"
+              [ngClass]="{'is-invalid':userNameControl.invalid&& (userNameControl.touched || userNameControl.dirty)}"
             />
-            <small class="invalid-feedback" *ngIf="userNameControl.invalid&&(userNameControl.touched)">user name is required</small>
+            <small class="invalid-feedback" *ngIf="userNameControl.invalid&&(userNameControl.touched || userNameControl.dirty)">user name is required</small>
           </div>
 
           <div class="mb-3">
@@ -25,16 +25,16 @@
               class="form-control"
               id="password"
               formControlName="password"
-              [ngClass]="{'is-invalid':passwordControl.invalid&& passwordControl.touched}"
+              [ngClass]="{'is-invalid':passwordControl.invalid&& (passwordControl.touched|| passwordControl.dirty)}"
             />
             <i (click)="hideShowEye()" class="fa {{eye}}" style="position: absolute;bottom: 95px;left: 30%;"></i>
 
-            <small class="invalid-feedback" *ngIf="passwordControl.invalid&&(passwordControl.touched)">password is required</small>
+            <small class="invalid-feedback" *ngIf="passwordControl.invalid&&(passwordControl.touched || passwordControl.dirty)">password is required</small>
           </div>
 
 
           <div class="mb-3">
-            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-success">Submit</button>
+            <button  type="submit" class="btn btn-success">Submit</button>
           </div>
         </form>
       </div>
