@@ -5,21 +5,17 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-4">
-        <form >
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="userName" class="form-label">User Name</label>
             <input
               type="text"
               class="form-control"
               id="userName"
-
+              formControlName="userName"
+              [ngClass]="{'is-invalid':(userNameControl.invalid)&& userNameControl.touched}"
             />
-            <div
-              *ngFor="let validation of validation_Messge.UserName"
-              class="invalid-feedback"
-            >
-
-            </div>
+            <small class="invalid-feedback" *ngIf="userNameControl.invalid&&(userNameControl.touched)">user name is required</small>
           </div>
 
           <div class="mb-3">
@@ -28,14 +24,17 @@
               [type]="type"
               class="form-control"
               id="password"
-
+              formControlName="password"
+              [ngClass]="{'is-invalid':passwordControl.invalid&& passwordControl.touched}"
             />
-            <span (click)="hideShowEye()" class="fa fa-eye-slash" style="position: absolute;bottom: 95px;left: 30%;"></span>
+            <i (click)="hideShowEye()" class="fa {{eye}}" style="position: absolute;bottom: 95px;left: 30%;"></i>
+
+            <small class="invalid-feedback" *ngIf="passwordControl.invalid&&(passwordControl.touched)">password is required</small>
           </div>
 
 
           <div class="mb-3">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-success">Submit</button>
           </div>
         </form>
       </div>

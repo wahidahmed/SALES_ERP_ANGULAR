@@ -39,6 +39,7 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppRoutingModule } from './custom-module/app-routing/app-routing.module';
 import { RegisterComponent } from './components/administation/register/register.component';
+import { LoginComponent } from './components/administation/login/login.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { RegisterComponent } from './components/administation/register/register.
     ,HeaderComponent
     ,FooterComponent
     ,RegisterComponent
+    ,LoginComponent
     ,HighlightDirective,SortDirective,FilterDirective
 
     ,TestTableLstFormComponent,TestComponentComponent,PromiseObservableComponent,FormArrayPracticeComponent,
