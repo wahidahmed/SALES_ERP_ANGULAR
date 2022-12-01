@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private alertifyService:AlertifyService) { }
+  constructor(private fb:FormBuilder,private alertifyService:AlertifyService,private authService:AuthService) { }
 
   type:string='password';
   isText:boolean=false;
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
       userName:[null,[Validators.required]],
       password:[null,[Validators.required]]
     })
+
+    this.getAllUsers();
   }
 
   get userNameControl():FormControl{
@@ -49,6 +52,13 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+
+  getAllUsers(){
+    return this.authService.getAllUsers().subscribe(x=>{
+      console.log(x);
+    })
+  }
+
   onSubmit(){
    if(this.loginForm.valid){
    this.alertifyService.success('login successfull');
