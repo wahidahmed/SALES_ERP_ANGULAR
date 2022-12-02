@@ -56,16 +56,17 @@ export class LoginComponent implements OnInit {
   }
 
   getAllUsers(){
-    return this.authService.getAllUsers().subscribe(x=>{
-      console.log(x);
-    })
+    // return this.authService.getAllUsers().subscribe(x=>{
+    //   console.log(x);
+    // })
   }
 
   onSubmit(){
    if(this.loginForm.valid){
     this.authService.authUser(this.loginForm.value).subscribe((res:Users)=>{
       console.log(res);
-      localStorage.setItem('token',res.Token)
+      localStorage.setItem('token',res.Token);
+      localStorage.setItem('userName',res.UserName)
       this.alertifyService.success('login successfull');
       this.router.navigate(['/']);
     },
