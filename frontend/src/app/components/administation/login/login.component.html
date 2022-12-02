@@ -7,24 +7,24 @@
       <div class="col-md-4">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
-            <label for="userName" class="form-label">User Name</label>
+            <label for="UserName" class="form-label">User Name</label>
             <input
               type="text"
               class="form-control"
-              id="userName"
-              formControlName="userName"
+              id="UserName"
+              formControlName="UserName"
               [ngClass]="{'is-invalid':userNameControl.invalid&& (userNameControl.touched || userNameControl.dirty)}"
             />
             <small class="invalid-feedback" *ngIf="userNameControl.invalid&&(userNameControl.touched || userNameControl.dirty)">user name is required</small>
           </div>
 
           <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
+            <label for="Password" class="form-label">Password</label>
             <input
               [type]="type"
               class="form-control"
-              id="password"
-              formControlName="password"
+              id="Password"
+              formControlName="Password"
               [ngClass]="{'is-invalid':passwordControl.invalid&& (passwordControl.touched|| passwordControl.dirty)}"
             />
             <i (click)="hideShowEye()" class="fa {{eye}}" style="position: absolute;bottom: 95px;left: 30%;"></i>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Users } from 'src/app/Models/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private alertifyService:AlertifyService,private authService:AuthService) { }
+  constructor(private fb:FormBuilder,private alertifyService:AlertifyService,private authService:AuthService,private router:Router) { }
 
   type:string='password';
   isText:boolean=false;
@@ -19,19 +21,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm=this.fb.group({
-      userName:[null,[Validators.required]],
-      password:[null,[Validators.required]]
+      UserName:[null,[Validators.required]],
+      Password:[null,[Validators.required]]
     })
 
     this.getAllUsers();
   }
 
   get userNameControl():FormControl{
-    return this.loginForm.get('userName') as FormControl;
+    return this.loginForm.get('UserName') as FormControl;
   }
 
   get passwordControl():FormControl{
-    return this.loginForm.get('password') as FormControl;
+    return this.loginForm.get('Password') as FormControl;
   }
 
   hideShowEye(){
@@ -61,7 +63,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
    if(this.loginForm.valid){
-   this.alertifyService.success('login successfull');
+    this.authService.authUser(this.loginForm.value).subscribe((res:Users)=>{
+      console.log(res);
+      localStorage.setItem('token',res.Token)
+      this.alertifyService.success('login successfull');
+      this.router.navigate(['/']);
+    },
+    err=>{
+      console.log('err',err);
+    }
+    );
+
    }
    else{
     this.validateAllFormsField(this.loginForm);

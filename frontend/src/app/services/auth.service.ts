@@ -11,6 +11,12 @@ export class AuthService {
 constructor(private httpClient:HttpClient) { }
 
    getAllUsers():Observable<Users[]>{
+
     return this.httpClient.get<Users[]>('http://localhost:5286/api/UserInfo/GetUsers');
+  }
+
+  authUser(user:Users){
+    console.log(user)
+   return this.httpClient.post("http://localhost:5286/api/UserInfo/Login",user);
   }
 }
