@@ -74,7 +74,6 @@ export class RegisterComponent implements OnInit {
     this.isSubmitted=true;
     if(this.registerForm.valid){
 
-      console.log('registerForm',this.registerForm);
       this.userData.UserName=this.registerForm.value.UserName;
       this.userData.Password=this.registerForm.value.PasswordGroup.Password;
     this.alertifyService.confirm("are you sure to save?",r=>{
@@ -82,6 +81,7 @@ export class RegisterComponent implements OnInit {
             (res:IUsers)=>{
               console.log('res',res);
               this.alertifyService.success('save successfull');
+              this.registerForm.reset();
             },
             err=>{
               console.log('err',err);

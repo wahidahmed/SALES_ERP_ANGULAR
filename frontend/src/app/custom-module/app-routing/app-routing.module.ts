@@ -39,7 +39,7 @@ const appRoutes:Routes=[
   ,{path:'add_employee',component:AddEmployeeComponent}
   ,{path:'employee_list',component:ListEmployeeComponent}
   ,{path:'register',component:RegisterComponent}
-  ,{path:'login',component:LoginComponent}
+  ,{path:'',component:LoginComponent}
 
   ,{path:'sales_test',component:TestTableLstFormComponent}
   ,{path:'test',component:TestComponentComponent}
