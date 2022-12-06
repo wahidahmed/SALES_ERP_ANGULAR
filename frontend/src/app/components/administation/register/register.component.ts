@@ -6,6 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomValidatiors } from 'src/app/helpers/custom.validators';
+import { Users } from 'src/app/Models/user';
+import { UserRegisterService } from 'src/app/services/user-register.service';
+import { IUsers } from 'src/app/interfaces/IUsers';
+import { isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-register',
@@ -13,9 +18,10 @@ import { CustomValidatiors } from 'src/app/helpers/custom.validators';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,private userRegisterService:UserRegisterService,private alertifyService:AlertifyService) {}
 
   registerForm: FormGroup;
+  isSubmitted:boolean=false;
   validation_Messge = {
     UserName: [{ type: 'required', message: 'User Name is required' }],
     Email: [
@@ -63,7 +69,29 @@ export class RegisterComponent implements OnInit {
     return this.pwControl.get('ConfirmPassword') as FormControl;
   }
 
+  userData  =new  Users();
   onSubmit() {
-    console.log(this.registerForm);
+    this.isSubmitted=true;
+    if(this.registerForm.valid){
+
+      console.log('registerForm',this.registerForm);
+      this.userData.UserName=this.registerForm.value.UserName;
+      this.userData.Password=this.registerForm.value.PasswordGroup.Password;
+    this.alertifyService.confirm("are you sure to save?",r=>{
+          this.userRegisterService.AddNewUser(this.userData).subscribe(
+            (res:IUsers)=>{
+              console.log('res',res);
+              this.alertifyService.success('save successfull');
+            },
+            err=>{
+              console.log('err',err);
+              this.alertifyService.error(err.error)
+            }
+          )
+    })
+
+
+      this.isSubmitted=false;
+    }
   }
 }

@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
 
   loggedIn(){
    this.userName= localStorage.getItem('userName');
-   console.log(localStorage.getItem('userName'))
+  //  console.log(localStorage.getItem('userName'))
    return this.userName;
   }
   logOut(){

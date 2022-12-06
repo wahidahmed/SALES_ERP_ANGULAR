@@ -14,7 +14,7 @@
               id="userName"
               formControlName="UserName"
               [ngClass]="{
-                'is-invalid': userNameControl.invalid && userNameControl.touched
+                'is-invalid': userNameControl.invalid && (userNameControl.touched||isSubmitted)
               }"
             />
             <div
@@ -24,7 +24,7 @@
               <div
                 *ngIf="
                   userNameControl.hasError(validation.type) &&
-                  (userNameControl.dirty || userNameControl.touched)
+                  (userNameControl.dirty || userNameControl.touched||isSubmitted)
                 "
               >
                 {{ validation.message }}
@@ -40,7 +40,7 @@
               id="email"
               formControlName="Email"
               [ngClass]="{
-                'is-invalid': emailControl.invalid && emailControl.touched
+                'is-invalid': emailControl.invalid && (emailControl.touched||isSubmitted)
               }"
             />
             <div
@@ -50,7 +50,7 @@
               <div
                 *ngIf="
                   emailControl.hasError(validation.type) &&
-                  (emailControl.dirty || emailControl.touched)
+                  (emailControl.dirty || emailControl.touched||isSubmitted)
                 "
               >
                 {{ validation.message }}
@@ -68,7 +68,7 @@
                 formControlName="Password"
                 [ngClass]="{
                   'is-invalid':
-                    passwordControl.invalid && passwordControl.touched
+                    passwordControl.invalid && (passwordControl.touched||isSubmitted)
                 }"
               />
               <div
@@ -78,7 +78,7 @@
                 <div
                   *ngIf="
                     passwordControl.hasError(validation.type) &&
-                    (passwordControl.dirty || passwordControl.touched)
+                    (passwordControl.dirty || passwordControl.touched||isSubmitted)
                   "
                 >
                   {{ validation.message }}
@@ -98,7 +98,7 @@
                 [ngClass]="{
                   'is-invalid':
                     (conPasswordControl.invalid || pwControl.invalid) &&
-                    conPasswordControl.touched
+                    (conPasswordControl.touched||isSubmitted)
                 }"
               />
               <div
@@ -108,7 +108,7 @@
                 <div
                   *ngIf="
                     conPasswordControl.hasError(validation.type) &&
-                    (conPasswordControl.dirty || conPasswordControl.touched)
+                    (conPasswordControl.dirty || conPasswordControl.touched||isSubmitted)
                   "
                 >
                   {{ validation.message }}
