@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       Password:[null,[Validators.required]]
     })
 
-    this.getAllUsers();
+
   }
 
   get userNameControl():FormControl{
@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
 
   hideShowEye(){
     this.isText=!this.isText;
-    console.log(this.isText);
     this.isText?this.eye='fa-eye':this.eye='fa-eye-slash';
     this.isText?this.type='text':this.type='password';
   }
@@ -55,11 +54,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  getAllUsers(){
-    // return this.authService.getAllUsers().subscribe(x=>{
-    //   console.log(x);
-    // })
-  }
+
 
   onSubmit(){
    if(this.loginForm.valid){
@@ -72,6 +67,7 @@ export class LoginComponent implements OnInit {
     },
     err=>{
       console.log('err',err);
+      this.alertifyService.error('error:'+err.error+'');
     }
     );
 

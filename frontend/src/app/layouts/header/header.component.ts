@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   userName:string='';
 
   ngOnInit(): void {
-    this.loggedIn();
+
   }
   sidebarToggle()
   {
@@ -30,6 +30,6 @@ export class HeaderComponent implements OnInit {
   logOut(){
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 }
