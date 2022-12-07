@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from'@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from'@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
@@ -40,6 +40,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { AppRoutingModule } from './custom-module/app-routing/app-routing.module';
 import { RegisterComponent } from './components/administation/register/register.component';
 import { LoginComponent } from './components/administation/login/login.component';
+import { HttpErrorInterceptorService } from './services/httperror-interceptor.srevice';
 
 
 @NgModule({
@@ -80,6 +81,11 @@ import { LoginComponent } from './components/administation/login/login.component
     AppRoutingModule
   ],
   providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttpErrorInterceptorService,
+      multi:true
+    },
     CustomerService
     ,AlertifyService
     ,ProdcutService

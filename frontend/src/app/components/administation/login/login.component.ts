@@ -65,10 +65,10 @@ export class LoginComponent implements OnInit {
       this.alertifyService.success('login successfull');
       this.router.navigate(['/']);
     },
-    err=>{
-      console.log('err',err);
-      this.alertifyService.error('error:'+err.error+'');
-    }
+    // err=>{ now it is handle by global error sevice in
+    //   console.log('err',err);
+    //   this.alertifyService.error('error:'+err.error+'');
+    // }
     );
 
    }
