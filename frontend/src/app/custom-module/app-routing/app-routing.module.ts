@@ -21,6 +21,7 @@ import { FormArrayPracticeComponent } from 'src/app/components/formArray-practic
 import { PromiseObservableComponent } from 'src/app/components/promise-observable/promise-observable.component';
 import { RegisterComponent } from 'src/app/components/administation/register/register.component';
 import { LoginComponent } from 'src/app/components/administation/login/login.component';
+import { DasahboardComponent } from 'src/app/components/dasahboard/dasahboard.component';
 
 
 const appRoutes:Routes=[
@@ -39,6 +40,7 @@ const appRoutes:Routes=[
   ,{path:'add_employee',component:AddEmployeeComponent}
   ,{path:'employee_list',component:ListEmployeeComponent}
   ,{path:'register',component:RegisterComponent}
+  ,{path:'dashboard',component:DasahboardComponent}
   ,{path:'',component:LoginComponent}
 
   ,{path:'sales_test',component:TestTableLstFormComponent}

@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token',res.Token);
       localStorage.setItem('userName',res.UserName)
       this.alertifyService.success('login successfull');
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     },
     // err=>{ now it is handle by global error sevice in
     //   console.log('err',err);
